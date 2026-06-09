@@ -1,0 +1,62 @@
+<CMS:edit option="switch">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_heading_1_wo_h1_element%%:</td>
+      <td><CMS:switch id="like_h1"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_heading_2_wo_h2_element%%:</td>
+      <td><CMS:switch id="like_h2"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_heading_3_wo_h3_element%%:</td>
+      <td><CMS:switch id="like_h3"/></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:cblock idref="t1">
+<CMS:cblock idref="like_h1"><div class="like-h1"></CMS:cblock>
+<CMS:calt idref="like_h1"><h1></CMS:calt>
+
+  <CMS:text id="t1" title="%%l_heading_1%%"/>
+
+<CMS:cblock idref="like_h1"></div></CMS:cblock>
+<CMS:calt idref="like_h1"></h1></CMS:calt>
+</CMS:cblock>
+
+<CMS:cblock idref="t2">
+<CMS:cblock idref="like_h2"><div class="like-h2"></CMS:cblock>
+<CMS:calt idref="like_h2"><h2></CMS:calt>
+
+  <CMS:text id="t2" title="%%l_heading_2%%"/>
+
+<CMS:cblock idref="like_h2"></div></CMS:cblock>
+<CMS:calt idref="like_h2"></h2></CMS:calt>
+</CMS:cblock>
+
+<CMS:cblock idref="t3">
+<CMS:cblock idref="like_h3"><div class="like-h3"></CMS:cblock>
+<CMS:calt idref="like_h3"><h3></CMS:calt>
+
+  <CMS:text id="t3" title="%%l_heading_3%%"/>
+
+<CMS:cblock idref="like_h3"></div></CMS:cblock>
+<CMS:calt idref="like_h3"></h3></CMS:calt>
+</CMS:cblock>
+
+<CMS:cblock idref="t4">
+<p>
+
+  <CMS:text id="t4" title="%%lorem_ipsum%%"/>
+
+</p>
+</CMS:cblock>

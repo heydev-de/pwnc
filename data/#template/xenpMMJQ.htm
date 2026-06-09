@@ -1,0 +1,60 @@
+<CMS:edit option="href image">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="href">
+    <tr>
+      <td>%%l_link%%:</td>
+      <td><CMS:href id=".h1"></CMS:href></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="image">
+    <tr>
+      <td>%%l_background%%:</td>
+      <td><CMS:image id=".i1" width="150"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit><div class="teaser5"></CMS:noedit>
+<CMS:edit><div class="teaser5 edit"></CMS:edit>
+
+  <CMS:cblock idref="i1">
+  <div class="teaser5-image">
+  
+     <CMS:image id=".i1" edit="off" class="teaser5-image"/>
+     
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="t1">
+  <div class="teaser5-title like-h2">
+
+    <CMS:text id="t1" title="%%l_title%%"/>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="t2">
+  <div class="teaser5-text">
+
+    <CMS:text id="t2" title="%%lorem_ipsum%%"/>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="h1">
+  <div class="teaser5-link">
+
+    <CMS:href id="h1" edit="off" class="button">%%l_more%%</CMS:href>
+
+  </div>
+  </CMS:cblock>
+
+</div>

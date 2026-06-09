@@ -1,0 +1,50 @@
+DIV.teaser3
+{
+    DISPLAY: flex;
+    FLEX-DIRECTION: column;
+    GAP: var(--cms-hpadding);
+    HEIGHT: 100%;
+    TEXT-ALIGN: center;
+}
+
+DIV.teaser3-image > IMG
+{
+    HEIGHT: calc(100 * var(--cms-factor));
+    OBJECT-FIT: cover;
+    WIDTH: calc(100 * var(--cms-factor));
+}
+
+DIV.teaser3:not(.edit) DIV.teaser3-image > IMG
+{
+    BORDER-RADIUS: 50%;
+    OVERFLOW: clip;
+}
+
+DIV.teaser3-title
+{
+    MARGIN: 0;
+}
+
+DIV.teaser3-text
+{
+    TEXT-ALIGN: justify;
+    TEXT-ALIGN-LAST: center;
+    TEXT-WRAP: balance;
+}
+
+DIV.teaser3-title + DIV.teaser3-text
+{
+    MARGIN-TOP: calc(-0.5 * var(--cms-hpadding));
+}
+
+DIV.teaser3-link
+{
+    ALIGN-CONTENT: flex-end;
+    FLEX: 1;
+    TEXT-ALIGN: center;
+}
+
+DIV.teaser3-link > A
+{
+    MARGIN: 0;
+}

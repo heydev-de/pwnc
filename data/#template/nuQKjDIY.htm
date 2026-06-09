@@ -1,0 +1,28 @@
+<CMS:edit option="repeat">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_number_of_rows%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<div class="layout-srow">
+
+  <CMS:repeat id="r1" edit="off">
+  <CMS:cblock>
+  <div class="layout-srow-block">
+
+    <CMS:template/>
+
+  </div>
+  </CMS:cblock>
+  </CMS:repeat>
+
+</div>

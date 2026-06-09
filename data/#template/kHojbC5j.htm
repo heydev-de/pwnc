@@ -1,0 +1,133 @@
+<CMS:edit option="value">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_exclude_domains%%:</td>
+      <td><CMS:value id="backlink_exclude"/></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:nocache>
+<?php
+
+//check timeout
+$update_interval_in_seconds = 86400; //24 hours
+
+if (cms_cache_time("backlink.text") > (time() - $update_interval_in_seconds))
+{
+    echo(cms_cache("backlink.text"));
+    return TRUE;
+};
+
+//settings
+$number_of_backlinks = 5;
+$time_frame_in_days  = 30;
+$link_limit_per_page = 100;
+$exclusion_list      = l($cms_template_document->get($cms_template_base_id . "backlink_exclude", "value"));
+$exclusion_list      = preg_split("/[\s,]+/", $exclusion_list, -1, PREG_SPLIT_NO_EMPTY);
+$exclusion_list[]    = CMS_DOMAIN;
+
+//update file modification time
+//so other instances will use the cache
+//instead of trying to update, too
+cms_cache_touch("backlink.text");
+
+//retrieve referers
+$query =
+    "SELECT " .         CMS_DB_LOG_ACCESS_REFERRER . " AS `#url`, " .
+                        CMS_DB_LOG_ACCESS_DOMAIN .   " AS `#domain`, " .
+    "COUNT(DISTINCT " . CMS_DB_LOG_ACCESS_USERID .  ") AS `#count` " .
+    "FROM " .           CMS_DB_LOG_ACCESS . " " .
+    "WHERE " .          CMS_DB_LOG_ACCESS_TIME .     ">(NOW() - INTERVAL $time_frame_in_days DAY) " .
+    "AND " .            CMS_DB_LOG_ACCESS_BOT .      "<1 " .
+    "AND " .            CMS_DB_LOG_ACCESS_REFERRER . "!='' " .
+    "AND " .            CMS_DB_LOG_ACCESS_DOMAIN .   " " .
+    "NOT IN ('" .       implode("', '", sqlesc($exclusion_list)) . "') " .
+    "GROUP BY " .       CMS_DB_LOG_ACCESS_REFERRER . " " .
+    "ORDER BY `#count` DESC";
+
+$query =
+    "SELECT `#url` " .
+    "FROM (" . $query . ") AS `#t1` " .
+    "GROUP BY `#domain` " .
+    "ORDER BY `#count` DESC " .
+    "LIMIT 100";
+
+$mysql  = new mysql();
+$result = mysql_query($query);
+$page   = preg_quote(CMS_ROOT_URL, "/");
+$buffer = [];
+$i      = 0;
+
+cms_load("html");
+
+while ($resultrow = mysql_fetch_assoc($result))
+{
+    $url = $resultrow["#url"];
+
+    //get external referrer info
+    $info = html_page_info($url);
+    if ($info === FALSE) continue; //cannot read
+
+    $title = $info["title"];
+    $flag  = FALSE;
+    $_i    = 0;
+
+    //check for inbound link
+    foreach ($info["links"] AS $value)
+    {
+        $_url = $value["url"];
+        $text = $value["text"];
+
+        if ($flag = (bool)preg_match("/^$page/iS", "$_url/")) break;
+
+        if (++$_i >= $link_limit_per_page) continue 2; //too many links
+    };
+
+    if (! $flag) continue; //no inbound link
+
+    $text = strabridge(htmltoplain($text), 80, TRUE);
+
+    $buffer[] =
+        "<li>" .
+        (nstre($text) ? "<q>" . x($text) . "</q> —" : "") .
+        "<a href=\"" . x($url) . "\" " .
+           "title=\"" . x($title) . "\" " .
+           "onclick=\"window.open(this.href);return false;\">" .
+        x(strabridge($title, 40, TRUE)) .
+        "</a>" .
+        "</li>";
+
+    if (++$i >= $number_of_backlinks) break; //limit reached
+};
+
+if (empty($buffer))
+{
+    cms_cache("backlink.text", "", TRUE);
+    return TRUE;
+};
+
+$buffer =
+    "<div class=\"backlink\">" .
+    "<h2>" .
+    parse_token("\%%l_thanks_for_the_link\%%") .
+    "</h2>" .
+    "<ul>" .
+    implode("", $buffer) .
+    "</ul>" .
+    "</div>";
+
+//write cache
+cms_cache("backlink.text", $buffer, TRUE);
+
+//output
+echo($buffer);
+
+?>
+</CMS:nocache>

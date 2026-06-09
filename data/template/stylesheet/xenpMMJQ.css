@@ -1,0 +1,81 @@
+DIV.teaser5
+{
+    ALIGN-ITEMS: center;
+    BACKGROUND: var(--cms-background-alt);
+    BOX-SIZING: border-box;
+    DISPLAY: flex;
+    FLEX-DIRECTION: column;
+    GAP: var(--cms-hpadding) 0;
+    JUSTIFY-CONTENT: flex-end;
+    HEIGHT: 100%;
+    PADDING: calc(1.5 * var(--cms-hpadding));
+}
+
+DIV.teaser5:not(.edit)
+{
+    OVERFLOW: clip;
+}
+
+DIV.teaser5-image
+{
+    INSET: 0;
+    OVERFLOW: clip;
+    POSITION: absolute;
+}
+
+IMG.teaser5-image
+{
+    HEIGHT: 100%;
+    INSET: 0;
+    OBJECT-FIT: cover;
+    POSITION: absolute;
+    TRANSITION: filter 0.5s, opacity 0.5s, transform 0.5s;
+    WIDTH: 100%;
+    WILL-CHANGE: filter, transform, opacity;
+}
+
+DIV.teaser5:focus-within IMG.teaser5-image,
+DIV.teaser5:has(DIV.teaser5-link:hover) IMG.teaser5-image
+{
+    FILTER: blur(calc(1.5 * var(--cms-factor)));
+    OPACITY: 0.75;
+    TRANSFORM: scale(1.5);
+}
+
+DIV.teaser5-title
+{
+    MARGIN: 0;
+    TEXT-ALIGN: center;
+    TEXT-SHADOW: 0 0 calc(50 * var(--cms-factor)) var(--cms-background-alt);
+}
+
+DIV.teaser5-title,
+DIV.teaser5-title *
+{
+    COLOR: var(--cms-color-alt);
+}
+
+DIV.teaser5-text
+{
+    TEXT-ALIGN: justify;
+    TEXT-ALIGN-LAST: center;
+    TEXT-WRAP: balance;
+}
+
+DIV.teaser5-text,
+DIV.teaser5-text *
+{
+    COLOR: var(--cms-color-alt);
+}
+
+DIV.teaser5-link
+{
+    TEXT-ALIGN: center;
+}
+
+DIV.teaser5:not(.edit) DIV.teaser5-link > A:before
+{
+    CONTENT: "";
+    INSET: calc(-1 * 100vmax);
+    POSITION: absolute;
+}

@@ -1,0 +1,105 @@
+PWNC WEB PLATFORM LICENSE
+Copyright © 2026–present Patrick Heyer. All rights reserved.
+
+0. SCOPE
+This license applies to all files and assets of the PWNC WEB PLATFORM distribution, excluding:
+- Components in /3rdparty/ with their own license files
+- Files explicitly designated as third-party content
+
+1. USAGE RIGHTS
+This free software may be installed, used, and modified for any purpose (private and commercial) subject to the restrictions below.
+
+2. COMMERCIAL EXPLOITATION
+Strictly limited to:
+a) Custom solutions developed for individual end clients
+b) Extensions created and sold exclusively for use with PWNC WEB PLATFORM
+
+3. RESTRICTIONS
+You are expressly prohibited from:
+a) Redistributing original or modified code except for single-client deployments under 2a
+b) Charging fees for licensing or usage rights to the software itself
+c) Incorporating licensed material into standalone applications
+
+4. DISTRIBUTION SOURCES
+The software may only be obtained from:
+- Official source: https://pwmc.it
+- Authorized mirrors (listed on the official website)
+
+5. DISCLAIMER
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTIES, EXPRESS OR IMPLIED. LIABILITY IS LIMITED TO CASES OF INTENTIONAL MISCONDUCT OR GROSS NEGLIGENCE.
+
+6. ATTRIBUTION REQUIREMENTS
+You must maintain without modification:
+- Copyright notices, file headers, license files, and the README.md
+- All identification constants (CMS_SOFTWARE, CMS_VERSION, CMS_COPYRIGHT, CMS_HOMEPAGE, CMS_IDENTIFIER, CMS, and CMS_USER_AGENT) as well as their functional implementation and output (e.g., in HTTP headers, User-Agent strings, and meta tags)
+- Visible branding markings in the backend
+
+7. TERMINATION
+License rights terminate immediately upon violation.
+All instances must be deactivated within 24 hours of notification.
+
+8. SEVERABILITY
+If any provision is deemed unenforceable:
+- All other terms remain in full effect
+- The invalid provision shall be replaced by a valid clause that best reflects the original intent.
+
+9. GOVERNING LAW
+German law applies.
+Exclusive jurisdiction is Düsseldorf.
+
+10. SUCCESSION
+Upon the author's death, the software falls under the MIT license.
+
+────────────────────────────────────────
+
+PWNC WEB PLATFORM LIZENZ
+Copyright © 2026–heute Patrick Heyer. Alle Rechte vorbehalten.
+
+0. GELTUNGSBEREICH
+Diese Lizenz gilt für alle Dateien und Assets der PWNC WEB PLATFORM-Distribution, ausgenommen:
+- Komponenten in /3rdparty/ mit eigenständigen Lizenzdateien
+- Explizit als Drittanbieter-Inhalte gekennzeichnete Dateien
+
+1. NUTZUNGSRECHTE
+Diese kostenfreie Software darf für beliebige Zwecke (privat oder kommerziell) installiert, genutzt und modifiziert werden, jedoch unter Beachtung nachfolgender Einschränkungen.
+
+2. KOMMERZIELLE VERWERTUNG
+Nur zulässig für:
+a) Individuelle Lösungen für einzelne Endkunden
+b) Erweiterungen, die ausschließlich zur Verwendung mit PWNC WEB PLATFORM entwickelt und vertrieben werden
+
+3. EINSCHRÄNKUNGEN
+Untersagt ist insbesondere:
+a) Weiterverbreitung des Codes (original oder modifiziert) außerhalb von Einzelinstallationen gemäß 2a
+b) Entgeltliche Vergabe von Nutzungsrechten oder Lizenzen an der Software selbst
+c) Verwendung lizenzierter Bestandteile in unabhängigen Anwendungen
+
+4. BEZUGSQUELLEN
+Die Software darf nur bezogen werden von:
+- Offizieller Quelle: https://pwnc.it
+- Gelisteten Mirror-Servern (auf der o.g. Website aufgeführt)
+
+5. HAFTUNGSAUSSCHLUSS
+DIE SOFTWARE WIRD "WIE BESEHEN" OHNE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG BEREITGESTELLT. DIE HAFTUNG BESCHRÄNKT SICH AUF VORSATZ UND GROBE FAHRLÄSSIGKEIT.
+
+6. KENNZEICHNUNGSPFLICHTEN
+Verpflichtend ist die unveränderte Beibehaltung von:
+- Copyright-Vermerken, Datei-Headern, Lizenzdateien und der README.md
+- Sämtlichen Identifikations-Konstanten (CMS_SOFTWARE, CMS_VERSION, CMS_COPYRIGHT, CMS_HOMEPAGE, CMS_IDENTIFIER, CMS und CMS_USER_AGENT) sowie deren funktionale Einbindung und Ausgabe (z. B. in HTTP-Headern, User-Agent-Strings und Meta-Tags)
+- Sichtbaren Branding-Angaben im Backend
+
+7. LIZENZBEENDIGUNG
+Bei Verstößen erlischt die Lizenz sofort.
+Alle Installationen sind innerhalb von 24 Stunden nach Benachrichtigung zu deaktivieren.
+
+8. TEILUNWIRKSAMKEIT
+Sollte eine Bestimmung unwirksam sein:
+- Bleiben alle anderen Regelungen vollumfänglich gültig
+- Die unwirksame Bestimmung wird durch eine wirksame ersetzt, die dem ursprünglichen Zweck bestmöglich entspricht
+
+9. RECHTSWAHL
+Es gilt deutsches Recht.
+Ausschließlicher Gerichtsstand ist Düsseldorf.
+
+10. NACHFOLGE
+Im Todesfall des Autors fällt die Software unter die MIT-Lizenz.

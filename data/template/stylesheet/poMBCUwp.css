@@ -1,0 +1,870 @@
+/* page container */
+BODY
+{
+    BOX-SIZING: border-box;
+    DISPLAY: grid;
+    GRID-TEMPLATE-ROWS: auto auto 1fr auto;
+    MARGIN: 0;
+    MIN-HEIGHT: 100vh;
+    OVERFLOW-X: clip;
+    PADDING: 0 calc(40 * var(--cms-factor));
+    WIDTH: auto;
+}
+
+/* reduce side padding */
+@media (max-width: 800px)
+{
+    BODY
+    {
+        PADDING: 0 calc(20 * var(--cms-factor));
+    }
+}
+
+/* make page header stick to viewport top */
+#sticky
+{
+    INSET: 0 0 auto 0;
+    POSITION: sticky;
+    Z-INDEX: 2000;
+    WIDTH: 100%;
+}
+
+/* high resolution / mouse main navigation */
+@media (min-width: 801px) and (pointer: fine),
+       (min-width: 801px) and (hover: hover)
+{
+    /* prepare page header for transformation */
+    #sticky
+    {
+        TRANSITION: transform 0.25s;
+        WILL-CHANGE: transform;
+    }
+
+    /* class set via javascript */
+    #sticky.minimize:not(:hover)
+    {
+        TRANSFORM: translateY(calc(20 * var(--cms-factor) - 100%));
+    }
+}
+
+/* page header */
+#head
+{
+    ALIGN-ITEMS: center;
+    DISPLAY: flex;
+    GAP: calc(20 * var(--cms-factor));
+    MARGIN: 0 auto;
+    PADDING: calc(20 * var(--cms-factor)) 0;
+    WIDTH: min(100%, 1280 * var(--cms-factor));
+}
+
+/* header background */
+#head:before,
+#head:after
+{
+    CONTENT: "";
+    INSET: 0 auto 0 50%;
+    POINTER-EVENTS: none;
+    POSITION: absolute;
+    WIDTH: 100vw;
+    TRANSFORM: translateX(-50%);
+    Z-INDEX: -1;
+}
+
+/* translucent header background */
+#head:before
+{
+    BACKGROUND: var(--cms-background);
+    OPACITY: 0.5;
+    POINTER-EVENTS: none;
+}
+
+/* header background blur effect */
+#head:after
+{
+    BACKDROP-FILTER: blur(calc(25 * var(--cms-factor)));
+}
+
+/* disable link underline in header */
+#head A
+{
+    TEXT-DECORATION: none;
+}
+
+/* slim header */
+@media (max-width: 800px)
+{
+    #head
+    {
+        --padding: calc(15 * var(--cms-factor));
+        PADDING: var(--padding) 0;
+    }
+}
+
+/* logo */
+#logo
+{
+    FLEX: 1;
+}
+
+/* home link */
+#logo A
+{
+    DISPLAY: block;
+    MAX-WIDTH: calc(150 * var(--cms-factor));
+    WIDTH: 100%;
+}
+
+/* smaller logo */
+@media (max-width: 800px)
+{
+    #logo A
+    {
+        MAX-WIDTH: calc(125 * var(--cms-factor));
+    }
+}
+
+/* logo image fills home link width */
+#logo IMG
+{
+    WIDTH: 100%;
+}
+
+/* high resolution / mouse main navigation */
+@media (min-width: 801px) and (pointer: fine),
+       (min-width: 801px) and (hover: hover)
+{
+    /* hide unused elements */
+    #menu-open,
+    #menu-backdrop,
+    #menu-close
+    {
+        DISPLAY: none;
+    }
+
+    /* menu container */
+    #menu
+    {
+        MARGIN: calc(-5 * var(--cms-factor)) calc(-15 * var(--cms-factor));
+    }
+
+    /* general menu list container */
+    #menu UL
+    {
+        LIST-STYLE: none;
+        MARGIN: 0;
+    }
+
+    /* general menu list item */
+    #menu LI
+    {
+        MARGIN: 0;
+    }
+
+    /* general menu link */
+    #menu A
+    {
+        DISPLAY: block;
+        PADDING: calc(5 * var(--cms-factor)) calc(15 * var(--cms-factor));
+    }
+
+    /* base level menu list item */
+    #menu > UL > LI
+    {
+        DISPLAY: inline-block;
+    }
+
+    /* base level menu link */
+    #menu > UL > LI > A
+    {
+        COLOR: var(--cms-color);
+        TEXT-TRANSFORM: uppercase;
+    }
+
+    /* highlight base level active menu link */
+    #menu > UL > LI:has(> A.active):after
+    {
+        BACKGROUND: var(--cms-color);
+        BOTTOM: 0;
+        CONTENT: "";
+        HEIGHT: calc(2.5 * var(--cms-factor));
+        LEFT: calc(15 * var(--cms-factor));
+        POSITION: absolute;
+        RIGHT: calc(15 * var(--cms-factor));
+    }
+
+    /* highlight base level activity of container */
+    #menu > UL > LI:has(> A.container):hover A,
+    #menu > UL > LI:has(> A.container):focus-within A
+    {
+        BACKGROUND-COLOR: var(--cms-background-alt);
+        COLOR: var(--cms-color-alt);
+    }
+
+    /* highlight base level activity of non-container */
+    #menu > UL > LI > A:not(.container):not(BUTTON):hover
+    {
+        COLOR: var(--cms-color-highlight);
+    }
+
+    /* underline base level activity of non-container */
+    @keyframes menu-underline
+    {
+          0% { WIDTH: 0; }
+        100% { WIDTH: calc(100% - 30 * var(--cms-factor)); }
+    }
+
+    #menu > UL > LI:not(:has(A.container)):hover:after
+    {
+        ANIMATION: menu-underline 0.5s forwards;
+        BACKGROUND: var(--cms-color-highlight);
+        BOTTOM: 0;
+        CONTENT: "";
+        HEIGHT: calc(2.5 * var(--cms-factor));
+        LEFT: calc(15 * var(--cms-factor));
+        POINTER-EVENTS: none;
+        POSITION: absolute;
+    }
+
+    /* 2nd+ level menu list container */
+    #menu UL UL
+    {
+        BACKGROUND: var(--cms-background-alt);
+        MIN-WIDTH: 100%;
+        POSITION: absolute;
+        RIGHT: 0;
+        WHITE-SPACE: nowrap;
+        Z-INDEX: 1000;
+    }
+
+    /* 2nd+ level menu link */
+    #menu UL UL A
+    {
+        COLOR: var(--cms-color-alt);
+        DISPLAY: block;
+        FONT-WEIGHT: normal;
+    }
+
+    /* first 2nd+ level menu link in container */
+    #menu LI LI:first-child A
+    {
+        PADDING-TOP: calc(var(--cms-vspacing) / 5);
+    }
+
+    /* last 2nd+ level menu link in container */
+    #menu LI LI:last-child A
+    {
+        PADDING-BOTTOM: calc(var(--cms-vspacing) / 5);
+    }
+
+    /* highlight 2nd+ level active menu link */
+    #menu UL UL A.active
+    {
+        FONT-WEIGHT: bold;
+    }
+
+    /* put 3rd+ level menu list container on left side */
+    #menu UL UL UL
+    {
+        RIGHT: 100%;
+        TOP: 0;
+    }
+
+    /* hide 2nd+ menu level */
+    #menu LI UL,
+
+    /* hide sub-subsequent item when hovered */
+    #menu LI:hover LI UL,
+    #menu LI LI:hover LI UL,
+    #menu LI LI LI:hover LI UL,
+    #menu LI LI LI LI:hover LI UL,
+    #menu LI LI LI LI LI:hover LI UL
+    {
+        OPACITY: 0;
+        POINTER-EVENTS: none;
+        TRANSITION: opacity 0.25s;
+        WILL-CHANGE: opacity;
+    }
+
+    /* show focused 2nd+ menu level */
+    #menu A:focus ~ UL,
+    #menu BUTTON:focus ~ UL,
+
+    /* show 2nd+ menu level that contains focus */
+    #menu UL:focus-within,
+
+    /* show subsequent menu item on hover */
+    #menu LI:hover UL,
+    #menu LI LI:hover UL,
+    #menu LI LI LI:hover UL,
+    #menu LI LI LI LI:hover UL,
+    #menu LI LI LI LI LI:hover UL,
+    #menu LI LI LI LI LI LI:hover UL
+    {
+        OPACITY: 1;
+        POINTER-EVENTS: auto;
+        Z-INDEX: 1000;
+    }
+
+    /* make space for open / close button on right side */
+    #menu A:has(+ BUTTON)
+    {
+        PADDING-RIGHT: calc(35 * var(--cms-factor));
+    }
+
+    /* put open / close button on right side */
+    #menu BUTTON
+    {
+        ALL: initial;
+        BOTTOM: 0;
+        CURSOR: pointer;
+        PADDING: 0;
+        POSITION: absolute;
+        RIGHT: 0;
+        TOP: 0;
+        WIDTH: calc(35 * var(--cms-factor));
+    }
+
+    /* display down-pointing arrow on open / close button */
+    #menu BUTTON:after
+    {
+        BACKGROUND: var(--cms-color);
+        CONTENT: "";
+        INSET: 0;
+        MASK-IMAGE: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 1024'><path fill='black' d='M512 320L320 512 128 320 0 448l320 320 320-320L512 320z'/></svg>");
+        MASK-POSITION: center;
+        MASK-REPEAT: no-repeat;
+        MASK-SIZE: calc(10 * var(--cms-factor));
+        POSITION: absolute;
+    }
+
+    /* highlight arrow on active open / close button */
+    #menu BUTTON:focus:after,
+    #menu BUTTON:has(+ UL:focus-within):after,
+    #menu LI:hover > BUTTON:after
+    {
+        BACKGROUND-COLOR: var(--cms-color-alt);
+    }
+
+    /* make space for 2nd+ level open / close button on left side */
+    #menu UL UL A:has(+ BUTTON)
+    {
+        PADDING-LEFT: calc(35 * var(--cms-factor));
+        PADDING-RIGHT: calc(15 * var(--cms-factor));
+    }
+
+    /* put 2nd+ level open / close button on left side */
+    #menu UL UL BUTTON
+    {
+        LEFT: 0;
+        RIGHT: auto;
+    }
+
+    /* display left-pointing arrow on 2nd+ level open / close button */
+    #menu UL UL BUTTON:after
+    {
+        BACKGROUND: var(--cms-color-alt);
+        MASK-IMAGE: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 1024'><g transform='rotate(90 320 512)'><path fill='black' d='M512 320L320 512 128 320 0 448l320 320 320-320L512 320z'/></g></svg>");
+    }
+}
+
+/* low resolution / touch screen main navigation */
+@media (max-width: 800px), (pointer: coarse), (hover: none)
+{
+    /* menu open / close button */
+    #menu-open,
+    #menu-close
+    {
+        ALL: initial;
+        COLOR: var(--cms-color);
+        CURSOR: pointer;
+        FONT-FAMILY: "Entypo";
+        FONT-SIZE: calc(40 * var(--cms-factor));
+        FONT-WEIGHT: normal;
+        HEIGHT: calc(40 * var(--cms-factor));
+        LINE-HEIGHT: calc(40 * var(--cms-factor));
+        ORDER: 1;
+        TEXT-ALIGN: center;
+        WIDTH: calc(40 * var(--cms-factor));
+    }
+
+    /* menu open / close button active */
+    #menu-open:is(:focus-visible, :hover),
+    #menu-close:is(:focus-visible, :hover)
+    {
+        COLOR: var(--cms-link-color-alt);
+    }
+
+    /* menu container */
+    #menu
+    {
+        BACKGROUND: var(--cms-background);
+        BOX-SIZING: border-box;
+        CONTAIN: content;
+        INSET: 0 0 0 auto;
+        MAX-WIDTH: 100%;
+        OVERFLOW-Y: auto;
+        PADDING: calc(100 * var(--cms-factor))
+                 calc(20 * var(--cms-factor))
+                 calc(50 * var(--cms-factor));
+        POINTER-EVENTS: none;
+        POSITION: fixed;
+        TRANSFORM: translateX(100%);
+        TRANSITION: transform 0.25s;
+        WILL-CHANGE: transform;
+        Z-INDEX: 975;
+    }
+
+    /* menu backdrop */
+    #menu-backdrop
+    {
+        BACKDROP-FILTER: blur(calc(25 * var(--cms-factor)));
+        BACKGROUND: var(--cms-overlay-background);
+        INSET: 0;
+        OPACITY: 0;
+        POINTER-EVENTS: none;
+        POSITION: fixed;
+        TRANSITION: opacity 0.25s;
+        WILL-CHANGE: opacity;
+        Z-INDEX: 950;
+    }
+
+    /* menu close button */
+    #menu-close
+    {
+        BACKGROUND: var(--cms-button-background);
+        COLOR: var(--cms-button-color);
+        RIGHT: calc(20 * var(--cms-factor));
+        OPACITY: 0;
+        POINTER-EVENTS: none;
+        POSITION: fixed;
+        TOP: var(--padding);
+        TRANSITION: opacity 0.25s;
+        WILL-CHANGE: opacity;
+        Z-INDEX: 1000;
+    }
+
+    /* general menu list container */
+    #menu UL
+    {
+        LIST-STYLE: none;
+        MARGIN: 0;
+    }
+
+    /* general menu list item */
+    #menu LI
+    {
+        MARGIN: 0;
+    }
+
+    /* general menu link */
+    #menu A
+    {
+        COLOR: var(--cms-color);
+        DISPLAY: block;
+        LINE-HEIGHT: calc(30 * var(--cms-factor));
+        PADDING: calc(5 * var(--cms-factor)) 0;
+    }
+
+    /* highlight active menu link */
+    #menu A.active
+    {
+        COLOR: var(--cms-color-highlight);
+    }
+
+    /* 2nd+ level menu list container */
+    #menu UL UL
+    {
+        BORDER-LEFT: calc(2.5 * var(--cms-factor)) solid var(--cms-color);
+        PADDING-LEFT: calc(7.5 * var(--cms-factor))
+    }
+
+    /* 2nd+ level menu link */
+    #menu UL UL A
+    {
+
+    }
+
+    /* show menu */
+    #menu-open:focus ~ #menu,
+    #menu:focus-within
+    {
+        POINTER-EVENTS: auto;
+        TRANSFORM: translateX(0);
+    }
+
+    /* show menu backdrop */
+    #menu-open:focus ~ #menu-backdrop,
+    #menu:focus-within ~ #menu-backdrop,
+
+    /* show menu close button */
+    #menu-open:focus ~ #menu-close,
+    #menu:focus-within ~ #menu-close
+    {
+        OPACITY: 1;
+        POINTER-EVENTS: auto;
+    }
+
+    /* hide 2nd+ menu level */
+    #menu UL UL
+    {
+        HEIGHT: 0;
+        POINTER-EVENTS: none;
+        TRANSITION: height 0.5s;
+        WILL-CHANGE: height;
+    }
+
+    /* show focused 2nd+ menu level */
+    #menu UL A:focus ~ UL,
+    #menu UL BUTTON:focus ~ UL,
+
+    /* show 2nd+ menu level that contains focus */
+    #menu UL UL:focus-within
+    {
+        HEIGHT: auto;
+        POINTER-EVENTS: auto;
+    }
+
+    /* make space for open / close button on right side */
+    #menu A:has(+ BUTTON)
+    {
+        PADDING-RIGHT: calc(35 * var(--cms-factor));
+    }
+
+    /* put open / close button on right side */
+    #menu BUTTON
+    {
+        ALL: initial;
+        BACKGROUND: var(--cms-button-background);
+        CURSOR: pointer;
+        HEIGHT: calc(30 * var(--cms-factor));
+        PADDING: 0;
+        POSITION: absolute;
+        RIGHT: 0;
+        TOP: 5px;
+        WIDTH: calc(30 * var(--cms-factor));
+    }
+
+    /* highlight active open / close button */
+    #menu BUTTON:focus,
+    #menu BUTTON:has(+ UL:focus-within)
+    {
+        BACKGROUND: var(--cms-button-background-alt);
+    }
+
+    /* display down-pointing arrow on open / close button */
+    #menu BUTTON:after
+    {
+        BACKGROUND: var(--cms-button-color);
+        CONTENT: "";
+        INSET: 0;
+        MASK-IMAGE: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 1024'><path fill='black' d='M512 320L320 512 128 320 0 448l320 320 320-320L512 320z'/></svg>");
+        MASK-POSITION: center;
+        MASK-REPEAT: no-repeat;
+        MASK-SIZE: calc(10 * var(--cms-factor));
+        POSITION: absolute;
+    }
+
+    /* highlight down-pointing arrow on active open / close button */
+    #menu BUTTON:focus:after,
+    #menu BUTTON:has(+ UL:focus-within):after
+    {
+        BACKGROUND: var(--cms-button-color-alt);
+    }
+
+    #_search-button
+    {
+        BORDER-RIGHT: calc(2.5 * var(--cms-factor)) solid var(--cms-color);
+        PADDING-RIGHT: calc(17.5 * var(--cms-factor));
+    }
+}
+
+/* search focus button */
+#_search button
+{
+    CONTAIN: content;
+}
+
+#_search-button BUTTON
+{
+    ALL: initial;
+    BOX-SIZING: border-box;
+    COLOR: transparent;
+    CURSOR: pointer;
+    HEIGHT: calc(40 * var(--cms-factor));
+    OVERFLOW: clip;
+    USER-SELECT: none;
+    WIDTH: calc(40 * var(--cms-factor));
+}
+
+/* search focus button icon */
+#_search-button BUTTON:after
+{
+    ALIGN-CONTENT: center;
+    COLOR: var(--cms-color);
+    CONTENT: "\e8e9";
+    INSET: 0 auto 0 0;
+    FONT-FAMILY: "Entypo";
+    FONT-SIZE: calc(30 * var(--cms-factor));
+    POSITION: absolute;
+    TEXT-ALIGN: center;
+    WIDTH: calc(40 * var(--cms-factor));
+}
+
+/* search focus button active */
+#_search-button BUTTON:is(:focus-visible, :hover):after
+{
+    COLOR: var(--cms-link-color-alt);
+}
+
+/* search form */
+#_search-form
+{
+    INSET: 0 0 auto 0;
+    OPACITY: 0;
+    POSITION: fixed;
+    TRANSFORM: translateY(-100%);
+    TRANSITION: opacity 0.25s, transform 0.25s;
+    WILL-CHANGE: opacity, transform;
+    Z-INDEX: 2000;
+}
+
+/* display search form */
+#_search-form:focus-within
+{
+    OPACITY: 1;
+    TRANSFORM: none;
+}
+
+/* search input field */
+#_search-input
+{
+    BACKGROUND: var(--cms-background-alt);
+    BOX-SHADOW: var(--cms-box-shadow);
+    COLOR: var(--cms-color-alt);
+    FONT-SIZE: 2em;
+    PADDING: var(--cms-vspacing) var(--cms-hspacing);
+    OUTLINE: none;
+    WIDTH: 100%;
+}
+
+#_search-input::placeholder
+{
+    COLOR: var(--cms-box-shadow);
+    OPACITY: 0.4;
+}
+
+/* hero area */
+#banner
+{
+    DISPLAY: grid;
+    MARGIN: 0 auto;
+    WIDTH: min(100%, calc(1280 * var(--cms-factor)));
+}
+
+/* remove side padding from hero area */
+@media (max-width: 800px)
+{
+    #banner
+    {
+        MARGIN: 0 calc(-20 * var(--cms-factor));
+        WIDTH: calc(100% + 40 * var(--cms-factor));
+    }
+}
+
+/* hero image container */
+#banner-image
+{
+    GRID-COLUMN: 1;
+    GRID-ROW: 1;
+    MIN-HEIGHT: max(min(1280 * var(--cms-factor), 100vw) / 3, 250 * var(--cms-factor));
+}
+
+/* hero image */
+#banner-image > IMG
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    OBJECT-FIT: cover;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+/* hero content */
+#banner-content
+{
+    GRID-COLUMN: 1;
+    GRID-ROW: 1;
+    PADDING: calc(20 * var(--cms-factor));
+    PLACE-SELF: center;
+}
+
+/* main content container */
+#body
+{
+    CONTAIN: layout;
+    MARGIN: 0 auto;
+    PADDING: calc(50 * var(--cms-factor)) 0;
+    WIDTH: min(100%, calc(1280 * var(--cms-factor)));
+}
+
+/* reduce main content container padding */
+@media (max-width: 800px)
+{
+    #body
+    {
+        PADDING: calc(20 * var(--cms-factor)) 0;
+    }
+}
+
+/* page footer */
+#foot
+{
+    BACKGROUND: var(--cms-background-alt);
+    COLOR: var(--cms-color-alt);
+    MARGIN: 0 auto;
+    PADDING: calc(50 * var(--cms-factor)) 0 calc(100 * var(--cms-factor));
+    WIDTH: min(100%, calc(1280 * var(--cms-factor)));
+}
+
+/* page footer background */
+#foot:before
+{
+    BACKGROUND: var(--cms-background-alt);
+    CONTENT: "";
+    INSET: 0 auto 0 50%;
+    POINTER-EVENTS: none;
+    POSITION: absolute;
+    WIDTH: 100vw;
+    TRANSFORM: translateX(-50%);
+}
+
+#foot > DIV
+{
+    ALIGN-ITEMS: flex-end;
+    DISPLAY: flex;
+    GAP: calc(20 * var(--cms-factor));
+    JUSTIFY-CONTENT: space-between;
+    TEXT-ALIGN: left;
+}
+
+/* vertically organize footer elements */
+@media (max-width: 1000px)
+{
+    #foot > DIV
+    {
+        ALIGN-ITEMS: center;
+        FLEX-DIRECTION: column;
+        TEXT-ALIGN: center;
+    }
+}
+
+/* page footer link */
+#foot A
+{
+    COLOR: var(--cms-color-alt);
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: none;
+}
+
+/* page footer link activity */
+#foot A:is(:focus-visible, :hover)
+{
+    COLOR: var(--cms-link-color-alt);
+}
+
+/* company address */
+#address
+{
+
+}
+
+/* contact information */
+#contact
+{
+    TEXT-ALIGN: center;
+}
+
+/* language selector */
+#language
+{
+    MARGIN: 0 min(-5px, -5 * var(--cms-factor));
+    TEXT-ALIGN: center;
+    TEXT-TRANSFORM: uppercase;
+}
+
+/* language selector link */
+#language A
+{
+    DISPLAY: inline-block;
+    PADDING: 0 calc(5 * var(--cms-factor));
+}
+
+/* separate adjacent language selector links */
+#language A + A
+{
+    BORDER-LEFT: calc(1.5 * var(--cms-factor)) solid var(--cms-color-alt);
+}
+
+/* meta link container */
+#link UL
+{
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    GAP: 0 calc(10 * var(--cms-factor));
+    JUSTIFY-CONTENT: center;
+    LIST-STYLE: none;
+    MARGIN: 0;
+}
+
+/* meta link item **/
+#link LI
+{
+    MARGIN: 0;
+}
+
+/* landing page menu */
+#menu-lp
+{
+    DISPLAY: flex;
+    FLEX: 1 1 100%;
+    FLEX-WRAP: wrap;
+    FONT-SIZE: smaller;
+    GAP: calc(10 * var(--cms-factor));
+    JUSTIFY-CONTENT: center;
+    LINE-HEIGHT: var(--cms-line-height);
+    MARGIN-TOP: calc(50 * var(--cms-factor));
+}
+
+/* top button */
+#goto-top
+{
+    BOTTOM: calc(10 * var(--cms-factor));
+    BACKDROP-FILTER: invert(1) grayscale(1) contrast(10000) blur(0.5px);
+    COLOR: transparent;
+    HEIGHT: calc(40 * var(--cms-factor));
+    LEFT: calc(50% - 20 * var(--cms-factor));
+    MASK-IMAGE: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='black' d='M15.484 12.452c-.436.446-1.043.481-1.576 0L10 8.705l-3.908 3.747c-.533.481-1.141.446-1.574 0-.436-.445-.408-1.197 0-1.615.406-.418 4.695-4.502 4.695-4.502a1.095 1.095 0 0 1 1.576 0s4.287 4.084 4.695 4.502c.409.418.436 1.17 0 1.615z'></path></svg>");
+    MASK-POSITION: center;
+    MASK-REPEAT: no-repeat;
+    MASK-SIZE: calc(40 * var(--cms-factor));
+    POSITION: fixed;
+    TRANSFORM: translateY(calc(50 * var(--cms-factor)));
+    TRANSITION: transform 0.25s;
+    USER-SELECT: none;
+    WIDTH: calc(40 * var(--cms-factor));
+    WILL-CHANGE: transform;
+}
+
+#goto-top:is(:focus-visible, :hover)
+{
+    BACKGROUND: var(--cms-link-color-alt);
+    BACKDROP-FILTER: none;
+}
+
+/* slide in top button */
+#goto-top.goto-top-show
+{
+    TRANSFORM: translateY(0);
+}

@@ -1,0 +1,25 @@
+group.customer:=name=Customer;permission=content.writer.*[chr10]desktop[chr10]interface[chr10]interface.download.operator[chr10]interface.easypage[chr10]interface.image.operator[chr10]interface.insert[chr10]interface.log[chr10]interface.mailform.operator[chr10]interface.media.operator[chr10]interface.search[chr10]interface.template[chr10]interface.token.operator;comment=Typical permissions you would give a customer you created a website for
+user.default:=disabled=1;name=Customer;password=4d3c8a7dee06bafeee497fcea133547ece6c0e739a2b06e1dffbe0483f2e0a3c;group=group.blog-operator[chr10]group.messenger-operator[chr10]group.comment-operator[chr10]group.customer[chr10]group.forum-operator[chr10]group.anonymous[chr10]group.example-shared-desktop;permission=interface.setup;timezone=UTC;comment=Your typical website customer
+group.forum:=name=Forum;permission=content.forum[chr10]content.forum.reader.*;comment=Members of this group can read posts in forums
+group.forum-operator:=name=Forum Operator;permission=content.forum.operator;comment=Members of this group can administer forums
+group.messenger:=name=Chat;permission=chat[chr10]chat.control;comment=Members of this group can participate in the chat
+group.messenger-operator:=name=Chat operator;permission=chat.operator;comment=Members of this group can administer the chat
+user.example-shared-desktop:=name=Shared desktop;password=fba34f2881904d3efb6f0048a7a2df73;permission=desktop;timezone=UTC;comment=Example of a shared desktop that can be accessed by multiple users
+group.example-shared-desktop:=name=Shared desktop;permission=dektop[chr10]desktop.example-shared-desktop;comment=Members of this group can use the shared desktop
+user.archive:=name=Archive;password=686ac95892e5ee804b6571d2fea55f39;permission=interface.content[chr10]interface.content.editor[chr10]interface.content.publisher[chr10]interface.content.writer;timezone=UTC;comment=Archive of the editor (utility account)
+group.writer:=name=Editorial team: Writer;permission=content[chr10]interface[chr10]interface.content[chr10]interface.content.pool.operator[chr10]interface.content.writer[chr10]interface.download.operator[chr10]interface.image.operator[chr10]interface.media.operator[chr10]interface.template[chr10]interface.token;comment=Members of this group can create and edit drafts in the editor
+group.editor:=name=Editorial team: Editor;permission=content[chr10]interface[chr10]interface.content[chr10]interface.content.editor;comment=Members of this group can approve drafts for publication in the editor
+group.publisher:=name=Editorial team: Publisher;permission=content[chr10]content.comment.operator[chr10]interface[chr10]interface.content[chr10]interface.content.publisher;comment=Members of this group can publish approved documents in the editor
+user.anonymous:=name=Guest;group=group.blog[chr10]group.messenger[chr10]group.comment[chr10]group.forum[chr10]group.anonymous;timezone=UTC;comment=Unidentified users
+user.admin:=name=Administrator;password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918;permission=*;timezone=Europe/Berlin;comment=Main administration account
+user.profile:=name=Registration;password=444406d0a6f3cd91c74ce390e87297ee;group=group.blog-comment[chr10]group.messenger[chr10]group.comment-writer[chr10]group.forum-writer[chr10]group.anonymous;permission=content.profile;timezone=UTC;comment=Default permissions for registered users
+group.anonymous:=name=Guest;permission=content[chr10]content.identification[chr10]content.mailform[chr10]content.profile[chr10]content.reader.*[chr10]content.search[chr10]download[chr10]rss[chr10]sitemap;comment=Typical permissions for anonymous website visitors
+group.blog:=name=Blog;permission=content.blog[chr10]content.blog.comment.reader.*[chr10]content.blog.reader.*;comment=Members of this group can read blog articles and comments
+group.blog-writer:=name=Blog writer;permission=content.blog[chr10]content.blog.comment.writer.*[chr10]content.blog.writer.*;comment=Members of this group can create and edit blog articles
+group.blog-comment:=name=Blog comment;permission=content.blog[chr10]content.blog.comment.writer.*[chr10]content.blog.reader.*;comment=Members of this group can read and create comments on blog articles
+group.blog-operator:=name=Blog operator;permission=content.blog.operator;comment=Members of this group can administer blogs
+group.comment:=name=Comment;permission=content.comment[chr10]content.comment.reader.*;comment=Members of this group can read comments
+group.comment-writer:=name=Comment writer;permission=content.comment[chr10]content.comment.writer.*;comment=Members of this group can read and create comments
+group.comment-operator:=name=Comment operator;comment=Members of this group can administer comments;permission=content.comment.operator.*
+group.forum-writer:=name=Forum writer;permission=content.forum[chr10]content.forum.writer.*;comment=Members of this group can read and create posts in forums
+group.log:=name=Access analysis;comment=Members of this group can view the access log analysis and data;permission=interface.log

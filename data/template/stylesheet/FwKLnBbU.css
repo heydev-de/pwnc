@@ -1,0 +1,10 @@
+DIV.layout-inline
+{
+    MARGIN: calc(var(--cms-vspacing) * -1) 0 0 calc(var(--cms-hspacing) * -1);
+}
+
+DIV.layout-inline-block
+{
+    DISPLAY: inline-block;
+    MARGIN: var(--cms-vspacing) 0 0 var(--cms-hspacing);
+}

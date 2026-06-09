@@ -1,0 +1,16 @@
+DIV.table
+{
+    OVERFLOW-X: auto;
+    WIDTH: 100%;
+}
+
+DIV.table > TABLE
+{
+    WIDTH: 100%;
+}
+
+DIV.table TH,
+DIV.table TD
+{
+    MIN-WIDTH: calc(100 * var(--cms-factor));
+}

@@ -1,0 +1,15 @@
+<CMS:nocache>
+<?php
+
+$result = mysql_query(
+    "SELECT COUNT(DISTINCT " . CMS_DB_LOG_ACCESS_USERID . ") " .
+    "FROM " .                  CMS_DB_LOG_ACCESS . " " .
+    "WHERE " .                 CMS_DB_LOG_ACCESS_TIME .
+    ">(NOW() - INTERVAL 15 MINUTE)" .
+    "AND " .                   CMS_DB_LOG_ACCESS_BOT . "<1");
+
+echo(sprintf(parse_token("\%%l_visitors_online\%%"),
+             $result ? mysql_result($result, 0) : "0"));
+
+?>
+</CMS:nocache>

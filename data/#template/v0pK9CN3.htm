@@ -1,0 +1,102 @@
+<CMS:edit option="value text switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_blog_id%% (%%l_empty_equals_document_id%%):</td>
+      <td><CMS:value id="blog_instance"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <th colspan="2">%%l_rss_settings%%</th>
+    </tr>
+
+    <tr>
+      <td>%%l_title%%:</td>
+      <td><CMS:text id="blog_rss_title"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_description%%:</td>
+      <td><CMS:text id="blog_rss_description"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_category%%:</td>
+      <td><CMS:text id="blog_rss_category"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch value">
+    <tr>
+      <th colspan="2">%%l_comment_settings%%</th>
+    </tr>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_show_immediately%%:</td>
+      <td><CMS:switch id="blog_comment_default_status"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_recipient_email_for_notifications%%:</td>
+      <td><CMS:value id="blog_comment_notification_email"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_show_oldest_first%%:</td>
+      <td><CMS:switch id="blog_comment_display_order"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_spam_filter_activation_threshold%% (1 - 100):</td>
+      <td><CMS:value id="blog_comment_spam_threshold" default="95"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_use_captcha%%:</td>
+      <td><CMS:switch id="blog_comment_use_captcha"/></td>
+    </tr>
+    </CMS:edit>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:stylesheet default="GFVdbpvW"/>
+
+<CMS:nocache>
+<?php
+
+$GLOBALS["blog"]    = array(
+    "template"           => $this,
+    "instance"           => l($cms_template_document->get($cms_template_base_id . "blog_instance", "value")),
+    "rss_title"          => l($cms_template_document->get($cms_template_base_id . "blog_rss_title", "text")),
+    "rss_description"    => l($cms_template_document->get($cms_template_base_id . "blog_rss_description", "text")),
+    "rss_category"       => l($cms_template_document->get($cms_template_base_id . "blog_rss_category", "text")));
+
+$GLOBALS["comment"] = array(
+    "default_status"     => $cms_template_document->get($cms_template_base_id . "blog_comment_default_status", "value"),
+    "notification_email" => l($cms_template_document->get($cms_template_base_id . "blog_comment_notification_email", "value")),
+    "display_order"      => $cms_template_document->get($cms_template_base_id . "blog_comment_display_order", "value"),
+    "spam_threshold"     => l($cms_template_document->get($cms_template_base_id . "blog_comment_spam_threshold", "value")),
+    "use_captcha"        => $cms_template_document->get($cms_template_base_id . "blog_comment_use_captcha", "value"));
+
+cms_application("blog");
+
+?>
+</CMS:nocache>

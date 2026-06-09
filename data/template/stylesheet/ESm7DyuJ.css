@@ -1,0 +1,87 @@
+DIV.testimonial
+{
+    BACKGROUND: var(--cms-background-alt2);
+    BOX-SIZING: border-box;
+    COLOR: var(--cms-color-alt2);
+    DISPLAY: flex;
+    FLEX-DIRECTION: column;
+    GAP: var(--cms-hpadding);
+    HEIGHT: 100%;
+    PADDING: calc(1.5 * var(--cms-hpadding));
+}
+
+DIV.testimonial:not(.edit)
+{
+    BORDER-RADIUS: var(--cms-hpadding);
+    BOX-SHADOW: var(--cms-box-shadow);
+    OVERFLOW: clip;
+}
+
+DIV.testimonial-image:last-child
+{
+    MARGIN-BOTTOM: calc(-1 * var(--cms-hpadding));
+}
+
+DIV.testimonial-image > IMG
+{
+    HEIGHT: calc(250 * var(--cms-factor));
+    OBJECT-FIT: cover;
+}
+
+DIV.testimonial:not(.edit) DIV.testimonial-image > IMG
+{
+    BORDER-RADIUS: calc(var(--cms-hpadding) / 3 * 2);
+    OVERFLOW: clip;
+}
+
+DIV.testimonial-image:last-child > IMG
+{
+    HEIGHT: 100%;
+}
+
+DIV.testimonial-title
+{
+    MARGIN: 0;
+}
+
+DIV.testimonial-title + DIV.testimonial-text
+{
+    MARGIN-TOP: calc(-0.5 * var(--cms-hpadding));
+}
+
+DIV.testimonial-star
+{
+    FLEX: 1;
+    TEXT-ALIGN: center;
+}
+
+SPAN.testimonial-star
+{
+    BACKGROUND: linear-gradient(135deg, #d3cbb8 0%, #e5e4e2 25%, #c5bdab 50%, #d8d2c3 75%, #b2ad9d 100%);
+    DISPLAY: inline-block;
+    HEIGHT: calc(20 * var(--cms-factor));
+    MARGIN: calc(2.5 * var(--cms-factor));
+    MASK-IMAGE: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 39.65 37.83'><polygon points='19.83 0 25.95 12.45 39.65 14.45 29.74 24.14 32.08 37.83 19.83 31.37 7.57 37.83 9.91 24.15 0 14.45 13.7 12.45 19.83 0'/></svg>");
+    MASK-POSITION: center;
+    MASK-REPEAT: no-repeat;
+    MASK-SIZE: contain;
+    OBJECT-FIT: contain;
+    WIDTH: calc(20 * var(--cms-factor));
+}
+
+DIV.testimonial-subject
+{
+    COLOR: var(--cms-h1-color);
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+}
+
+DIV.testimonial-date
+{
+    TEXT-ALIGN: center;
+}
+
+DIV.testimonial-subject + DIV.testimonial-date
+{
+    MARGIN-TOP: calc(-1 * var(--cms-hpadding));
+}

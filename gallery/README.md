@@ -1,0 +1,1 @@
+Image files placed into a subdirectory of this folder will be available to the gallery component.

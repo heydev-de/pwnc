@@ -1,0 +1,78 @@
+<?php
+
+if (stre(CMS_LANGUAGE_ENABLED)) return;
+
+$data     = new data("#system/language");
+$map      = new map("#system/language.image");
+$language = explode(",", CMS_LANGUAGE_ENABLED);
+$flag     = defined("CMS_CONTENT_DIRECTORY_INDEX") && (CMS_CONTENT_DIRECTORY_INDEX !== 0);
+$temp     = x($cms_template_temp_id);
+
+echo("<input id=\"language-$temp-flag\" " .
+            "type=\"checkbox\" " .
+            "value=\"1\" " .
+            "class=\"language-flag\">" .
+
+     "<label for=\"language-$temp-flag\" " .
+            "title=\"" . parse_token("\%%l_close\%%") . "\" " .
+            "class=\"language-out\">" .
+     parse_token("\%%l_close\%%") .
+     "</label>" .
+
+     "<nav class=\"language\">" .
+
+     "<label for=\"language-$temp-flag\" " .
+            "title=\"" . parse_token("\%%l_select_language\%%") . "\">");
+
+$name = $data->get(CMS_LANGUAGE, "name");
+
+if (
+     (($image = $map->get_value(CMS_LANGUAGE)) !== NULL)
+     &&
+     is_file(CMS_DATA_PATH . "language/$image")
+   )
+     echo(image(CMS_DATA_URL . "language/$image", 50, 50, $name) . " ");
+
+echo(x($name) .
+     "</label>" .
+     "<div>");
+
+foreach ($language AS $value)
+{
+        if (streq($value, CMS_LANGUAGE)) continue; //exclude active language
+
+        while (TRUE)
+        {
+                //directory entry
+                while ($flag)
+                {
+                        $_map = new map("#system/$value.directory");
+                        $url  = $_map->get_value(CMS_CONTENT_DIRECTORY_INDEX);
+                        if ($url === NULL) break;
+                        $url  = CMS_ROOT_URL . $url;
+                        break 2;
+                };
+
+                //no directory entry
+                $url = CMS_ACTIVE_URL . cms_param(array("cms_select_language" => $value));
+                break;
+        };
+
+        $name = $data->get($value, "name");
+        echo("<a href=\"" . x($url) . "\">");
+
+        if (
+             (($image = $map->get_value($value)) !== NULL)
+             &&
+             is_file(CMS_DATA_PATH . "language/$image")
+           )
+             echo(image(CMS_DATA_URL . "language/$image", 50, 50, $name) . " ");
+
+        echo(x($name) .
+             "</a>");
+};
+
+echo("</div>" .
+     "</nav>");
+
+?>

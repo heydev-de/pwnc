@@ -1,0 +1,134 @@
+<?php
+if (! defined("CMS_CONTENT_INDEX")) return FALSE;
+if (! defined("CMS_DB_CONTENT"))    return FALSE;
+?>
+
+<CMS:edit option="text image">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_job_title%%:</td>
+      <td><CMS:text id="job_title"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_description%%:</td>
+      <td><CMS:text id="job_description"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_employment_type%% (FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM, OTHER):</td>
+      <td><CMS:text id="job_employment_type" default="FULL_TIME"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_organisation%%:</td>
+      <td><CMS:text id="job_hiring_organization_name"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="image">
+    <tr>
+      <td>%%l_logo%%:</td>
+      <td><CMS:image id="job_hiring_organization_logo" width="150"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_street%%:</td>
+      <td><CMS:text id="job_address_street_address"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_city%%:</td>
+      <td><CMS:text id="job_address_address_locality"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_region%%:</td>
+      <td><CMS:text id="job_address_address_region"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_postal_code%%:</td>
+      <td><CMS:text id="job_address_postal_code"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_country%%:</td>
+      <td><CMS:text id="job_address_address_country"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_valid_until%% (%%l_optional%%):</td>
+      <td><CMS:text id="job_valid_through" title="TT.MM.JJJJ"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:cblock idref="tp1">
+<?php
+$mysql                        = new mysql();
+$date_posted                  = date("Y-m-d", $mysql->get(CMS_CONTENT_INDEX,
+                                                          CMS_DB_CONTENT_PUBLISHER_TIME,
+                                                          CMS_DB_CONTENT,
+                                                          CMS_DB_CONTENT_INDEX));
+$valid_through                = strtotime(l($cms_template_document->get($cms_template_base_id . "job_valid_through")));
+if ($valid_through !== FALSE)
+    $valid_through            = date("Y-m-d", $valid_through);
+$title                        = remove_format(l($cms_template_document->get($cms_template_base_id . "job_title")));
+$description                  = parse_text(l($cms_template_document->get($cms_template_base_id . "job_description")));
+$employment_type              = remove_format(l($cms_template_document->get($cms_template_base_id . "job_employment_type")));
+if (! preg_match("/^(?:FULL_TIME|PART_TIME|CONTRACTOR|TEMPORARY|INTERN|VOLUNTEER|PER_DIEM|OTHER)$/", $employment_type))
+    $employment_type          = "FULL_TIME";
+$hiring_organization_name     = remove_format(l($cms_template_document->get($cms_template_base_id . "job_hiring_organization_name")));
+$hiring_organization_same_as  = CMS_HOST;
+$hiring_organization_logo     = l($cms_template_document->get($cms_template_base_id . "job_hiring_organization_logo"));
+if (nstre($hiring_organization_logo))
+    $hiring_organization_logo = translate_url($hiring_organization_logo);
+$address_street_address       = remove_format(l($cms_template_document->get($cms_template_base_id . "job_address_street_address")));
+$address_address_locality     = remove_format(l($cms_template_document->get($cms_template_base_id . "job_address_address_locality")));
+$address_address_region       = remove_format(l($cms_template_document->get($cms_template_base_id . "job_address_address_region")));
+$address_postal_code          = remove_format(l($cms_template_document->get($cms_template_base_id . "job_address_postal_code")));
+$address_address_country      = remove_format(l($cms_template_document->get($cms_template_base_id . "job_address_address_country")));
+?>
+
+<script type="application/ld+json">
+{
+    "@context" : "https://schema.org/",
+    "@type" : "JobPosting",
+    "datePosted" : <?=json_encode($date_posted)?>,
+    <?php if ($valid_through) echo("\"validThrough\" : " . json_encode($valid_through) . ",");?>
+    "title" : <?=json_encode($title)?>,
+    "description" : <?=json_encode($description)?>,
+    "employmentType" : "FULL_TIME",
+    "hiringOrganization" : {
+        "@type" : "Organization",
+        "name" : <?=json_encode($hiring_organization_name)?>,
+        "sameAs" : <?=json_encode($hiring_organization_same_as)?>,
+        "logo" : <?=json_encode($hiring_organization_logo)?>
+    },
+    "jobLocation": {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": <?=json_encode($address_street_address)?>,
+            "addressLocality": <?=json_encode($address_address_locality)?>,
+            "addressRegion": <?=json_encode($address_address_region)?>,
+            "postalCode": <?=json_encode($address_postal_code)?>,
+            "addressCountry": <?=json_encode($address_address_country)?>
+        }
+    }
+}
+</script>
+
+<CMS:template id="tp1" title="%%l_job_offer%%"/>
+</CMS:cblock>

@@ -1,0 +1,121 @@
+<CMS:edit option="media text switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="media">
+    <tr>
+      <td>%%l_audio_file%%:</td>
+      <td><CMS:media id="m1"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_description%%:</td>
+      <td><CMS:text id="t1"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_hide_description%%:</td>
+      <td><CMS:switch id="v1"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+<CMS:cblock idref="m1">
+<?php
+
+//load javascript inline
+if (! defined("AUDIO_FLAG"))
+{
+    echo(jscript(file_get_contents(CMS_DATA_PATH . "template/audio.js")));
+    define("AUDIO_FLAG", 1);
+};
+
+$id    = "media-" . $cms_template_temp_id;
+$src   = l($cms_template_document->get($cms_template_base_id . "m1", "media"));
+$media = new media();
+$title = l($media->data->get($src, "name"));
+if (stre(l($cms_template_document->get($cms_template_base_id . "t1", "text"))))
+    $cms_template_document->set($cms_template_base_id . "t1", "text", $title);
+
+?>
+
+<div class="audio">
+
+  <audio id="<?=x($id)?>"
+         src="<?=x(translate_url($src))?>"
+         preload="metadata"
+         class="audio-loading"
+         onloadstart="audio_loading(this);"
+         onpause="audio_paused(this); document.getElementById('<?=x($id)?>-trigger').checked = false;"
+         onwaiting="audio_buffering(this);"
+         oncanplay="this.paused ? audio_paused(this) : audio_playing(this);"
+         onplaying="audio_playing(this); document.getElementById('<?=x($id)?>-trigger').checked = true;"
+         ontimeupdate="var range = document.getElementById('<?=x($id)?>-range');
+                       if (! range.hasAttribute('data-flag')) audio_timeupdate(this, range);">
+    <a href="<?=x(translate_url($src))?>"><?=x($title)?></a>
+  </audio>
+
+  <button class="audio-play"
+          onclick="audio_play(document.getElementById('<?=x($id)?>'));">
+    %%l_play%%
+  </button>
+  <button class="audio-loading"
+          onclick="var audio = document.getElementById('<?=x($id)?>');
+                   audio.paused ? audio_play(audio) : audio_pause(audio);">
+    %%l_loading%%
+  </button>
+  <button class="audio-pause"
+          onclick="audio_pause(document.getElementById('<?=x($id)?>'));">
+    %%l_pause%%
+  </button>
+
+  <CMS:calt idref="v1">
+  <div class="audio-text">
+
+    <CMS:text id="t1"/>
+
+  </div>
+  </CMS:calt>
+
+  <input id="<?=x($id)?>-trigger" type="checkbox" class="audio-trigger">
+  <div id="<?=x($id)?>-bar" class="audio-bar">
+
+    <input id="<?=x($id)?>-range"
+           type="range"
+           min="0"
+           max="100"
+           step="any"
+           onmousedown="this.setAttribute('data-flag', true);"
+           onmouseup="this.removeAttribute('data-flag');"
+           ontouchstart="this.onmousedown();"
+           ontouchend="this.onmouseup();"
+           onchange="audio_seek(document.getElementById('<?=x($id)?>'), this.value);">
+
+    <div><?=x($title)?></div>
+
+  </div>
+
+</div>
+
+<script>
+fx_event_listen("window_load", function()
+{
+    with (document.body)
+    {
+        appendChild(document.getElementById("<?=x($id)?>-trigger"));
+        appendChild(document.getElementById("<?=x($id)?>-bar"));
+    };
+});
+</script>
+</CMS:cblock>
+</CMS:noedit>

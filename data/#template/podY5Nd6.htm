@@ -1,0 +1,39 @@
+<CMS:edit option="value">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_aspect_ratio%%:</td>
+      <td>
+        <CMS:value id="media_width" regex="/\d*/" default="16"/>
+        :
+        <CMS:value id="media_height" regex="/\d*/" default="9"/>
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:cblock idref="m1">
+<?php
+
+$width  = (int)l($cms_template_document->get($cms_template_base_id . "media_width",  "value"));
+$height = (int)l($cms_template_document->get($cms_template_base_id . "media_height", "value"));
+$ratio  = $height / $width * 100;
+
+?>
+
+<div class="media-ratio"
+     style="PADDING-BOTTOM:<?=x($ratio)?>%">
+
+  <div>
+
+    <CMS:media id="m1" width="100%" height="100%"/>
+
+  </div>
+
+</div>
+</CMS:cblock>

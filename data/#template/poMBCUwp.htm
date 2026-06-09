@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html lang="<?=stre(CMS_LANGUAGE) ? "de" : x(CMS_LANGUAGE)?>">
+<head>
+
+<!-- cms head *** REQUIRED *** -->
+<CMS:head title="%s · %%sitename%%" stylesheet="design/simple/stylesheet.css"/>
+
+<meta name="robots" content="<?=x(CMS_CONTENT_META_ROBOTS)?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+
+<!-- icon -->
+<CMS:template default="A2yfYCIO" edit="off"/>
+
+<!-- open graph -->
+<CMS:template default="KGac19nD" edit="off"/>
+
+<!-- breadcrumb list -->
+<?php include(CMS_ROOT_PATH . "design/simple/#include/menu_breadcrumb.inc");?>
+
+</head>
+<body id="top"><!-- cms control *** REQUIRED *** --><CMS:control/>
+
+<div id="sticky">
+
+  <header id="head">
+
+    <div id="logo">
+
+      <a href="<?=x(CMS_ROOT_URL . cms_param())?>" title="%%sitename%%">
+
+        <CMS:image id="i_logo" default="image://e43WD654" width="250" edit="off"/>
+
+      </a>
+
+    </div>
+
+    <button id="menu-open" tabindex="-1" title="%%l_menu%%" aria-hidden="true">&#xE8F3;</button>
+
+    <nav id="menu">
+
+      <CMS:menu/>
+
+    </nav>
+
+    <div id="menu-backdrop"></div>
+    <button id="menu-close" tabindex="-1" title="%%l_close%%" aria-hidden="true">&#xE871;</button>
+
+    <div id="_search-button">
+
+      <button type="button" onclick="document.getElementById('_search-input').focus();">
+
+        %%l_search%%
+
+      </button>
+
+    </div>
+
+  </header>
+
+</div>
+
+<form id="_search-form" action="<?=x(translate_url("directory://63Ity1xj"))?>" method="post">
+
+  <input id="_search-input" name="search_term" type="search" placeholder="%%l_search%% …">
+
+</form>
+
+</div>
+
+<div id="banner">
+
+  <CMS:cblock idref="i_banner">
+  <div id="banner-image">
+
+    <CMS:noedit><CMS:image id="i_banner" width="1920"/></CMS:noedit>
+    <CMS:edit><CMS:image id="i_banner" width="100"/></CMS:edit>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="tp_banner">
+  <div id="banner-content">
+
+    <CMS:template id="tp_banner"/>
+
+  </div>
+  </CMS:cblock>
+
+</div>
+
+<main id="body">
+
+  <CMS:template id="tp_content"/>
+
+</main>
+
+<footer id="foot">
+
+  <div>
+
+    <div id="address">
+
+      %%company%%<br>
+      %%address%%
+
+    </div>
+
+    <div id="contact">
+
+      <a href="tel:%%link_phone%%">%%icon phone%%%%phone%%</a><br>
+      <a href="mailto:%%email%%">%%icon mail%%%%email%%</a>
+
+    </div>
+
+    <?php include(CMS_ROOT_PATH . "design/simple/#include/language.inc");?>
+
+    <nav id="link">
+
+      <CMS:menu base="_footer" show-hidden="on"/>
+
+    </nav>
+
+  </div>
+
+  <!-- landing page menu -->
+  <?php include(CMS_ROOT_PATH . "design/simple/#include/menu_landing_page.inc");?>
+
+</footer>
+
+<!-- goto top link -->
+<a id="goto-top" href="<?=x(translate_url("#top"))?>">%%l_top%%</a>
+
+<CMS:noedit>
+
+<!-- photoswipe -->
+<?php include(CMS_ROOT_PATH . "#include/photoswipe-5.4.4.inc");?>
+
+<!-- simple default thumbnail zoom -->
+<?php /*include(CMS_ROOT_PATH . "#include/thumbnail.inc");*/?>
+
+<!-- scroll to inner targets -->
+<?php /*include(CMS_ROOT_PATH . "#include/scrolltotarget.inc");*/?>
+
+<!-- parallax effect -->
+<?php /*include(CMS_ROOT_PATH . "#include/parallax.inc");*/?>
+
+<!-- external tracking code -->
+<CMS:template default="dmH8QLbh" edit="off"/>
+
+</CMS:noedit>
+
+</body>
+</html>

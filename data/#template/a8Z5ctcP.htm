@@ -1,0 +1,82 @@
+<CMS:edit option="image text value">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="image">
+    <tr>
+      <td>%%l_teaser_image%%:</td>
+      <td><CMS:image id="..article_image" width="150"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_teaser_heading%%:</td>
+      <td><CMS:text id="..article_title"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_date%%:</td>
+      <td><CMS:value id="..article_date"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_teaser_text%%:</td>
+      <td><CMS:text id="..article_text"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<article class="article">
+
+  <h1>
+
+    <CMS:cblock idref="t1"><CMS:text id="t1" title="%%l_heading%%"/></CMS:cblock>
+    <CMS:calt idref="t1"><CMS:text id="..article_title" edit="off"/></CMS:calt>
+
+  </h1>
+
+<?php
+if (
+     stre($time = l($cms_template_document->get("article_date", "value")))
+     ||
+     (($time = strtotime($time)) === FALSE)
+   )
+{
+    if (defined("CMS_CONTENT_INDEX"))
+    {
+        $mysql = new mysql();
+        $time  = $mysql->get(CMS_CONTENT_INDEX,
+                             CMS_DB_CONTENT_PUBLISHER_TIME,
+                             CMS_DB_CONTENT,
+                             CMS_DB_CONTENT_INDEX);
+    }
+    else
+    {
+        $time = time();
+    };
+};
+?>
+
+  <time datetime="<?=x(date("c", $time))?>">
+
+    <?=x(friendly_date($time, TRUE))?>
+
+  </time>
+
+  <div>
+
+    <CMS:template id="tp1"/>
+
+  </div>
+
+</article>

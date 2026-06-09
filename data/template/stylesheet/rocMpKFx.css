@@ -1,0 +1,191 @@
+DIV.gallery1
+{
+    BACKGROUND-COLOR: var(--cms-background-alt);
+    BORDER: var(--cms-vpadding) solid var(--cms-background-alt);
+    OVERFLOW: hidden;
+}
+
+DIV.gallery1-slides
+{
+    OVERFLOW: hidden;
+    SCROLL-BEHAVIOR: auto;
+    SCROLL-SNAP-TYPE: x mandatory;
+    WHITE-SPACE: nowrap;
+}
+
+DIV.gallery1-slide
+{
+    DISPLAY: inline-block;
+    SCROLL-MARGIN-TOP: calc(12.5vh - 37.5 * var(--cms-factor));
+    SCROLL-SNAP-ALIGN: center;
+    WIDTH: 100%;
+}
+
+DIV.gallery1-slide IMG
+{
+    HEIGHT: 100%;
+    MAX-HEIGHT: calc(75vh - var(--cms-vpadding) * 2);
+    OBJECT-FIT: contain;
+    WIDTH: 100%;
+}
+
+DIV.gallery1-iris
+{
+    ASPECT-RATIO: 1 / 1;
+    LEFT: 50%;
+    POINTER-EVENTS: none;
+    POSITION: absolute;
+    TOP: 50%;
+    WIDTH: 100%;
+    TRANSFORM: translate(-50%, -50%);
+}
+
+DIV.gallery1-iris:after
+{
+    ANIMATION: gallery1-iris 0.75s ease-in;
+    ANIMATION-FILL-MODE: forwards;
+    BOTTOM: 0;
+    CONTENT: "";
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+    WILL-CHANGE: backdrop-filter, background;
+}
+
+DIV.gallery1-blade
+{
+    ANIMATION: gallery1-blade 0.75s ease-in;
+    ANIMATION-FILL-MODE: forwards;
+    BACKGROUND: #000000;
+    HEIGHT: 50%;
+    LEFT: -50%;
+    POSITION: absolute;
+    TOP: 0;
+    TRANSFORM-ORIGIN: 66.67% bottom;
+    WIDTH: 150%;
+    WILL-CHANGE: transform;
+}
+
+DIV.gallery1-blade:nth-child(1) { --gallery1-blade-angle:   0deg; }
+DIV.gallery1-blade:nth-child(2) { --gallery1-blade-angle:  72deg; }
+DIV.gallery1-blade:nth-child(3) { --gallery1-blade-angle: 144deg; }
+DIV.gallery1-blade:nth-child(4) { --gallery1-blade-angle: 216deg; }
+DIV.gallery1-blade:nth-child(5) { --gallery1-blade-angle: 288deg; }
+
+@keyframes gallery1-iris
+{
+      0% { BACKDROP-FILTER: blur( 0    ); BACKGROUND: rgba(  0,   0,   0, 1   ); }
+     50% { BACKDROP-FILTER: blur(12.5px); BACKGROUND: rgba(255, 255, 255, 0.75); }
+    100% { BACKDROP-FILTER: blur( 0    ); BACKGROUND: transparent;               }
+}
+
+@keyframes gallery1-blade
+{
+      0% { TRANSFORM: rotate(var(--gallery1-blade-angle)) translateY(-125%) rotate(-90deg); }
+    100% { TRANSFORM: rotate(var(--gallery1-blade-angle)) translateY(-125%) rotate(  0deg); }
+}
+
+DIV.gallery1-text
+{
+    BACKGROUND-COLOR: var(--cms-overlay-background);
+    BOTTOM: 0;
+    COLOR: var(--cms-overlay-color);
+    LEFT: 0;
+    OPACITY: 0;
+    PADDING: var(--cms-vpadding);
+    POSITION: absolute;
+    RIGHT: 0;
+    TEXT-ALIGN: center;
+    TRANSITION: opacity 0.5s;
+    WILL-CHANGE: opacity;
+}
+
+A.gallery1-prev,
+A.gallery1-next
+{
+    BACKGROUND: var(--cms-overlay-background);
+    FONT-SIZE: 0;
+    HEIGHT: calc(50 * var(--cms-factor));
+    OPACITY: 0;
+    POSITION: absolute;
+    TOP: 50%;
+    TRANSFORM: translateY(-50%);
+    TRANSITION: opacity 0.5s;
+    USER-SELECT: none;
+    WIDTH: calc(50 * var(--cms-factor));
+    WILL-CHANGE: opacity;
+}
+
+A.gallery1-prev
+{
+    LEFT: 0;
+}
+
+A.gallery1-next
+{
+    RIGHT: 0;
+}
+
+A.gallery1-prev:before,
+A.gallery1-next:before
+{
+    BACKGROUND: var(--cms-overlay-color);
+    BOTTOM: 25%;
+    CLIP-PATH: polygon(17.5% 50%, 67.5% 0, 77.5% 10%, 37.5% 50%, 77.5% 90%, 67.5% 100%);
+    CONTENT: "";
+    LEFT: 25%;
+    POSITION: absolute;
+    RIGHT: 25%;
+    TOP: 25%;
+}
+
+A.gallery1-next:before
+{
+    CLIP-PATH: polygon(82.5% 50%, 32.5% 0, 22.5% 10%, 62.5% 50%, 22.5% 90%, 32.5% 100%);
+}
+
+DIV.gallery1-menu
+{
+    BACKGROUND-COLOR: var(--cms-background-alt);
+    OVERFLOW: hidden;
+    OVERFLOW-X: auto;
+    TEXT-ALIGN: center;
+    WHITE-SPACE: nowrap;
+}
+
+DIV.gallery1-menu A
+{
+    BORDER: var(--cms-vpadding) solid transparent;
+    DISPLAY: inline-block;
+}
+
+DIV.gallery1-menu A:focus,
+DIV.gallery1-menu A:hover
+{
+    BORDER-COLOR: var(--cms-color-highlight);
+}
+
+DIV.gallery1-menu A IMG
+{
+    HEIGHT: calc(75 * var(--cms-factor));
+    OPACITY: 0.65;
+    FILTER: grayscale(100%);
+    TRANSITION: filter 0.5s, opacity 0.5s;
+    WIDTH: auto;
+    WILL-CHANGE: filter, opacity;
+}
+
+DIV.gallery1-menu A:focus IMG,
+DIV.gallery1-menu A:hover IMG
+{
+    OPACITY: 1;
+    FILTER: grayscale(0%);
+}
+
+DIV.gallery1-slide:hover DIV.gallery1-text,
+DIV.gallery1-slide:hover A.gallery1-prev,
+DIV.gallery1-slide:hover A.gallery1-next
+{
+    OPACITY: 1;
+}

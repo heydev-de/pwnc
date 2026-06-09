@@ -1,0 +1,71 @@
+<CMS:edit option="href">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_target_page_with_search_module%%:</td>
+      <td><CMS:href id="search_address"></CMS:href></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<div class="tagcloud">
+<CMS:nocache>
+
+<?php
+
+//parameters
+$count       = 20;
+$size_max    = 3;
+$size_min    = 0.75;
+$opacity_min = 0.25;
+
+//target address
+$range   = $cms_template_base_id . "search_address";
+$address = $cms_template_document->get($range, "href");
+
+//handle deprecated format
+if (preg_match("/^((?:directory|content)(?!:\/\/)|address):(.+)$/s", $address, $_address))
+    $address = streq($_address[1], "address") ? $_address[2] : $_address[1] . "://" . $_address[2];
+
+//retrieve tags
+cms_load("search");
+$search = new search();
+$list   = (array)$search->tag(NULL, $count);
+
+if (count($list) === 0) return; //no elements
+
+//initialize
+$score_max      = max($list);
+$score_min      = min($list);
+$score_diff     = $score_max - $score_min;
+$size_factor    = ($size_max - $size_min) / $score_diff;
+$opacity_factor = (1 - $opacity_min) / $score_diff;
+
+//order by tag
+ksort($list);
+
+//display
+foreach ($list AS $key => $value)
+{
+    $score    = $value - $score_min;
+    $size     = $size_min + round($size_factor * $score, 2);
+    $opacity  = $opacity_min + round($opacity_factor * $score, 2);
+    $_address = translate_url($address, array("search_term" => $key));
+
+    echo("<a href=\"" . x($_address) . "\" " .
+            "style=\"FONT-SIZE:" . x($size) . "em;" .
+                    "LINE-HEIGHT:100%;" .
+                    "OPACITY:" . x($opacity) . "\">" .
+         x($key) .
+         "</a> ");
+};
+
+?>
+
+</CMS:nocache>
+</div>

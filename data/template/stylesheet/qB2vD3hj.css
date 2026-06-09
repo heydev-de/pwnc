@@ -1,0 +1,4 @@
+FORM.search-box INPUT[name=search_term]
+{
+    WIDTH: 25ch;
+}

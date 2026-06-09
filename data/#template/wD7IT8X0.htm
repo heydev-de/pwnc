@@ -1,0 +1,98 @@
+<CMS:edit option="repeat value href text">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="repeat">
+    <tr>
+      <td>%%l_number_of_blocks%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_minimum_block_width_in_px%%:</td>
+      <td><CMS:value id="marquee_minwidth" default="350"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_duration_in_s%%:</td>
+      <td><CMS:value id="marquee_duration" default="20"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="href">
+    <tr>
+      <td>%%l_link%%:</td>
+      <td><CMS:href id="h1"/></CMS:href></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_link_text%%:</td>
+      <td><CMS:text id="t1"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+
+<?php
+
+//get minimum width
+$minwidth = l($cms_template_document->get($cms_template_base_id . "marquee_minwidth", "value"));
+$minwidth = max((int)$minwidth, 0);
+
+//get speed
+$duration = l($cms_template_document->get($cms_template_base_id . "marquee_duration", "value"));
+$duration = max((int)$duration, 1);
+
+?>
+
+<div class="marquee">
+
+  <div class="marquee-slide">
+
+    <div id="marquee-<?=x($cms_template_temp_id)?>" class="marquee-strip" style="--duration:<?=$duration?>s">
+
+</CMS:noedit>
+
+      <CMS:repeat id="r1" default="3" edit="off">
+      <CMS:cblock>
+      <CMS:edit><div></CMS:edit>
+      <CMS:noedit><div class="marquee-frame" style="--width:<?=$minwidth?>"></CMS:noedit>
+
+        <CMS:template/>
+
+      </div>
+      </CMS:cblock>
+      </CMS:repeat>
+
+<CMS:noedit>
+    </div>
+
+  </div>
+
+  <CMS:cblock idref="h1">
+  <CMS:href id="h1" edit="off" class="marquee-link"/><CMS:text id="t1"/></CMS:href>
+  </CMS:cblock>
+
+</div>
+
+<script>
+(function()
+{
+    var object = document.getElementById("marquee-<?=qx($cms_template_temp_id)?>");
+    var clone  = object.cloneNode(true);
+    clone.id   = "";
+    object.parentElement.appendChild(clone);
+}) ();
+</script>
+
+</CMS:noedit>

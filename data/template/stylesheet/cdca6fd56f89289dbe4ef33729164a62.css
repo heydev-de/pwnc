@@ -1,0 +1,28 @@
+A.download1-anchor
+{
+    DISPLAY: block;
+    WIDTH: 100%;
+}
+
+IMG.download1-default,
+IMG.download1-hover
+{
+    WIDTH: 100%;
+}
+
+A.download1-anchor IMG.download1-hover
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    OPACITY: 0;
+    OBJECT-FIT: cover;
+    POSITION: absolute;
+    TOP: 0;
+    TRANSITION: opacity 0.5s;
+    WIDTH: 100%;
+}
+
+A.download1-anchor:hover IMG.download1-hover
+{
+    OPACITY: 1;
+}

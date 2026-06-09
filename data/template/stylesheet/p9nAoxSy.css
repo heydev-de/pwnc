@@ -1,0 +1,51 @@
+SECTION#article-overview > ARTICLE
+{
+    BREAK-INSIDE: avoid;
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    MARGIN: 0 calc(var(--cms-hspacing) / -4) calc(var(--cms-vspacing) / 2);
+}
+
+SECTION#article-overview > ARTICLE > *
+{
+    MARGIN: 0 calc(var(--cms-hspacing) / 4) calc(var(--cms-vspacing) / 2);
+}
+
+DIV.article-overview-image
+{
+    FLEX: 1 1 auto;
+}
+
+DIV.article-overview-image IMG
+{
+    MAX-WIDTH: 100%;
+    WIDTH: calc(150 * var(--cms-factor));
+}
+
+DIV.article-overview-content
+{
+    FLEX: 1 1 calc(100% - 150 * var(--cms-factor) - var(--cms-hspacing));
+    MIN-WIDTH: min(100% - var(--cms-hspacing) / 2, 250 * var(--cms-factor));
+}
+
+DIV.article-overview-content > H2
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+DIV.article-overview-content > TIME
+{
+    DISPLAY: block;
+    FONT-SIZE: smaller;
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+DIV.article-overview-content > DIV
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+NAV.article-overview-pagination
+{
+    TEXT-ALIGN: center;
+}

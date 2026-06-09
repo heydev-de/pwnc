@@ -1,0 +1,124 @@
+<CMS:edit option="text value image">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_title%%:</td>
+      <td><CMS:text id="youtube_title"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_video_id%%:</td>
+      <td><CMS:value id="youtube_video_id"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="image">
+    <tr>
+      <td>%%l_alternative_poster_image%%:</td>
+      <td><CMS:image id="youtube_poster" width="150"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_aspect_ratio%%:</td>
+      <td>
+        <CMS:value id="youtube_width" regex="/\d*/" default="16"/>
+        :
+        <CMS:value id="youtube_height" regex="/\d*/" default="9"/>
+      </td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+<?php
+
+$title    = x(l($cms_template_document->get($cms_template_base_id . "youtube_title", "text")));
+$video_id = rx($cms_template_document->get($cms_template_base_id . "youtube_video_id", "value"));
+$width    = (int)$cms_template_document->get($cms_template_base_id . "youtube_width", "value");
+$height   = (int)$cms_template_document->get($cms_template_base_id . "youtube_height", "value");
+
+?>
+
+<CMS:cblock idref="youtube_video_id">
+<label for="youtube-<?=x($cms_template_temp_id)?>-trigger"
+       title="%%l_open%%"
+       class="youtube-open"
+       style="ASPECT-RATIO:<?=$width?>/<?=$height?>">
+
+  <CMS:cblock idref="youtube_poster"><CMS:image id="youtube_poster" width="1920"/></CMS:cblock>
+  <CMS:calt idref="youtube_poster"><?php
+
+//check if maxresdefault.jpg is available
+$url      = "https://img.youtube.com/vi/$video_id/";
+$filename = "maxresdefault.jpg";
+$header   = get_headers($url . $filename, FALSE, stream_context_create(array("http" => array("method" => "HEAD"))));
+
+//otherwise use hqdefault.jpg
+if (! preg_match("/^HTTP\/[0-9]\.[0-9]\s+(2[0-9]{2})/i", $header[0])) $filename = "hqdefault.jpg";
+
+echo(image($url . $filename, 1920, NULL, $title, NULL, TRUE));
+
+?></CMS:calt>
+
+  <CMS:cblock idref="youtube_title">
+  <span>
+
+    <CMS:text id="youtube_title" edit="off"/>
+
+  </span>
+  </CMS:cblock>
+
+</label>
+</CMS:cblock>
+
+<input id="youtube-<?=x($cms_template_temp_id)?>-trigger"
+       type="checkbox"
+       class="youtube-trigger"
+       onchange="var object=document.getElementById('youtube-<?=qx($cms_template_temp_id)?>-player');
+                 object.src=this.checked?object.getAttribute('data-src'):'about:blank';">
+
+<div id="youtube-<?=x($cms_template_temp_id)?>"
+     class="youtube"><?php
+
+?><label for="youtube-<?=x($cms_template_temp_id)?>-trigger"
+         class="youtube-out"><?php
+?>%%l_close%%<?php
+?></label><?php
+
+?><div style="ASPECT-RATIO:<?=$width?>/<?=$height?>"><?php
+
+  ?><iframe id="youtube-<?=x($cms_template_temp_id)?>-player"
+            src="about:blank"
+            data-src="https://www.youtube-nocookie.com/embed/<?=$video_id?>?autoplay=1&rel=0"
+            allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture;web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            title="<?=$title?>">
+    </iframe>
+
+  </div>
+
+</div>
+
+<script>
+fx_event_listen("window_load", function()
+{
+    with (document.body)
+    {
+        appendChild(document.getElementById("youtube-<?=x($cms_template_temp_id)?>-trigger"));
+        appendChild(document.getElementById("youtube-<?=x($cms_template_temp_id)?>"));
+    };
+});
+</script>
+</CMS:noedit>

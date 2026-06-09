@@ -1,0 +1,46 @@
+<CMS:edit option="href value">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="href">
+    <tr>
+      <td>%%l_target_url%%:</td>
+      <td><CMS:href id="newsletter_address"/></CMS:href></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_email_field_name%%:</td>
+      <td><CMS:value id="newsletter_fieldname" default="email"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+$address   = translate_url(l($cms_template_document->get($cms_template_base_id . "newsletter_address", "href")));
+$fieldname = l($cms_template_document->get($cms_template_base_id . "newsletter_fieldname", "value"));
+
+//handle deprecated format
+if (preg_match("/^((?:directory|content)(?!:\/\/)|address):(.+)$/s", $address, $_address))
+    $address = streq($_address[1], "address") ? $_address[2] : $_address[1] . "://" . $_address[2];
+
+$address = translate_url($address);
+
+?>
+
+<form class="newsletter" action="<?=x($address)?>" method="post" target="_blank">
+
+  <input name="<?=x($fieldname)?>" type="email" value="" placeholder="%%l_email%%" required><br>
+  <br>
+  <input id="newsletter-confirm" type="checkbox" value="1" required>%%l_newsletter_data_privacy_statement%%<br>
+  <br>
+  <button type="submit">%%l_subscribe%%</button>
+
+</form>

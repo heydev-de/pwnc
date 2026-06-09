@@ -1,0 +1,15 @@
+DIV.layout-center
+{
+    DISPLAY: grid;
+    HEIGHT: 100%;
+}
+
+DIV.layout-center > DIV
+{
+    PLACE-SELF: center;
+}
+
+DIV.layout-center > DIV[style] > *
+{
+    TEXT-ALIGN: inherit;
+}

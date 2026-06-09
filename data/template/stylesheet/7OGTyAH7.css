@@ -1,0 +1,30 @@
+DIV.layout-ndcol
+{
+
+}
+
+DIV.layout-ndcol-block
+{
+    DISPLAY: inline-block;
+    MAX-WIDTH: 100%;
+}
+
+DIV.layout-ndcol-weight
+{
+    BORDER-LEFT: 1px dotted #808080;
+    PADDING: 0 5px;
+}
+
+DIV.layout-ndcol-block:last-child DIV.layout-ndcol-weight
+{
+    BORDER-RIGHT: 1px dotted #808080;
+}
+
+@media (max-width: 640px)
+{
+    DIV.layout-ndcol-block
+    {
+        DISPLAY: block;
+        WIDTH: 100% !important;
+    }
+}

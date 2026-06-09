@@ -1,0 +1,118 @@
+<?php
+
+$base_path = "gallery";
+
+//get folder from document data
+$range  = $cms_template_base_id . "gallery2_folder";
+$folder = $cms_template_document->get($range, "value");
+
+//retrieve entries from base path
+if (($array = scandir(CMS_ROOT_PATH . "$base_path/")) === FALSE) return FALSE; //path not found
+
+?>
+
+<CMS:edit option="value switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_image_folder%%:</td>
+      <td><CMS:value id="gallery2_folder" edit="off"/>
+<?php
+
+//display folder selection
+echo(x("/$base_path/") .
+     "<select id=\"gallery2-folder-" . x($cms_template_temp_id) . "\">" .
+     "<option></option>");
+
+//process entries
+foreach ($array AS $value)
+{
+    if (! is_dir(CMS_ROOT_PATH . "$base_path/$value")) continue; //no directory
+    if (($value === ".") || ($value === ".."))         continue; //no directory
+    echo("<option" . (streq($value, $folder) ? " selected" : "") . ">" .
+         x($value) .
+         "</option>");
+};
+
+echo("</select>");
+
+?>
+<script>
+
+fx_event_listen(document.getElementById("gallery2-folder-<?=q($cms_template_temp_id)?>"), "change", function()
+{
+    let url = "<?=q(CMS_ACTIVE_URL .
+                    cms_param(array("range" => $range,
+                                    "type"  => "value",
+                                    "value" => "\x1B%value%",
+                                    "left"  => "\x1B%left%",
+                                    "top"   => "\x1B%top%")))?>";
+    content_edit_command(url.replace(/%value%/,
+                         encodeURIComponent(this.value)));
+});
+
+</script>
+
+     </td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_fill_space%%:</td>
+      <td><CMS:switch id="gallery2_fill"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+<?php
+
+if (stre($folder)) return FALSE; //no folder selected
+
+//retrieve entries from folder path
+if (($array = scandir(CMS_ROOT_PATH . "$base_path/$folder/")) === FALSE) return FALSE; //path not found
+
+//process entries
+$base_path = r($base_path);
+$i         = 3; //automatic index offset
+foreach ($array AS $value)
+{
+    //check filename extension
+    if (! preg_match("/^(.+)\.(?:gif|jpe?g|png|webp|svg)$/i", $value, $_value))
+        continue; //no valid file format
+
+    $location = CMS_ROOT_URL . $base_path . "/" . r($folder) . "/" . r($value);
+    $cms_template_document->set($cms_template_base_id . "r1.$i.i1", "image", $location);
+    $i += 2;
+};
+
+if (($i = ($i - 3) / 2) < 1) return FALSE; //no images found
+$cms_template_document->set($cms_template_base_id . "r1", "repeat", $i);
+
+?>
+<CMS:noedit>
+<CMS:cblock idref="gallery2_fill"><div class="gallery2-fill"></CMS:cblock>
+<CMS:calt idref="gallery2_fill"><div class="gallery2"></CMS:calt>
+</CMS:noedit>
+<CMS:edit><div class="gallery2-edit"></CMS:edit>
+
+  <CMS:repeat id="r1" edit="off">
+  <CMS:namespace>
+  <CMS:noedit>
+  <div class="gallery2-item">
+
+    <CMS:thumbnail id="i1" twidth="960" width="3840" edit="off" class="gallery2-image thumbnail"/>
+
+  </div>
+  </CMS:noedit>
+  <CMS:edit><CMS:image id="i1" height="100" edit="off"/></CMS:edit>
+  </CMS:namespace>
+  </CMS:repeat>
+
+</div>

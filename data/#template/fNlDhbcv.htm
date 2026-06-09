@@ -1,0 +1,64 @@
+<CMS:edit option="text"><CMS:text id="t1" title="%%l_text_ticker%%"/></CMS:edit>
+
+<CMS:noedit>
+<noscript>
+<div>
+
+  <CMS:text id="t1" edit="off"/>
+
+</div>
+</noscript>
+
+<script>
+
+({
+    object : null,
+    text   : "",
+    i      : 0,
+
+    init: function(id, text)
+    {
+        document.write("<div>" +
+                       "<span id=\"" + id + "\">" +
+                       "<\/span>" +
+                       "_<\/div>");
+        this.object = document.getElementById(id);
+        this.text   = text;
+        this.loop();
+    },
+
+    loop: function()
+    {
+        var self = this;
+
+        if (++this.i > this.text.length)
+        {
+            fx_animation_frame(function() { self.reset(); }, 3000);
+            return;
+        };
+
+        var char = this.text.charAt(this.i);
+        this.object.innerText += char;
+
+        var delay = (char === "\n" ? 500 : 50) + Math.random() * 150;
+        fx_animation_frame(function() { self.loop(); }, delay);
+    },
+
+    reset: function()
+    {
+        this.object.innerText = "";
+        this.i = 0;
+        this.loop();
+    }
+
+}).init(
+    "textticker-<?=$cms_template_temp_id?>",
+    "<?php
+    $index = $cms_template_base_id . "t1";
+    $value = q(remove_format(l($cms_template_document->get($index, "text"))));
+    $value = preg_replace("/\r?\n/", "\\n", $value);
+    echo($value);
+    ?>");
+
+</script>
+</CMS:noedit>

@@ -1,0 +1,61 @@
+Options -Multiviews
+
+<IfModule mod_dir.c>
+DirectoryIndex index.php
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+
+# redirect to canonical domain
+#RewriteCond %{SERVER_PORT} !^443$ [OR]
+#RewriteCond %{HTTP_HOST} !^example\.com$
+#RewriteRule ^ https://example.com%{REQUEST_URI} [NE,L,R=301]
+
+# secure dat files
+RewriteCond %{REQUEST_FILENAME} \.dat$
+RewriteRule ^ /404.php [L,R=404]
+
+# evoke 404 on missing php scripts
+RewriteCond %{REQUEST_FILENAME} \.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /404.php [L,R=404]
+
+# redirect /pwnc to /nuos if /pwnc does not exist
+RewriteCond %{DOCUMENT_ROOT}/pwnc !-d
+RewriteRule ^pwnc(/.*)? /nuos$1 [L,R=302,QSA]
+
+# connect /sitemap.xml
+RewriteCond %{REQUEST_URI} ^/sitemap\.xml$ [NC]
+RewriteRule ^ /pwnc/module/sitemap.php [L]
+
+# connect /rss.xml
+RewriteCond %{REQUEST_URI} ^/rss\.xml$
+RewriteRule ^ /pwnc/module/rss.php?rss_channel=6ZQKdNzP&rss_order=modified [L]
+</IfModule>
+
+ErrorDocument 404 /404.php
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/javascript
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType font/woff "access plus 3 months"
+ExpiresByType font/woff2 "access plus 3 months"
+ExpiresByType image/jpeg "access plus 3 months"
+ExpiresByType image/png "access plus 3 months"
+ExpiresByType image/svg+xml "access plus 3 months"
+ExpiresByType image/webp "access plus 3 months"
+ExpiresByType image/x-icon "access plus 3 months"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType text/javascript "access plus 1 month"
+</IfModule>

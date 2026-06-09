@@ -1,0 +1,58 @@
+<CMS:edit option="repeat">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_number_of_columns%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+$index  = $cms_template_base_id . "r1";
+$repeat = l($cms_template_document->get($index, "repeat"));
+$repeat = max((int)$repeat, 1);
+$sum    = 0;
+
+for ($i = 0; $i < $repeat; $i++)
+{
+    $index  = $cms_template_base_id . "r1." . ($i * 2 + 2);
+    $value  = max((int)$cms_template_document->get($index, "value"), 1);
+    $sum   += $value;
+};
+
+$i = 0;
+
+?>
+
+<div class="layout-col">
+
+  <CMS:repeat id="r1" edit="off"><?php
+
+    $i     += 2;
+    $index  = $cms_template_base_id . "r1." . $i;
+    $value  = max((int)$cms_template_document->get($index, "value"), 1);
+    $width  = 100 / $sum * $value;
+
+?><div class="layout-col-block" style="WIDTH:<?=$width?>%">
+
+    <CMS:edit>
+    <div class="layout-col-weight">
+
+      <CMS:value title="%%l_weighting%%"/>
+
+    </div>
+    </CMS:edit>
+
+    <CMS:template/>
+
+  </div><?php
+?></CMS:repeat>
+
+</div>

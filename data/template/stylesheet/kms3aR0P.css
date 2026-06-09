@@ -1,0 +1,21 @@
+IMG.image1
+{
+    OBJECT-FIT: cover;
+    WIDTH: 100%;
+}
+
+@media (orientation: portrait)
+{
+    IMG.image1
+    {
+        MAX-HEIGHT: 50vh;
+    }
+}
+
+@media (orientation: landscape)
+{
+    IMG.image1
+    {
+        MAX-HEIGHT: 100vh;
+    }
+}

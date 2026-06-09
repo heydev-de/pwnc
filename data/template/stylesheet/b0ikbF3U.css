@@ -1,0 +1,36 @@
+.imprint .imprint-line
+{
+    DISPLAY: flex;
+    JUSTIFY-CONTENT: space-between;
+}
+
+.imprint .imprint-left
+{
+    FONT-WEIGHT: bold;
+    WIDTH: calc(35% - var(--cms-hspacing) / 2);
+}
+
+.imprint .imprint-right
+{
+    WIDTH: calc(65% - var(--cms-hspacing) / 2);
+}
+
+.imprint .imprint-separator
+{
+    DISPLAY: block;
+    PADDING-TOP: var(--cms-vspacing);
+}
+
+@media (max-width: 640px)
+{
+    .imprint .imprint-line
+    {
+        DISPLAY: block;
+    }
+
+    .imprint .imprint-left,
+    .imprint .imprint-right
+    {
+        WIDTH: 100%;
+    }
+}

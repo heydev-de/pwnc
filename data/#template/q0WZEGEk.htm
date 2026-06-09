@@ -1,0 +1,42 @@
+<CMS:nocache>
+<CMS:edit option="value">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_permission%%:</td>
+      <td><CMS:value id="protected_permission" default="default"/></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:value id="protected_permitted" edit="off"/>
+
+<?php
+
+$permission = $cms_template_document->get($cms_template_base_id . "protected_permission", "value");
+if (stre($permission)) $permission = "default";
+$permission = "protected.$permission";
+$permitted  = cms_permission($permission) ? "1" : NULL;
+$cms_template_document->set($cms_template_base_id . "protected_permitted", "value", $permitted);
+
+?>
+
+<CMS:cblock idref="protected_permitted">
+<CMS:template id="tp1" title="%%l_protected_content%%"/>
+</CMS:cblock>
+
+<CMS:calt idref="protected_permitted">
+<CMS:template id="tp2" title="%%l_alternative_unprotected_content%%"/>
+</CMS:calt>
+
+<?php
+
+permission(array($permission => parse_token("%%l_protected_content%%")));
+
+?>
+</CMS:nocache>

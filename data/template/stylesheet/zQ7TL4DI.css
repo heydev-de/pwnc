@@ -1,0 +1,100 @@
+.fan
+{
+    PADDING-TOP: max(180px, 35%);
+}
+
+.fan-container
+{
+    BOTTOM: 0;
+    DISPLAY: flex;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+.fan-trigger
+{
+    DISPLAY: none;
+}
+
+.fan-slat
+{
+    DISPLAY: inline-block;
+    OVERFLOW: hidden;
+    TRANSITION: width 0.5s;
+}
+
+.fan-link,
+.fan-switch
+{
+    BOTTOM: 0;
+    LEFT: 0;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+.fan-link
+{
+    WIDTH: 0;
+}
+
+.fan-image
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    OBJECT-FIT: cover;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+.fan-overlay
+{
+    BACKGROUND: var(--cms-overlay-background);
+    BOTTOM: 0;
+    CONTENT: "";
+    LEFT: 0;
+    MIX-BLEND-MODE: multiply;
+    OPACITY: 0.15;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: calc(200 * var(--cms-factor));
+}
+
+.fan-text
+{
+    BACKGROUND: var(--cms-overlay-background);
+    BOTTOM: 20%;
+    BOX-SIZING: border-box;
+    COLOR: var(--cms-overlay-color);
+    LEFT: 0;
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+    POSITION: absolute;
+    WIDTH: calc(200 * var(--cms-factor));
+}
+
+.fan-trigger:checked + .fan-slat,
+.fan-slat:hover
+{
+    WIDTH: 100% !important;
+}
+
+.fan-trigger:checked + .fan-slat .fan-switch,
+.fan-slat:hover .fan-switch
+{
+    DISPLAY: none;
+}
+
+@keyframes fan-link
+{
+    0% { WIDTH: 0; };
+}
+
+.fan-trigger:checked + .fan-slat .fan-link,
+.fan-slat:hover .fan-link
+{
+    ANIMATION: fan-link 0.5s steps(1);
+    WIDTH: 100%;
+}

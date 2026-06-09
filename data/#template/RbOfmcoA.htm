@@ -1,0 +1,64 @@
+<CMS:edit option="repeat">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_number_of_pages%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+$id = "page-" . x($cms_template_temp_id);
+$i  = 0;
+
+?>
+
+<section id="<?=$id?>">
+
+  <CMS:repeat id="r1" edit="off">
+
+<?php
+
+$i++;
+$page  = isset($_GET["page_$cms_template_temp_id"]) ?
+         (int)$_GET["page_$cms_template_temp_id"] : 1;
+$range = $cms_template_base_id . "flag";
+$cms_template_document->set($range, "text", ($i === $page) ? "1" : "");
+
+?>
+
+  <CMS:cblock idref=".flag">
+  <div class="layout-page">
+
+    <CMS:template title="%%l_page_content%%"/>
+
+  </div>
+  </CMS:cblock>
+  </CMS:repeat>
+
+<?php
+
+$range = $cms_template_base_id . "r1";
+$count = (int)$cms_template_document->get($range, "repeat");
+
+//pagination
+pagination(
+    CMS_ACTIVE_URL .
+    cms_param(["page_$cms_template_temp_id" => "\x1B%page%"]) .
+    "#$id",
+    $page,
+    $count,
+    parse_token("\%%l_more\%%"),
+    "layout-page-pagination",
+    1);
+
+?>
+
+</section>

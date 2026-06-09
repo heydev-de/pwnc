@@ -1,0 +1,29 @@
+DIV.layout-col
+{
+    MARGIN: 0 0 calc(var(--cms-vspacing) * -1) calc(var(--cms-hspacing) * -1);
+}
+
+DIV.layout-col-block
+{
+    BOX-SIZING: border-box;
+    DISPLAY: inline-block;
+    MAX-WIDTH: 100%;
+    PADDING: 0 0 var(--cms-vspacing) var(--cms-hspacing);
+}
+
+DIV.layout-col-weight
+{
+    BORDER: 1px dotted #808080;
+    BORDER-BOTTOM: none;
+    BORDER-TOP: none;
+    PADDING: 0 5px;
+}
+
+@media (max-width: 640px)
+{
+    DIV.layout-col-block
+    {
+        DISPLAY: block;
+        WIDTH: 100% !important;
+    }
+}

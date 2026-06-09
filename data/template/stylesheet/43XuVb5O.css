@@ -1,0 +1,7 @@
+@media (min-width: 641px)
+{
+    DIV.desktop-hide
+    {
+        DISPLAY: none;
+    }
+}

@@ -1,0 +1,245 @@
+<CMS:nocache>
+<CMS:edit option="value switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_rss_feed_url%%:</td>
+      <td><CMS:value id="rss_feed_address"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_filter_html%%:</td>
+      <td><CMS:switch id="rss_enable_html_filter"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_maximum_text_length%%:</td>
+      <td><CMS:value id="rss_max_text_length" default="100"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_maximum_description_length%%:</td>
+      <td><CMS:value id="rss_max_description_length" default="400"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_maximum_number_of_entries%%:</td>
+      <td><CMS:value id="rss_max_item_number" default="20"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch value">
+    <tr>
+      <th colspan="2">%%l_channel_info%%</th>
+    </tr>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_hide%%:</td>
+      <td><CMS:switch id="rss_hide_channel"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_link%%:</td>
+      <td><CMS:switch id="rss_hide_channel_link"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_image%%:</td>
+      <td><CMS:switch id="rss_hide_channel_image"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_maximum_image_width_in_px%%:</td>
+      <td><CMS:value id="rss_channel_image_max_width" default="120"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_maximum_image_height_in_px%%:</td>
+      <td><CMS:value id="rss_channel_image_max_height" default="120"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_hide_title%%:</td>
+      <td><CMS:switch id="rss_hide_channel_title"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_category%%:</td>
+      <td><CMS:switch id="rss_hide_channel_category"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_description%%:</td>
+      <td><CMS:switch id="rss_hide_channel_description"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_update_date%%:</td>
+      <td><CMS:switch id="rss_hide_channel_pub_date"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_last_build_date%%Stand ausblenden:</td>
+      <td><CMS:switch id="rss_hide_channel_last_build_date"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_copyright%%:</td>
+      <td><CMS:switch id="rss_hide_channel_copyright"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_managing_editor%%:</td>
+      <td><CMS:switch id="rss_hide_channel_managing_editor"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_webmaster%%:</td>
+      <td><CMS:switch id="rss_hide_channel_web_master"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_generator%%:</td>
+      <td><CMS:switch id="rss_hide_channel_generator"/></td>
+    </tr>
+    </CMS:edit>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <th colspan="2">%%l_entries%%</th>
+    </tr>
+
+    <tr>
+      <td>%%l_hide%%:</td>
+      <td><CMS:switch id="rss_hide_item"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_link%%:</td>
+      <td><CMS:switch id="rss_hide_item_link"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_title%%:</td>
+      <td><CMS:switch id="rss_hide_item_title"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_category%%:</td>
+      <td><CMS:switch id="rss_hide_item_category"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_enclosure%%:</td>
+      <td><CMS:switch id="rss_hide_item_enclosure"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_description%%:</td>
+      <td><CMS:switch id="rss_hide_item_description"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_update_date%%:</td>
+      <td><CMS:switch id="rss_hide_item_pub_date"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_author%%:</td>
+      <td><CMS:switch id="rss_hide_item_author"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_source%%:</td>
+      <td><CMS:switch id="rss_hide_item_source"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_comments%%:</td>
+      <td><CMS:switch id="rss_hide_item_comments"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_hide_id%%:</td>
+      <td><CMS:switch id="rss_hide_item_guid"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+//get rss feed address
+$url = l($cms_template_document->get($cms_template_base_id . "rss_feed_address", "value"));
+if (stre($url)) return; //no address
+$url = absolute_path(CMS_ROOT_URL, $url);
+
+//load library
+cms_load("rss_parser");
+
+//create parser
+$rss_parser = new rss_parser();
+
+//options
+$rss_parser->enable_html_filter           = $cms_template_document->get($cms_template_base_id . "rss_enable_html_filter", "value");
+$rss_parser->max_text_length              = max(0, (int)l($cms_template_document->get($cms_template_base_id . "rss_max_text_length", "value")));
+$rss_parser->max_description_length       = max(0, (int)l($cms_template_document->get($cms_template_base_id . "rss_max_description_length", "value")));
+$rss_parser->max_item_number              = max(0, (int)l($cms_template_document->get($cms_template_base_id . "rss_max_item_number", "value")));
+
+$rss_parser->show_channel                 = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel", "value");
+$rss_parser->show_channel_link            = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_link", "value");
+$rss_parser->show_channel_image           = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_image", "value");
+$rss_parser->channel_image_max_width      = max(1, (int)l($cms_template_document->get($cms_template_base_id . "rss_channel_image_max_width", "value")));
+$rss_parser->channel_image_max_height     = max(1, (int)l($cms_template_document->get($cms_template_base_id . "rss_channel_image_max_height", "value")));
+$rss_parser->show_channel_title           = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_title", "value");
+$rss_parser->show_channel_category        = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_category", "value");
+$rss_parser->show_channel_description     = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_description", "value");
+$rss_parser->show_channel_pub_date        = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_pub_date", "value");
+$rss_parser->show_channel_last_build_date = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_last_build_date", "value");
+$rss_parser->show_channel_copyright       = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_copyright", "value");
+$rss_parser->show_channel_managing_editor = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_managing_editor", "value");
+$rss_parser->show_channel_web_master      = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_web_master", "value");
+$rss_parser->show_channel_generator       = ! $cms_template_document->get($cms_template_base_id . "rss_hide_channel_generator", "value");
+
+$rss_parser->show_item                    = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item", "value");
+$rss_parser->show_item_link               = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_link", "value");
+$rss_parser->show_item_title              = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_title", "value");
+$rss_parser->show_item_category           = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_category", "value");
+$rss_parser->show_item_enclosure          = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_enclosure", "value");
+$rss_parser->show_item_description        = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_description", "value");
+$rss_parser->show_item_pub_date           = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_pub_date", "value");
+$rss_parser->show_item_author             = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_author", "value");
+$rss_parser->show_item_source             = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_source", "value");
+$rss_parser->show_item_comments           = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_comments", "value");
+$rss_parser->show_item_guid               = ! $cms_template_document->get($cms_template_base_id . "rss_hide_item_guid", "value");
+
+//parse
+if (! $rss_parser->parse($url))
+{
+    echo("<div class=\"response-error\">" .
+         x(xml_error_string(xml_get_error_code($rss_parser->parser))) .
+         "</div>");
+    return;
+};
+
+//display
+$rss_parser->display();
+
+?>
+</CMS:nocache>

@@ -1,0 +1,161 @@
+.blog
+{
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    MARGIN-LEFT: calc(var(--cms-hspacing) * -1);
+}
+
+.blog-content
+{
+    FLEX: 1 0 calc(65% - var(--cms-hspacing));
+    MARGIN-LEFT: var(--cms-hspacing);
+}
+
+.blog-content *
+{
+    MAX-WIDTH: 100%;
+}
+
+.blog-overview-article,
+.blog-overview-article-sticky,
+.blog-overview-article-scheduled,
+.blog-overview-article-scheduled-sticky,
+.blog-overview-article-disabled,
+.blog-overview-article-disabled-sticky,
+.blog-article
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) * 2);
+}
+
+.blog-overview-article-scheduled,
+.blog-overview-article-scheduled-sticky,
+.blog-overview-article-disabled,
+.blog-overview-article-disabled-sticky
+{
+    OPACITY: 0.5;
+}
+
+.blog-overview-article-sticky,
+.blog-overview-article-scheduled-sticky,
+.blog-overview-article-disabled-sticky
+{
+    BACKGROUND-COLOR: var(--cms-background-alt);
+    COLOR: var(--cms-color-alt);
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+}
+
+.blog-overview-article-scheduled .blog-overview-time
+{
+    FONT-WEIGHT: bold;
+}
+
+.blog-overview-article-disabled .blog-overview-title
+{
+    TEXT-DECORATION: line-through;
+}
+
+.blog-overview-image
+{
+    MARGIN-BOTTOM: var(--cms-vspacing);
+}
+
+.blog-overview-image IMG
+{
+    MAX-HEIGHT: calc(300 * var(--cms-factor));
+    OBJECT-FIT: cover;
+    WIDTH: 100%;
+}
+
+.blog-overview-title,
+.blog-article-title
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+.blog-overview-info,
+.blog-article-info
+{
+    FONT-SIZE: smaller;
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+.blog-overview-text > A:last-child
+{
+    FONT-WEIGHT: bold;
+}
+
+.blog-overview-text > A:last-child:before
+{
+    CONTENT: "\A";
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+    WHITE-SPACE: pre;
+}
+
+.blog-overview-pagination
+{
+    MARGIN-TOP: calc(var(--cms-vspacing) * 2);
+    TEXT-ALIGN: center;
+}
+
+.blog-edit-meta-suggestion
+{
+    DISPLAY: none;
+}
+
+.blog-edit-meta:focus-within DIV.blog-edit-meta-suggestion
+{
+    DISPLAY: block;
+}
+
+.blog-edit LABEL:has(INPUT)
+{
+    MARGIN-RIGHT: var(--cms-hpadding);
+}
+
+.blog-edit LABEL:has(SELECT)
+{
+    DISPLAY: inline-block;
+}
+
+.blog-control
+{
+    FLEX: 1 0 calc(35% - var(--cms-hspacing));
+    MARGIN-LEFT: var(--cms-hspacing);
+    MIN-WIDTH: calc(min(250px, 100%) - var(--cms-hspacing));
+}
+
+.blog-control H2
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+.blog-archive-year-active,
+.blog-archive-month-active,
+.blog-archive-day-active,
+.blog-meta-active
+{
+    COLOR: var(--cms-color-highlight);
+    FONT-WEIGHT: 700;
+}
+
+.blog-archive-year-active:after,
+.blog-archive-month-active:after,
+.blog-archive-month + .blog-archive-year:before
+{
+    CONTENT: "\A";
+    WHITE-SPACE: pre;
+}
+
+.blog-archive TH,
+.blog-archive TD
+{
+    PADDING: calc(var(--cms-vpadding) / 2) calc(var(--cms-hpadding) / 2);
+    TEXT-ALIGN: center;
+    WHITE-SPACE: nowrap;
+}
+
+.blog .permission
+{
+    FLEX: 1 0 calc(100% - var(--cms-hspacing));
+    MARGIN-LEFT: var(--cms-hspacing);
+}

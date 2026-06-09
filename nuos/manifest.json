@@ -1,0 +1,22 @@
+{
+    "name": "PWNC Web Platform",
+    "short_name": "PWNC",
+    "start_url": "/pwnc/",
+    "scope" : "/",
+    "display": "standalone",
+    "theme_color": "#111417",
+    "background_color": "#111417",
+    "icons":
+    [
+        {
+            "src": "/pwnc/image/pwnc-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/pwnc/image/pwnc-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}

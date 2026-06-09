@@ -1,0 +1,80 @@
+INPUT.language-flag,
+LABEL.language-out
+{
+    DISPLAY: none;
+}
+
+NAV.language
+{
+    DISPLAY: block;
+    TEXT-ALIGN: left;
+    USER-SELECT: none;
+}
+
+NAV.language LABEL
+{
+    DISPLAY: inline-block;
+    FONT-WEIGHT: normal;
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+}
+
+NAV.language IMG
+{
+    BACKGROUND: var(--cms-background);
+    BORDER: calc(1.5 * var(--cms-factor)) solid var(--cms-color);
+    BORDER-RADIUS: 50%;
+    BOX-SIZING: border-box;
+    HEIGHT: calc(25 * var(--cms-factor));
+    OBJECT-FIT: cover;
+    WIDTH: calc(25 * var(--cms-factor));
+}
+
+NAV.language DIV
+{
+    DISPLAY: none;
+    FLOAT: left;
+    FLEX-DIRECTION: column;
+    MAX-HEIGHT: calc(100 * var(--cms-factor));
+    OVERFLOW: hidden;
+    OVERFLOW-Y: auto;
+    POSITION: absolute;
+    TOP: 100%;
+    Z-INDEX: 1000;
+}
+
+NAV.language A
+{
+    BACKGROUND: var(--cms-background-alt);
+    COLOR: var(--cms-color-alt);
+    DISPLAY: block;
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+}
+
+INPUT.language-flag:checked ~ LABEL.language-out
+{
+    BOTTOM: 0;
+    DISPLAY: block;
+    FONT-SIZE: 0;
+    LEFT: 0;
+    POSITION: fixed;
+    RIGHT: 0;
+    TOP: 0;
+    USER-SELECT: none;
+    Z-INDEX: 950;
+}
+
+INPUT.language-flag:checked ~ NAV.language LABEL
+{
+    BACKGROUND: var(--cms-background-alt);
+    COLOR: var(--cms-color-alt);
+}
+
+INPUT.language-flag:checked ~ NAV.language IMG
+{
+    BORDER-COLOR: var(--cms-color-alt);
+}
+
+INPUT.language-flag:checked ~ NAV.language DIV
+{
+    DISPLAY: block;
+}

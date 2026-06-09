@@ -1,0 +1,40 @@
+Ceku1avN:=name=Indexen:Indexru:asdasdf;#type=container;hidden=1;placeholder=1;url=directory://uL2NSbJ0;used=1;description=Dieser versteckte Eintrag leitet intern weiter auf die Seite "Home" und dient dazu, Zusatzseiten, die nicht in der dynamischen Navigation erscheinen sollen, unterzubringen. Die oberste Seite im Verzeichnisbaum entspricht automatisch der Startseite der Website.en:This hidden entry internally redirects to the "Home" page and serves to keep additional pages that are not meant to appear in the dynamical navigation. The topmost page in the directory tree automatically represents the website's home page.;#subtype=C38DpgP5
+8vREWFMs:=name=Datenschutzen:Privacy;#type=container;url=content://114;hidden=1;placeholder=1;used=1;path=de/datenschutzen:en/data-privacy;#subtype=iYAFUEHp
+Mwn4l1WO:=#type=/container
+x0LQjCNq:=name=Impressumen:Legal info;#type=container;placeholder=1;url=content://2;used=1;hidden=1;path=de/impressumen:en/legal-info;#subtype=iYAFUEHp
+5cRLo6Yx:=#type=/container
+ubr312BJ:=name=Sitemapen:Sitemap;#type=container;url=content://10;placeholder=1;used=1;hidden=1;path=de/sitemapen:en/sitemap;#subtype=iYAFUEHp
+TkEVTuqJ:=#type=/container
+63Ity1xj:=name=Sucheen:Search;#type=container;placeholder=1;url=content://17;used=1;hidden=1;path=de/sucheen:en/search;#subtype=yF0fMP1S
+Li2abVFm:=#type=/container
+P4fhfkza:=name=404 Seite nicht gefundenen:404 page not found;#type=container;url=content://18;used=1;placeholder=1;path=404de:de/404;hidden=1;#subtype=lOJhyDEM
+2snlsX1p:=#type=/container
+AIij9RVw:=#type=/container
+uL2NSbJ0:=name=Homeen:Home;#type=container;url=content://1;placeholder=1;used=1;path=de/homeen:en/home;hidden=1;#subtype=K8bks6gk
+ookLdPLb:=#type=/container
+tRwgPBFa:=name=Blog;#type=container;url=content://32;dynamic=1;#subtype=agIt4XXX
+llPwpyG9:=#type=/container
+stdsq1qF:=name=Forumen:Bulletin Board;#type=container;url=content://148;dynamic=1;#subtype=SS1h2zx6
+ydfW6g9i:=#type=/container
+q69zLBm1:=name=Registrierung / Profilen:Registration / Profile;#type=container;url=content://149;dynamic=1;#subtype=ZnXiRzM6
+xGCzeaGZ:=#type=/container
+F4Scapnp:=name=Anmeldungen:Login;#type=container;url=content://150;#subtype=tSjIzaaG
+roq5aaNL:=#type=/container
+ivakFYtk:=name=Kontakten:Contact;#type=container;placeholder=1;url=content://5;used=1;#subtype=M0OKndOK
+wKLYbFuz:=name=Anfrageformular;#type=container;url=content://177;placeholder=1;used=1;hidden=1;#subtype=LxqzClvB
+WTju12Yj:=#type=/container
+sECycWOR:=#type=/container
+_footer:=name=Fußnoteen:Footer;#type=container;placeholder=1;used=1;hidden=1;#subtype=Kcjx8yyp
+hB5037De:=name=Datenschutzen:Privacy;#type=container;url=directory://8vREWFMs;#subtype=iYAFUEHp
+xuXBvEBF:=#type=/container
+7PgJWqx2:=name=Impressumen:Legal info;#type=container;url=directory://x0LQjCNq;#subtype=iYAFUEHp
+wCe1LQkg:=#type=/container
+bJ1kZ5TY:=name=Sitemapen:Sitemap;#type=container;url=directory://ubr312BJ;#subtype=iYAFUEHp
+hgr1Ysqm:=#type=/container
+CLrqiZcm:=name=Kontakten:Contact;#type=container;url=directory://ivakFYtk;#subtype=M0OKndOK
+bVg8j98e:=#type=/container
+f1LyC0Cp:=#type=/container
+_lp:=name=Landeseitenen:Landing Pages;#type=container;hidden=1;placeholder=1;path=de/infoen:en/info;description=Dieser Eintrag dient als Behälter für "Landeseiten", zusätzliche Seiten, die speziell dafür gestaltet werden, Suchbegriffe zu behandeln und Anzeigenleads zu empfangen. Um als Landeseite in der entsprechenden Navigation angezeigt zu werden, muss die Seite unterhalb dieses Eintrags verknüpft sein. Beachten Sie, dass Landeseiten nur verlinkt werden, wenn der Titel für die jeweilige Sprache explizit gesetzt ist. Das Setzen nur des "default"-Wertes reicht hierbei nicht aus.en:This entry serves as container for "landing pages", additional pages specially designed to cover search terms or to receive advertising leads. To be displayed as a landing page in the corresponding navigation, a page must be linked within this entry. Landing pages will only be displayed if the title is specifically set for the respective language. In this case, setting only the "default" value is not sufficient.;used=1;#subtype=em8ExpGj
+3C9r5vml:=name=Beispiel für eine Landeseiteen:Example for a Landing Pagede:Beispiel für eine Landeseite;#type=container;url=content://55;dynamic=1
+086g42fa:=#type=/container
+AYxxKgMA:=#type=/container

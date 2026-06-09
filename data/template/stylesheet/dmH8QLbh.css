@@ -1,0 +1,67 @@
+DIV.tracking
+{
+
+}
+
+DIV.tracking-overlay
+{
+    BACKGROUND: rgba(15, 15, 15, 0.75);
+    BOTTOM: 0;
+    LEFT: 0;
+    POSITION: fixed;
+    RIGHT: 0;
+    TOP: 0;
+    Z-INDEX: 10000;
+}
+
+DIV.tracking-content
+{
+    BACKGROUND: #ffffff;
+    COLOR: #000000;
+    LEFT: 50%;
+    MAX-HEIGHT: 100%;
+    MAX-WIDTH: 600px;
+    OVERFLOW: auto;
+    PADDING: 25px;
+    TOP: 50%;
+    WIDTH: 100%;
+    BOX-SIZING: border-box;
+    -MOZ-BOX-SIZING: border-box;
+    -WEBKIT-BOX-SIZING: border-box;
+    TRANSFORM: translate(-50%, -50%);
+    -MOZ-TRANSFORM: translate(-50%, -50%);
+    -WEBKIT-TRANSFORM: translate(-50%, -50%);
+}
+
+DIV.tracking-text
+{
+    MARGIN-BOTTOM: 20px;
+}
+
+DIV.tracking-control
+{
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    JUSTIFY-CONTENT: space-between;
+    MARGIN: 0 -20px -20px 0;
+}
+
+DIV.tracking-control BUTTON
+{
+    MARGIN: 0 20px 20px 0;
+}
+
+DIV.tracking-control BUTTON:first-child
+{
+    BACKGROUND: #ffffff;
+    BORDER: 1px solid #000000;
+    COLOR: #000000;
+}
+
+DIV.tracking-control BUTTON:last-child
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND: #000000;
+    BORDER: 1px solid #000000;
+    COLOR: #ffffff;
+}

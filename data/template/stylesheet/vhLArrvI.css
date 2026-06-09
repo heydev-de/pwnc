@@ -1,0 +1,15 @@
+NAV.menu-sitemap UL
+{
+    LIST-STYLE-TYPE: none;
+    MARGIN: 0;
+}
+
+NAV.menu-sitemap UL UL
+{
+    MARGIN: calc(10 * var(--cms-factor)) 0 calc(10 * var(--cms-factor)) calc(20 * var(--cms-factor));
+}
+
+NAV.menu-sitemap LI
+{
+    MARGIN: 0;
+}

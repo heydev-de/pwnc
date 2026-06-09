@@ -1,0 +1,28 @@
+A.link2-anchor
+{
+    DISPLAY: block;
+    WIDTH: 100%;
+}
+
+IMG.link2-default,
+IMG.link2-hover
+{
+    WIDTH: 100%;
+}
+
+A.link2-anchor IMG.link2-hover
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    OPACITY: 0;
+    OBJECT-FIT: cover;
+    POSITION: absolute;
+    TOP: 0;
+    TRANSITION: opacity 0.5s;
+    WIDTH: 100%;
+}
+
+A.link2-anchor:hover IMG.link2-hover
+{
+    OPACITY: 1;
+}

@@ -1,0 +1,14 @@
+VVyQ9ap0:=name=Setup;color=hsl(36,25%,25%);#type=link;x=425;y=172;url=/pwnc/module/interface.php?ifc_message[chr61]ifc_select_page&ifc_param[chr61]setup
+gKTX3wSM:=name=Web pages;color=hsl(12,25%,25%);#type=link;url=/pwnc/module/interface.php?ifc_message[chr61]ifc_select_page&ifc_param[chr61]easypage;x=343;y=197
+RkKBhDto:=name=Notes;color=hsl(8,25%,25%);#type=container;x=615;y=116
+3pZXokqL:=name=A peculiar note;color=hsl(300,25%,25%);#type=note;text=Oh no, you found me![chr10][chr10]Please, I don't want to be deleted![chr10][chr10]Please, don't drag me onto the trashbin on the left!;x=929;y=405
+ufnXFT4m:=#type=/container
+gHonJlba:=name=Email;color=hsl(136,25%,25%);#type=mailbox;x=721;y=105
+lbfSjfeS:=name=Contacts;#type=container;#subtype=address;quickaccess=1;x=468;y=120
+UqaUGzfx:=#type=/container
+QqMcbS3v:=name=Appointments;#type=container;#subtype=appointment;quickaccess=1;x=406;y=112
+Nkko7431:=#type=/container
+QUuWp9l1:=name=In-box;#type=container;#subtype=mailbox;quickaccess=1
+oqEIdo3x:=#type=/container
+nIQ5xsFi:=name=Support PWNC;color=hsl(248,25%,25%);#type=link;url=https://pwnc.it/en/support.php;x=917;y=167
+QabRO7bn:=name=PWNC Docs;color=hsl(318,25%,25%);#type=link;url=https://pwnc.it/en/docs.php;x=937;y=118

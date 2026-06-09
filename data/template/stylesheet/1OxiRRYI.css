@@ -1,0 +1,102 @@
+1DIV.slideshow-viewport
+{
+    HEIGHT: 0;
+    WIDTH: 100%;
+}
+
+DIV.slideshow-lower,
+DIV.slideshow-upper
+{
+    BACKGROUND-COLOR: #ffffff;
+    BACKGROUND-POSITION: center;
+    BACKGROUND-SIZE: cover;
+    HEIGHT: 100%;
+    LEFT: 0;
+    OVERFLOW: hidden;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+DIV.slideshow-upper
+{
+    OPACITY: 1;
+    WILL-CHANGE: opacity;
+}
+
+A.slideshow-action,
+A.slideshow-action:hover
+{
+    BACKGROUND-COLOR: transparent !important;
+    BOTTOM: 0;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+DIV.slideshow-control
+{
+    OVERFLOW: hidden;
+    OVERFLOW-X: auto;
+    PADDING: var(--cms-vpadding) 0;
+    TEXT-ALIGN: center;
+    WHITE-SPACE: nowrap;
+}
+
+DIV.slideshow-control A
+{
+    ASPECT-RATIO: 1 / 1;
+    BACKGROUND-COLOR: #ffffff;
+    DISPLAY: inline-block;
+    MARGIN-RIGHT: var(--cms-vpadding);
+    OBJECT-FIT: cover;
+    OPACITY: 0.5;
+    TRANSITION: opacity 0.5s;
+    MIN-WIDTH: min(50 * var(--cms-factor), 100%);
+}
+
+DIV.slideshow-control A:hover,
+DIV.slideshow-control A.slideshow-active
+{
+    OPACITY: 1;
+}
+
+DIV.slideshow-control A.slideshow-stop,
+DIV.slideshow-control A.slideshow-start
+{
+    FONT-SIZE: 0;
+    MARGIN: 0;
+    OPACITY: 1;
+    POSITION: sticky;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+DIV.slideshow-control A.slideshow-stop:before,
+DIV.slideshow-control A.slideshow-start:before
+{
+    CONTENT: "\e85f";
+    FONT-FAMILY: "Entypo";
+    FONT-SIZE: var(--cms-font-size);
+    LEFT: 50%;
+    POSITION: absolute;
+    TOP: 50%;
+    TRANSFORM: translate(-50%, -50%);
+}
+
+DIV.slideshow-control A.slideshow-start:before
+{
+    CONTENT: "\e85e";
+}
+
+DIV.slideshow-control IMG
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    OBJECT-FIT: cover;
+    OBJECT-POSITION: center;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}

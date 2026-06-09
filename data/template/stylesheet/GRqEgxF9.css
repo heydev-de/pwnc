@@ -1,0 +1,19 @@
+NAV.anchor
+{
+    MARGIN: 0 0 var(--cms-vspacing) 0;
+}
+
+NAV.anchor LI
+{
+    MARGIN: 0;
+}
+
+ARTICLE.anchor
+{
+    MARGIN: 0 0 var(--cms-vspacing) 0;
+}
+
+ARTICLE.anchor > FOOTER
+{
+    MARGIN: var(--cms-hspacing) 0 0 0;
+}
