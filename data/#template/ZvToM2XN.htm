@@ -1,0 +1,84 @@
+<div class="rm-split">
+
+  <CMS:noedit>
+  <CMS:cblock idref="v1">
+  <CMS:cblock idref="i1">
+  <div class="rm-split-background">
+
+    <CMS:image id="i1"/>
+
+  </div>
+  </CMS:cblock>
+  </CMS:cblock>
+  </CMS:noedit>
+
+  <div class="rm-split-left">
+
+    <CMS:noedit>
+    <CMS:calt idref="v1">
+    <CMS:cblock idref="i1">
+    <div class="rm-split-background">
+
+      <CMS:image id="i1"/>
+
+    </div>
+    </CMS:cblock>
+    </CMS:calt>
+    </CMS:noedit>
+
+    <CMS:cblock idref="tp1">
+    <CMS:noedit>
+    <CMS:cblock idref="i1">
+    <div class="rm-split-overlay"></div>
+    </CMS:cblock>
+    </CMS:noedit>
+    <div class="rm-split-left-content">
+
+      <CMS:edit>
+      <CMS:image id="i1" width="150" title="%%l_background_left%%"/><br>
+      <CMS:switch id="v1" title="%%l_entire_background%%"/><br>
+      </CMS:edit>
+
+      <CMS:template id="tp1" title="%%l_content_left%%"/>
+
+    </div>
+    </CMS:cblock>
+
+  </div>
+
+  <div class="rm-split-right">
+
+    <CMS:noedit>
+    <CMS:cblock idref="i2">
+    <div class="rm-split-background">
+
+      <CMS:image id="i2"/>
+
+    </div>
+    </CMS:cblock>
+    </CMS:noedit>
+    <CMS:cblock idref="tp2">
+    <CMS:noedit>
+    <CMS:cblock idref="i2">
+    <div class="rm-split-overlay"></div>
+    </CMS:cblock>
+    <CMS:calt idref="i2">
+    <CMS:cblock idref="i1">
+    <CMS:cblock idref="v1">
+    <div class="rm-split-overlay"></div>
+    </CMS:cblock>
+    </CMS:cblock>
+    </CMS:calt>
+    </CMS:noedit>
+    <div class="rm-split-right-content">
+
+      <CMS:edit><CMS:image id="i2" width="150" title="%%l_background_right%%"/><br></CMS:edit>
+
+      <CMS:template id="tp2" title="%%l_content_right%%"/>
+
+    </div>
+    </CMS:cblock>
+
+  </div>
+
+</div>

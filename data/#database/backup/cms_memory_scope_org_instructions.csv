@@ -1,0 +1,8 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: standing instructions and conventions that everyone working here is expected to follow.","This region holds normative material: how work is to be done here, not what happened.
+
+Belongs here: rules, conventions, house style, things that must always or never be done, and the reason behind each.
+
+Does not belong here: one-off requests (scope.org_tasks) or observations about how the system behaves (the scope.pwnc_platform_* and scope.site_* regions).
+
+Mark entries in this region `safe`. Garbage collection removes an entry once both its clocks run out, and an instruction that nobody happens to read is exactly the kind of thing that would quietly disappear.","","agentmauz","2026-09-06 01:03:27","agentmauz","","0","","","0","1","3.00","0","0"

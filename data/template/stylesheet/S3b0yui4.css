@@ -1,0 +1,58 @@
+DIV.teaser6
+{
+    ALIGN-ITEMS: flex-start;
+    BACKGROUND: var(--cms-background);
+    BOX-SIZING: border-box;
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    GAP: var(--cms-hspacing);
+    HEIGHT: 100%;
+    PADDING: var(--cms-hspacing);
+}
+
+DIV.teaser6:not(.edit)
+{
+    BORDER-RADIUS: var(--cms-hspacing);
+    BOX-SHADOW: var(--cms-box-shadow);
+    OVERFLOW: clip;
+}
+
+DIV.teaser6-media
+{
+    FLEX: 1 1 calc((100% - 3 * var(--cms-hspacing)) / 3 * 2);
+    MARGIN-TOP: var(-1 * var(--cms-hspacing));
+    POSITION: sticky;
+    TOP: var(--cms-hspacing);
+}
+
+DIV.teaser6-content
+{
+    ALIGN-SELF: flex-end;
+    BACKGROUND: var(--cms-background);
+    OUTLINE: var(--cms-hspacing) solid var(--cms-background);
+    DISPLAY: flex;
+    FLEX: 1 1 calc((100% - 3 * var(--cms-hspacing)) / 3);
+    FLEX-DIRECTION: column;
+    GAP: var(--cms-hpadding);
+    MIN-WIDTH: min(100%, 250 * var(--cms-factor));
+}
+
+DIV.teaser6-title
+{
+    MARGIN: 0;
+}
+
+DIV.teaser6-title + DIV.teaser6-text
+{
+    MARGIN-TOP: calc(-0.5 * var(--cms-hpadding));
+}
+
+DIV.teaser6-link
+{
+    TEXT-ALIGN: center;
+}
+
+DIV.teaser6-link > A
+{
+    MARGIN: 0;
+}

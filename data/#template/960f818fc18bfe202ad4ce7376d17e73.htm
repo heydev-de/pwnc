@@ -1,0 +1,28 @@
+<CMS:edit option="value">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_forum_id%% (%%l_empty_equals_document_id%%):</td>
+      <td><CMS:value id="forum_instance"/></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:nocache>
+<?php
+
+$GLOBALS["forum"] = array("template" => $this,
+                          "instance" => l($cms_template_document->get($cms_template_base_id . "forum_instance", "value")));
+
+$instance = l($cms_template_document->get($cms_template_base_id . "forum_instance", "value"));
+if (stre($instance)) $instance = defined("CMS_CONTENT_INDEX") ? CMS_CONTENT_INDEX : "";
+
+cms_application("forum");
+
+?>
+</CMS:nocache>

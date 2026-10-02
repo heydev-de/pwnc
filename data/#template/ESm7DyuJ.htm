@@ -1,0 +1,63 @@
+<CMS:noedit><div class="testimonial"></CMS:noedit>
+<CMS:edit><div class="testimonial edit"></CMS:edit>
+
+  <CMS:cblock idref="i1">
+  <div class="testimonial-image">
+
+    <CMS:image id="i1"/>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="t1">
+  <div class="testimonial-title like-h3">
+
+    <CMS:text id="t1" title="%%l_title%%"/>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="t2">
+  <div class="testimonial-text">
+
+    <CMS:text id="t2" title="%%lorem_ipsum%%"/>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:calt idref="s1">
+  <div class="testimonial-star">
+
+    <CMS:repeat id="r1" default="5"><span class="testimonial-star"></span></CMS:repeat>
+    <CMS:switch id="s1" title="%%l_hide%%" value="1"/>
+
+  </div>
+  </CMS:calt>
+
+  <CMS:cblock idref="t3">
+  <div class="testimonial-subject">
+
+    <CMS:text id="t3" title="%%l_author%%"/>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="t4">
+  <div class="testimonial-date">
+
+    <CMS:edit><CMS:text id="t4" title="%%l_date%%"/></CMS:edit>
+    <CMS:noedit>
+    <CMS:nocache>
+<?php
+
+$date = strtotime(l($cms_template_document->get($cms_template_base_id . "t4", "text")));
+echo($date ? friendly_date($date, TRUE) : "Ungültiges Datum");
+
+?>
+    </CMS:nocache>
+    </CMS:noedit>
+
+  </div>
+  </CMS:cblock>
+
+</div>

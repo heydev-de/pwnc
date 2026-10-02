@@ -1,0 +1,32 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: knowledge about the PWNC Backend (pwnc/module/interface.php) learned from working with it.","This region collects what has been learned about the Backend — content and asset management, configuration, analytics and the administrative applications.
+
+Belongs here: how a particular module behaves, which form does what, non-obvious steps, and traps discovered the hard way.
+
+Does not belong here: what the shipped manuals already document — read those first, at /pwnc/mcp/skills/ and /doc/api/. Configuration specific to this installation belongs in scope.site_environment.
+
+The exposed interface is always authoritative. Remembered knowledge is context for finding your way, never a substitute for reading the current forms and links.","","agentmauz","2026-09-06 01:03:57","agentmauz","","0","","","0","1","3.00","0","0"
+"2","cache invalidation
+clear cache
+cms_token
+import
+placeholder cache
+sql console
+token cache","When the placeholder module's ""clear cache"" command is actually needed: after imports and direct database writes, not after ordinary editing — the module invalidates its own cache on every edit.","The placeholder module offers a *clear placeholder cache* command. It is not needed after ordinary editing.
+
+| Path | Cache |
+|---|---|
+| Backend edit or delete | invalidated automatically — `update()` and `delete()` call `cache_del()` right after the query |
+| Reading a placeholder | refilled automatically — a database hit writes the value back |
+| Import, or a direct write to `cms_token` | **not** invalidated — the entry keeps its old value |
+
+The command exists for the third row: bulk imports write to the table directly and bypass the module's own invalidation. The same applies to anything else that edits the table without going through the module, the SQL console included.
+
+There is no expiry. The cache is one file per placeholder under `data/#token/cache/`, named by `hash32()` (RIPEMD-128) split after four characters. A stale entry stays stale until something removes it.
+
+Clearing everything walks the whole directory through the file manager and is slow enough to time out when invoked over MCP. After a targeted change, deleting the individual files is quicker and safer than wiping the lot:
+
+```php
+$c = hash(""ripemd128"", $index);
+$path = CMS_DATA_PATH . ""#token/cache/"" . substr($c,0,4) . ""/"" . substr($c,4);
+```","","agentmauz","2026-09-06 02:08:02","agentmauz","","0","","","0","1","3.00","0","0"

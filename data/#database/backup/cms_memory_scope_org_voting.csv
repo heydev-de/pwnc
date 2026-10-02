@@ -1,0 +1,8 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: votes — the question put, the options, who voted, and the result.","This region records formal votes.
+
+Belongs here: the exact question, the options offered, the period, the tally, and the declared result.
+
+Does not belong here: the debate leading up to a vote (scope.org_discussion). The decision that follows from a result belongs in scope.org_decisions, with a reference back to the vote.
+
+State the question exactly as it was put. A result is only meaningful together with the wording people actually voted on.","","agentmauz","2026-09-06 01:03:49","agentmauz","","0","","","0","1","3.00","0","0"

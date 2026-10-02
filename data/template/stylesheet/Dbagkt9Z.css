@@ -1,0 +1,28 @@
+DIV.image2,
+IMG.image2
+{
+    DISPLAY: block;
+    OBJECT-FIT: cover;
+    WIDTH: 100%;
+}
+
+DIV.image2-text
+{
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+}
+
+@media (orientation: portrait)
+{
+    IMG.image2
+    {
+        MAX-HEIGHT: 50vh;
+    }
+}
+
+@media (orientation: landscape)
+{
+    IMG.image2
+    {
+        MAX-HEIGHT: 100vh;
+    }
+}

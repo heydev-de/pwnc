@@ -1,0 +1,97 @@
+{
+    "version": 1,
+
+    "url": "%endpoint%/openai/deployments/%model%/chat/completions?api-version=%api_version%",
+
+    "header": {
+        "content-type": "application/json",
+        "api-key": "%api_key%"
+    },
+
+    "request": {
+        "[max_tokens]": "%max_tokens%",
+        "[temperature]": "%temperature%",
+        "messages": "%message%",
+        "[tools]": "%tool%"
+    },
+
+    "user": {
+        "role": "user",
+        "content": "%text%"
+    },
+
+    "assistant": "%reply%",
+
+    "tool": {
+        "type": "function",
+        "function": {
+            "name": "%name%",
+            "description": "%description%",
+            "parameters": "%schema%"
+        }
+    },
+
+    "text": {
+        "user": "content",
+        "assistant": "content",
+        "system": "content",
+        "result": "content",
+        "reasoning": "reasoning_content"
+    },
+
+    "value": {
+        "reason": "choices/0/finish_reason",
+        "reply": "choices/0/message",
+        "call": "choices/0/message/tool_calls",
+        "error": ["error/message", "error", "message"]
+    },
+
+    "action": {
+        "stop": "stop",
+        "content_filter": "stop",
+        "length": "resume",
+        "tool_calls": "tool"
+    },
+
+    "call": {
+        "id": "id",
+        "name": "function/name",
+        "argument": "function/arguments",
+        "type": "function",
+        "argument_encode": true
+    },
+
+    "synthetic": {
+        "role": "assistant",
+        "content": "%text%",
+        "tool_calls": "%call%"
+    },
+
+    "result": {
+        "block": {
+            "role": "tool",
+            "tool_call_id": "%id%",
+            "content": "%content%"
+        }
+    },
+
+    "system": {
+        "role": "system",
+        "content": "%system%"
+    },
+
+    "default": {
+        "api_version": "2024-10-21",
+        "max_tokens": 16384
+    },
+
+    "required": [
+        "endpoint",
+        "model",
+        "api_key"
+    ],
+
+    "prefill": false,
+    "reasoning_replay": false,
+    "overflow": "/^length$|(?<![a-z])(context|length|prompt|request|token|window)(?![a-z]).*(?<![a-z])(allowed|bound|exceed|exhaust|limit|max|overflow|too long)|(?<![a-z])max(imum)?(?![a-z]).*(?<![a-z])(context|length|token)/i"
+}

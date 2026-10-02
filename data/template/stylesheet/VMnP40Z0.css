@@ -1,0 +1,25 @@
+DIV.teaser4
+{
+    DISPLAY: flex;
+    FLEX-DIRECTION: column;
+    GAP: var(--cms-hpadding);
+    HEIGHT: 100%;
+    TEXT-ALIGN: center;
+}
+
+DIV.teaser4-title1
+{
+    MARGIN: 0;
+}
+
+DIV.teaser4-title2
+{
+    MARGIN: 0;
+    TEXT-TRANSFORM: none;
+}
+
+DIV.teaser4-link
+{
+    ALIGN-CONTENT: flex-end;
+    FLEX: 1;
+}

@@ -1,0 +1,111 @@
+<CMS:edit option="repeat">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_number_of_sections%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<nav id="anchor-<?=x($cms_template_temp_id)?>-menu" class="anchor">
+
+  <ul>
+
+<?php
+
+$range  = $cms_template_base_id . "r1";
+$repeat = (int)$cms_template_document->get($range);
+
+for ($i = 0, $_i = 2; $i < $repeat; $i++, $_i += 4)
+{
+    $_range = "$range.$_i.t_anchor_text";
+    $text   = (string)l($cms_template_document->get($_range));
+    if (stre($text)) continue;
+    $text   = htmltoplain(remove_format($text, TRUE, TRUE));
+
+    $_range = "$range.$_i.t_anchor_label";
+    $label  = (string)l($cms_template_document->get($_range));
+    if ($label === "") $label = "anchor-$cms_template_temp_id-$i";
+
+    echo("<li>" .
+         "<a href=\"" . x(translate_url("#$label")) . "\">" .
+         x($text) .
+         "</a>" .
+         "</li>");
+};
+
+$i  = 0;
+$_i = 2;
+
+?>
+
+  </ul>
+
+</nav>
+
+<CMS:repeat id="r1" edit="off">
+<CMS:cblock idref="+0.t_anchor_text">
+<article class="anchor">
+
+  <CMS:group>
+
+  <CMS:edit option="value">
+  <div class="module-settings">
+
+    <table>
+
+      <tr>
+        <td>%%l_anchor_link%% (%%l_empty_equals_automatic%%):</td>
+        <td><CMS:value id="t_anchor_label"/></td>
+      </tr>
+
+    </table>
+
+  </div>
+  </CMS:edit>
+
+<?php
+
+$_range  = "$range.$_i.t_anchor_label";
+$label   = (string)l($cms_template_document->get($_range, "value"));
+if ($label === "") $label = "anchor-$cms_template_temp_id-$i";
+
+$i  += 1;
+$_i += 4;
+
+?>
+
+  <header>
+
+    <h2 id="<?=x($label)?>" class="anchor">
+
+      <CMS:text id="t_anchor_text" title="%%l_heading%%"/>
+
+    </h2>
+
+  </header>
+
+  <div>
+
+    <CMS:template id="tp1"/>
+
+  </div>
+
+  <footer>
+
+    <a href="<?=x(translate_url("#anchor-$cms_template_temp_id-menu"))?>">
+      %%l_overview%%</a>
+
+  </footer>
+
+  </CMS:group>
+
+</article>
+</CMS:cblock>
+</CMS:repeat>

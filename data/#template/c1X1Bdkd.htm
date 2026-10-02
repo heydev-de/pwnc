@@ -1,0 +1,27 @@
+<?php
+
+if (! defined("CMS_CONTENT_INDEX")) return FALSE;
+if (! defined("CMS_DB_CONTENT"))    return FALSE;
+
+?>
+
+%%l_published%%:
+<?php
+
+//retrieve publishing time from database
+$mysql = new mysql();
+echo(x(friendly_date($mysql->get(CMS_CONTENT_INDEX,
+                                 CMS_DB_CONTENT_PUBLISHER_TIME,
+                                 CMS_DB_CONTENT,
+                                 CMS_DB_CONTENT_INDEX))));
+
+?> | %%l_updated%%: <?php
+
+//retrieve update time from database
+$mysql = new mysql();
+echo(x(friendly_date($mysql->get(CMS_CONTENT_INDEX,
+                                 CMS_DB_CONTENT_TIME,
+                                 CMS_DB_CONTENT,
+                                 CMS_DB_CONTENT_INDEX))));
+
+?>

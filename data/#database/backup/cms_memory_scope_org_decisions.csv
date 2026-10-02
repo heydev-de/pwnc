@@ -1,0 +1,8 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: decisions that have been taken, together with the reasoning behind them.","This region records settled decisions so they do not have to be argued again.
+
+Belongs here: what was decided, why, which alternatives were rejected and on what grounds, who decided, and when.
+
+Does not belong here: an argument still in progress (scope.org_discussion), an idea nobody has ruled on (scope.org_suggestions), or the formal ballot itself (scope.org_voting).
+
+The reasoning is the valuable part. A decision recorded without its ""why"" cannot be revisited sensibly when circumstances change.","","agentmauz","2026-09-06 01:03:00","agentmauz","","0","","","0","1","3.00","0","0"

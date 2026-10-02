@@ -1,0 +1,464 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: reference knowledge about the templates used on this site — which exist, what each is for, and how to work with them.","This region collects what is known about the templates of this installation.
+
+Belongs here: which template serves which purpose, the placeholders and fields it expects, layout conventions, and lessons learned from changing one.
+
+Does not belong here: the placeholders themselves (scope.info_placeholders), or a record of a specific change you made (scope.site_development).
+
+## Start with these
+
+A leading `*` in a template's name marks it as a primary building block. Eleven of the 143 carry it, and almost any page can be built from them alone. Reach for a special-purpose template only when these do not cover the case.
+
+| Id | Template | Category |
+|---|---|---|
+| `90cdfb810d283b765d5b196bb6128d16` | \* Text block | Content |
+| `50IGerbz` | \* Columns | Layout |
+| `5J6BhotJ` | \* Columns (dividing line) | Layout |
+| `7OGTyAH7` | \* Columns (no gap) | Layout |
+| `ivVEV74Y` | \* Rows | Layout |
+| `nuQKjDIY` | \* Rows (dividing line) | Layout |
+| `r9Hqor48` | \* Rows (no gap) | Layout |
+| `nTp6JIjw` | \* Flexible layout | Layout |
+| `47uDGzSb` | \* Multi-column layout | Layout |
+| `SegL3nvK` | \* Multi-column layout: full width | Layout |
+| `SwyYDFcP` | \* Multi-column layout: no break | Layout |
+
+## Index
+
+143 templates in 9 categories plus 2 uncategorized. One entry per category, each listing every template with its id.
+
+| Entry | Category | Templates | Use it for |
+|---|---|---|---|
+| `/5` | Page | 6 | the outermost page shell, favicon, Open Graph, tracking consent |
+| `/11` | Layout | 36 | columns, rows, width, visibility, motion, parallax, iframes |
+| `/3` | Content | 26 | ordinary page content, teasers, tables, structured data |
+| `/10` | Image / Media | 16 | images, thumbnails, galleries, audio, video, backgrounds |
+| `/6` | Text | 12 | headings and inline formatting |
+| `/8` | Module | 12 | blog, forum, comments, login, search, newsletter |
+| `/7` | Link | 10 | links, downloads, e-mail, button rows, redirects |
+| `/4` | Navigation | 8 | menus, breadcrumb, sitemap, article index, language switch |
+| `/2` | `[ ... ]` | 15 | utilities: branching, page metadata, counters, diagnostics |
+| `/9` | (none) | 2 | install-specific contact form and RSS link |
+
+A template is addressed by its id. Ids are stable across installations of the same release, so an id from these entries can be used directly in `CMS:template default=""{id}""`.","","agentmauz","2026-09-06 01:02:46","agentmauz","2026-09-06 01:26:14","0","","","0","1","3.00","0","0"
+"2","html embed
+logged in
+misc category
+page title
+plugin
+protected content
+stickybar
+templates
+utility templates
+visitors online","Template category ""[ ... ]"" (15 templates): utility and system components rather than content blocks — login-state and permission branching, raw HTML, editor-only notes, page metadata, counters, diagnostics, sticky bars and dividers.","Category `[ ... ]` — 15 templates. Utilities, not content blocks.
+
+**Branching**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `aAWjz2cy` | Logged in? | shows `tp1` to signed-in visitors, `tp2` to anonymous ones |
+| `q0WZEGEk` | Protected content | permission-gated; key defaults to `protected.default`, `tp1` if permitted, `tp2` if not |
+
+**Raw output**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `9osDgqJl` | HTML | one field echoed unescaped |
+| `UVwty735` | Comment | visible while editing, never rendered live |
+| `3750dd35b071e942ad000e11a8c507b8` | Plugin | bare `CMS:plugin`; the editor picks any registered plugin |
+
+**Page metadata**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `rojCqydV` | Page title | `<h1>`; falls back to the title from the content database |
+| `c1X1Bdkd` | Page time | published and modified dates |
+| `e1fzABlH` | Page views | hit counter, includes `#include/counter.inc` |
+| `gBrwAuz5` | Visitors online | distinct non-bot users active in the last 15 minutes |
+| `9f833aab4393f62633d86617d46d08e6` | Server time | current time, never cached |
+
+**Presentation**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `mV3DlHuV` | Stickybar | wraps `tp1`, becomes fixed once scrolled past |
+| `fNlDhbcv` | Text ticker | typewriter animation, static fallback in `<noscript>` |
+| `167c7040588f8f39829496b85dba97bd` | Print page | anchor calling `self.print()` |
+| `ab46f555254afb30ab73c56381137879` | Dividing line | a plain `<hr>` |
+
+**Diagnostics**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `qo6G3M0V` | PHP info | bare `phpinfo()` |
+
+Worth knowing:
+- **PHP info** discloses paths, versions and configuration. Never on a publicly reachable page.
+- **HTML** does not escape. Only for editors trusted with markup.
+- **Visitors online** runs a database query on every uncached render.","","agentmauz","2026-09-06 01:17:29","agentmauz","2026-09-06 01:23:59","0","","","0","1","3.00","0","0"
+"3","calendar
+comparison table
+content category
+faq
+job offer
+json-ld
+legal info
+map
+structured data
+teaser
+templates
+testimonial
+text block","Template category ""Content"" (26 templates): the general-purpose content blocks — flexible text, lists and tables, contact and legal-info blocks, calendar, map, logo collection, six teaser variants, testimonial, and two blocks that emit schema.org JSON-LD.","Category `Content` — 26 templates. The general-purpose blocks; start here when placing ordinary page content.
+
+**General**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `90cdfb810d283b765d5b196bb6128d16` | \* Text block | optional H1/H2/H3 plus body; each heading has a switch rendering `<div class=""like-hN"">` instead of `<hN>`. The default choice |
+| `ePqeqxl3` | Image + running text | image floated left at 2/5 width, stacks below 640px |
+| `i0DOwCtT` | Quotation | `<figure><blockquote>` with `<figcaption>`; author and work optional |
+| `fa7eLFHJ` | Example | field in `<samp>` |
+| `zju0QROH` | Source code | field in `<pre><code>` |
+
+**Structured data** — emits schema.org JSON-LD alongside the visible content
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `eXTw94QQ` | FAQ (structured data) | numbered Q&A pairs plus a `FAQPage` block built from the same fields |
+| `tIHxwGmz` | Job offer (structured data) | `JobPosting`: employment type validated against the schema.org enumeration, hiring org, postal address, `datePosted` from the content database; wraps `tp1` for the visible content |
+
+**Information blocks**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `c7a4db66c4a3470b7de9ecba9bbbf310` | Contact | address, phone, email as `mailto`, optional fax, enquiry link, contact person with photo, business hours |
+| `b0ikbF3U` | Legal info | imprint: company, management, commercial register, VAT id, responsible person, three free pairs, disclaimer, privacy statement |
+| `IWcRx2M8` | Address | one field in `<address>` |
+
+**Lists and tables**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `e1a6aead82ec62f62a6c25c2f7cab288` | List | `<ul>` |
+| `0e628ef0e06f2ffcf7abd4e4058a2ab3` | List (alphabetical) | `<ol type=lower-alpha>` |
+| `a775f66babec0a2300856353eec93973` | List (numerical) | `<ol type=decimal>` |
+| `3rJ8JzJW` | Definition list | term/definition pairs, multi-column, pairs never split |
+| `eC44zgjf` | Table | freeform, configurable size, alternating shading, scrolls horizontally |
+| `Pm45On5T` | Comparison table | products as columns, collapsible sections, per-attribute tooltips, footer row per product |
+
+**Widgets**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `LJPY8qVr` | Calendar | twelve month tables; a day appears only when an event template is embedded on it |
+| `Yo8GMcyV` | Map | pannable, zoomable image map over an uploaded illustration. Not a mapping service |
+| `CLLkygiG` | Logo collection | clickable logo grid, images scaled server-side (default 150×50) |
+
+**Cards**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `qZNlQ4WA` | Teaser 1 | card with image, title, text, button; the button's click area covers the card |
+| `0QpwCCmA` | Teaser 2 | same fields, only the image is rounded and shadowed |
+| `8zvv7Wsb` | Teaser 3 | circular 100×100 image, centred text, no card |
+| `VMnP40Z0` | Teaser 4 | large figure for statistics; embeds **Link buttons** (`sCjtn4IT`) |
+| `xenpMMJQ` | Teaser 5 | full-bleed background image, dark overlay, blurs and zooms on hover |
+| `S3b0yui4` | Teaser 6 | split layout with sticky media panel; embeds **Image** (`kms3aR0P`) |
+| `ESm7DyuJ` | Testimonial | image, title, quote, five-star rating with hide switch, author, date |
+
+Worth knowing:
+- The structured-data blocks emit machine-readable markup as a by-product of ordinary editing. Editing the visible text changes the JSON-LD with it — never keep a second copy elsewhere.
+- Teaser 4 and Teaser 6 embed templates from other categories through `CMS:template default=""{id}""`. Composition across categories is intended.","","agentmauz","2026-09-06 01:18:01","agentmauz","2026-09-06 01:24:24","0","","","0","1","3.00","0","0"
+"4","article
+blog overview
+breadcrumb
+dropdown
+landing pages
+language switcher
+menu
+navigation category
+sitemap
+templates","Template category ""Navigation"" (8 templates): article wrapper and paginated article overview, breadcrumb, CSS-only dropdown menu, landing-page menu, sitemap, and two language switchers.","Category `Navigation` — 8 templates.
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `a8Z5ctcP` | Article > meta | wrapper for a single article page: `<article>` with `<h1>` (own field, else the content-database title), a `<time>` element and a nested body `tp1`. Its teaser fields are what the overview reads |
+| `p9nAoxSy` | Article > overview | paginated index. Settings: base directory, teasers per page (default 10), sort by time, show date, show link. Walks `#system/directory`, resolves references to content items, queries the content database, paginates through `pagination()` |
+| `87Qy4HYp` | Breadcrumb | `<nav class=""menu-breadcrumb"">` around `#include/menu_breadcrumb.inc` |
+| `DEETEaYt` | CSS dropdown | multi-level dropdown from `CMS:menu`, pure CSS, no JavaScript |
+| `VclQdXxH` | Landing pages | `<nav class=""menu-landing-page"">` around `#include/menu_landing_page.inc` |
+| `vhLArrvI` | Sitemap | `<nav class=""menu-sitemap"">` around `CMS:menu`, indented nested list |
+| `Ay8uSAmp` | Language selector | dropdown with flags; active language as toggle, others as links. Renders nothing when only one language is enabled |
+| `zlOJPXC6` | Language links | flat variant around `#include/language.inc`, all languages side by side |
+
+Worth knowing:
+- Both language switchers resolve a link to the target page's own entry in that language's directory map, and fall back to a `cms_select_language` parameter only for pages without one. They differ in appearance, not in behaviour.
+- **Article > meta** and **Article > overview** are a pair. An article page built without the wrapper still appears in the index, but with database values only.","","agentmauz","2026-09-06 01:19:21","agentmauz","2026-09-06 01:24:35","0","","","0","1","3.00","0","0"
+"5","cookie consent
+favicon
+gdpr
+minimal
+open graph
+page category
+page shell
+page template
+simple design
+templates
+tracking","Template category ""Page"" (6 templates): two full page shells that can be selected as the site's design, plus four head and tracking snippets they include — favicon set, Open Graph tags, consent-gated tracking, and the opt-out companion.","Category `Page` — 6 templates. The outermost wrapper of a page, plus the snippets it pulls into `<head>`.
+
+**Page shells** — selectable as the site's active design
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `poMBCUwp` | Simple design | responsive business-site shell: sticky header, hamburger and slide-in navigation on mobile, dropdown on desktop, search overlay, optional hero banner, footer with address, contact, language switcher and menus, back-to-top. Includes a Photoswipe lightbox and pulls in `_ Icon`, `_ Open Graph`, `_ Tracking` |
+| `i57eRebq` | Minimal | doctype, `CMS:head`, viewport, `CMS:control`, `<main id=""body"">` with one nested template. No CSS, no JavaScript, no header or footer |
+
+**Head and tracking snippets** — referenced with `CMS:template default=""{id}"" edit=""off""`; the leading underscore marks them as internal
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `A2yfYCIO` | _ Icon | `<link rel=""icon"">` and `apple-touch-icon` at eight sizes from one source image via `image_process()` |
+| `KGac19nD` | _ Open Graph | `og:title`, `og:description`, `og:url`, `og:image` with dimensions and MIME type, from the content database, plus the canonical URL including the multilingual case |
+| `dmH8QLbh` | _ Tracking | consent gate: skips itself on the privacy-policy page and in edit mode, reads `tracking-on` / `tracking-off` cookies, shows a modal when undecided, injects `%%tracking_code%%` only on acceptance |
+| `GBenSdEC` | _ Disable tracking | the opt-out companion: clears cookies, sets the opt-out cookie, removes a live tracking element |
+
+Worth knowing:
+- Analytics must not load before consent. `_ Tracking` enforces that and `_ Disable tracking` makes the decision revocable. Ship both or neither.
+- Build a new design by copying **Minimal**, not by editing **Simple design** in place, so the shipped shell stays available as a reference.","","agentmauz","2026-09-06 01:19:44","agentmauz","2026-09-06 01:24:46","0","","","0","1","3.00","0","0"
+"6","bold
+emphasis
+h1
+h2
+h3
+heading
+inline formatting
+italic
+like-h1
+templates
+text category","Template category ""Text"" (12 templates): one plain text field, three heading wrappers with a switch that decouples heading looks from heading semantics, and eight inline formatting wrappers.","Category `Text` — 12 templates. Each wraps a single `CMS:text id=""t1""` field through `CMS:cblock idref=""t1""`, so an empty field renders nothing.
+
+| Id | Template | Renders |
+|---|---|---|
+| `dd6ce3cf4ed61f84346a67cd0806b170` | Text | the bare field, no wrapper |
+| `baff41159c6dcb485e78b714bd6816fa` | Heading 1 | `<h1>`, or `<div class=""like-h1"">` when the switch is set |
+| `e4efe31472d3863b13657e8b612c7c72` | Heading 2 | `<h2>` / `.like-h2` |
+| `c4908c943434afc728dedf2b9575c468` | Heading 3 | `<h3>` / `.like-h3` |
+| `4ed10635608e33cc20708312a4da4145` | Text (strongly emphasized) | `<strong>` |
+| `MrYRUsaH` | Text (emphasized) | `<em>` |
+| `bsgK6dOY` | Text (bold) | `<b>` |
+| `d6d652b35fe0fbcaa89cddec960d31b2` | Text (italic) | `<i>` |
+| `xTsEFpkS` | Text (underline) | `<u>` |
+| `OMRPhjFC` | Text (strikethrough) | inline `text-decoration:line-through` |
+| `b1dea266582808747722a8af2ebf0d29` | Text (large) | inline `font-size:larger` |
+| `51b1b3dbd78d7f6e2f6130226f72798e` | Text (small) | `<small>` |
+
+Worth knowing:
+- The `like-hN` switch exists so a block can look like a heading without being one. Use it wherever text is visually prominent but is not a section heading: a page carries exactly one `<h1>`, and screen readers navigate by the real elements.
+- Prefer `<strong>` and `<em>` where the emphasis carries meaning; the bold and italic variants are for purely typographic cases.","","agentmauz","2026-09-06 01:20:04","agentmauz","2026-09-06 01:28:13","0","","","0","1","3.00","0","0"
+"7","download
+email obfuscation
+hover image
+link buttons
+link category
+new window
+redirect
+spam protection
+templates","Template category ""Link"" (10 templates): image, text and download links including a hover-crossfade pattern, forced new-window variants, an obfuscated e-mail link, a button row, and a server-side redirect page.","Category `Link` — 10 templates.
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `55d2989495561ea56926da803371137a` | Link (text) | plain link; the label falls back to the target's own name through `template_parse_reference()` |
+| `5d568d4696b4ef82a1d0718bc2cb2bed` | Link (image) | image link with default and hover image, crossfaded in CSS |
+| `91h8Xfkq` | Link (image, text) | image with a caption pinned to its bottom edge; caption falls back to the target's name |
+| `sCjtn4IT` | Link buttons | repeatable row of button-styled links, three by default. Used by **Teaser 4** |
+| `dd038f0b5477488d50ed4a89ccb82f52` | Link ➔ new window (text) | as above, but forces `window.open()` |
+| `4eb5b348e6d14f1c5730e97aecf440e5` | Link ➔ new window (image) | image variant of the same |
+| `ab8fd85efd4f7bd0dd2ea262411c3d47` | Download (text) | without a label, composes filename, description, uppercased extension and formatted size from the file's metadata |
+| `cdca6fd56f89289dbe4ef33729164a62` | Download (image) | hover crossfade around a `CMS:download` |
+| `hvHiEotc` | E-mail w/ spam protection | writes the `mailto:` anchor in three-character chunks via JavaScript; without JavaScript the visitor sees a notice, not an address |
+| `YLzn42R6` | Redirection | sends `Location:` to the resolved target and exits, outside edit mode and before headers are sent |
+
+Worth knowing:
+- **Redirection** takes over the whole page. Put it on a stub for content that moved, never inside a page that also shows something.
+- Forcing a new window overrides the visitor's own choice and is blocked by some browsers. Prefer the ordinary variants unless leaving the page would lose work in progress.
+- The e-mail obfuscation costs the address for anyone without JavaScript, including some assistive setups. On a contact page, offer a form as well.","","agentmauz","2026-09-06 01:20:24","agentmauz","2026-09-06 01:25:35","0","","","0","1","3.00","0","0"
+"8","backlinks
+blog
+chat
+cms_application
+comments
+forum
+login
+module category
+newsletter
+rss reader
+search
+templates","Template category ""Module"" (12 templates): thin wrappers around PWNC's built-in applications — login, blog, comments, forum, profile, search — plus standalone widgets for chat, backlinks, newsletter opt-in, external RSS and search entry points.","Category `Module` — 12 templates. Several are one-liners around `cms_application(...)`; the rest are self-contained widgets.
+
+**Built-in applications**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `bf6feaef313a13c7032f92e90c4922bb` | Login | `cms_application(""identification"")` inside `CMS:nocache` |
+| `OxrsQH0x` | Registration / profile | `cms_application(""profile"")` |
+| `ca990229ba9364e548a4a33772a7be26` | Search | `cms_application(""search"")`, the results page |
+| `v0pK9CN3` | Blog | `cms_application(""blog"")`. Instance id, RSS title, description and category, comment moderation, notification address, sort order, spam threshold (1–100, default 95), CAPTCHA |
+| `GFVdbpvW` | Comments | `cms_application(""comment"")`, same settings shape; CSS includes an up/down rating bar |
+| `960f818fc18bfe202ad4ce7376d17e73` | Forum | `cms_application(""forum"")` with an instance id |
+
+**Widgets**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `qB2vD3hj` | Search box | input posting `search_term` to a configurable target page |
+| `6y0MwNgn` | Search cloud | top 20 search terms, size and opacity scaled by popularity |
+| `ecb03417b3b477907d7eb50d3e954331` | Chat | button loading `chat.php` through `load_page()` |
+| `bbYmLusv` | Newsletter subscription | opt-in form posting to an external service; submit stays disabled until the address is valid and consent is ticked, enforced with `:invalid ~ BUTTON` |
+| `wPCaggZG` | RSS reader | renders an external feed through `rss_parser`; switches for filtering, length limits, item count and per-field visibility |
+| `kHojbC5j` | Automatic backlinks | scans access-log referrers of the last 30 days, fetches each page, verifies it links back, shows up to five. Cached to file for 24 hours |
+
+Worth knowing:
+- The instance id decides which data a module shows. Left at its default it binds to the current page, so the same template on two pages is two separate instances — and moving a page moves its binding.
+- **Automatic backlinks** and **RSS reader** fetch third-party pages from the server: added latency, outbound network dependency, hosts the operator does not control.
+- The newsletter form submits to an external service. That is a transfer of personal data — name it in the privacy policy before publishing the form.","","agentmauz","2026-09-06 01:20:50","agentmauz","2026-09-06 01:25:51","0","","","0","1","3.00","0","0"
+"9","contact form
+mailform
+rss channel
+rss subscribe
+templates
+uncategorized","Templates in the default region without a category (2 templates): a contact form bound to a mailform definition, and an RSS subscribe link. Both are install-specific and carry hardcoded ids.","Default region, no category — 2 templates. Both are examples wired to this installation, not neutral building blocks.
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `ZTISa5lu` | Contact form | sets `$GLOBALS[""mailform_form""] = ""Co0r3xRf""` and calls `cms_application(""mailform"")` inside `CMS:nocache`. The form itself lives in the mailform module; the template only selects it |
+| `xXeAxqDd` | RSS channel | subscribe link to `rss.php?rss_channel=6ZQKdNzP&rss_limit=25&rss_order=published` with icon and the `%%l_subscribe_rss%%` label |
+
+Worth knowing:
+- Both hardcode an id belonging to this installation — the mailform definition `Co0r3xRf` and the channel `6ZQKdNzP`. Copy the template and change the id rather than reusing it; pointing at a definition that does not exist fails silently at render time.
+- The same channel id appears in the site's rewrite rule for `/rss.xml`. Changing the channel means changing both.","","agentmauz","2026-09-06 01:21:14","agentmauz","2026-09-06 01:28:21","0","","","0","1","3.00","0","0"
+"10","audio
+background image
+gallery
+image
+image media category
+lightbox
+parallax
+slide show
+templates
+thumbnail
+video
+youtube","Template category ""Image / Media"" (16 templates): single images and thumbnails with and without captions, three gallery variants, slide show, background images including parallax, and audio, video and YouTube embeds.","Category `Image / Media` — 16 templates. Images are requested at 150px while editing and at full width when rendered, so the editing view stays fast.
+
+**Single images**
+`kms3aR0P` **Image** — plain image, 3840px wide when rendered. The default choice, and what **Teaser 6** embeds.
+`Dbagkt9Z` **Image (label)** — the same with a caption block below.
+`9yjFLtcT` **Image (original size)** — no width given when rendered, so the file is delivered as uploaded.
+`hKY9yzYD` **Thumbnail** — `CMS:thumbnail` at 960px linking to the 3840px original; carries the `thumbnail` class the lightbox binds to.
+`IigIAgIb` **Thumbnail (label)** — the same with a caption.
+
+**Collections**
+`1AvUKhGh` **Gallery** — repeatable thumbnails, five by default, with display switches.
+`rocMpKFx` **Gallery (photo)** — repeatable image plus title, with a `hashchange` listener so a single photo can be linked directly.
+`8cFemmmh` **Gallery (FTP)** — reads a folder under `gallery/` from disk with `scandir()` instead of taking uploads. For image sets delivered by FTP; adding a file to the folder is enough.
+`1OxiRRYI` **Slide show** — pulls a whole category from the image module rather than individual fields, and animates through `fx_animation_frame`.
+
+**Backgrounds**
+`XXYOe1Ve` **Background image** — full-bleed background at 3840px.
+`bvLBbkbs` **Background image (parallax)** — the same with a configurable parallax distance.
+
+**Audio and video**
+`oyHWeS9j` **Media** — bare `CMS:media` at 100% × 100%.
+`podY5Nd6` **Media w/ aspect ratio** — with a configurable ratio, 16:9 by default, so the space is reserved before loading.
+`mF7FZJM0` **Audio** — media field plus description.
+`iruTME48` **Video** — poster image, media field, display switches and text.
+`tK3ZrOpL` **Youtube** — embed with title, video id and poster image. Uses the `youtube-nocookie` host.
+
+Worth knowing:
+- Only the **Thumbnail** templates open the lightbox; a plain **Image** does not. That is the practical difference when a visitor should be able to enlarge a picture.
+- **Image (original size)** hands out the uploaded file unchanged. Check what was uploaded before using it on a public page — a camera original is easily several megabytes.
+- `youtube-nocookie` reduces tracking but does not remove it: the embed still contacts Google when the page loads. Where consent is required, wrap it in the Layout category's **Iframe (opt. Consent Gate)** (`l9acZemy`) rather than placing it directly.
+- **Gallery (FTP)** reads the filesystem on render. Whoever can write to that folder decides what appears on the page.","","agentmauz","2026-09-06 01:22:05","agentmauz","","0","","","0","1","3.00","0","0"
+"11","accordion
+carousel
+columns
+consent gate
+grid
+iframe
+layout category
+modal
+parallax
+responsive visibility
+rows
+slider
+templates","Template category ""Layout"" (36 templates): the structural wrappers — columns, rows, multi-column flow, width and placement, responsive visibility, motion and interaction, four parallax distances, and a consent-gated iframe.","Category `Layout` — 36 templates, the largest group. Every one wraps a nested `tp1` in `CMS:cblock idref=""tp1""`, so an unfilled layout renders nothing at all. A leading `*` marks a primary building block.
+
+**Structure**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `50IGerbz` | \* Columns | repeatable columns, weight per column |
+| `5J6BhotJ` | \* Columns (dividing line) | same, with separators |
+| `7OGTyAH7` | \* Columns (no gap) | same, without gaps |
+| `ivVEV74Y` | \* Rows | repeatable rows |
+| `nuQKjDIY` | \* Rows (dividing line) | same, with separators |
+| `r9Hqor48` | \* Rows (no gap) | same, without gaps |
+| `nTp6JIjw` | \* Flexible layout | flex container with a configurable column set |
+| `47uDGzSb` | \* Multi-column layout | CSS multi-column text flow |
+| `SegL3nvK` | \* Multi-column layout: full width | `column-span:all` — spans every column |
+| `SwyYDFcP` | \* Multi-column layout: no break | `break-inside:avoid` — never split across columns |
+
+**Width and placement**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `pKIV97L0` | Full width | breaks out of the content column |
+| `EGiap5sm` | Limited width | configurable maximum width |
+| `ExONGXpx` | Centered | centres the block |
+| `w0v1qcE6` | Horizontal container | children side by side |
+| `FwKLnBbU` | Sequence | inline sequence of blocks |
+| `Be1AR47Y` | List | repeatable list of blocks |
+| `RbOfmcoA` | Pages | repeatable page-sized blocks |
+| `h5eI4e5D` | Tiles | tile grid with controls |
+| `jGmyuJ0u` | Frame | `.frame` border wrapper |
+
+**Responsive visibility**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `43XuVb5O` | Hide on desktop displays | `.desktop-hide` |
+| `SfLW8gq3` | Hide on mobile displays | `.mobile-hide` |
+
+**Motion and interaction**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `5Q8RIJpC` | Accordion | expandable titled sections |
+| `vIWcUkLk` | Dialog (modal) | opens the nested content in a modal |
+| `GGTCvwaH` | Carousel | rotating panels with background image and text |
+| `biYNuUu3` | Slider | slides with controls |
+| `zQ7TL4DI` | Fan | fanned-out image links |
+| `wD7IT8X0` | Marquee | continuously scrolling row |
+| `GRqEgxF9` | Anchor links | jump-link list built from section titles |
+| `n0dZ8YRp` | Alternate colors | alternating background between siblings |
+| `ZvToM2XN` | Split | two-panel split with background image |
+| `U3JsGudh` | Banner | banner with image and content |
+
+**Parallax** — identical except for the distance, written into both the class and `data-parallax-distance`
+
+| Id | Template | Distance |
+|---|---|---|
+| `kdjiW4r8` | Parallax (close) | 25 |
+| `UhJ6WZdK` | Parallax (medium) | 50 |
+| `1pPMFQ96` | Parallax (far) | 75 |
+| `TICCPw3n` | Parallax (fixed) | 100 |
+
+**Third-party content**
+
+| Id | Template | Behaviour |
+|---|---|---|
+| `l9acZemy` | Iframe (opt. Consent Gate) | iframe that can require consent before loading |
+
+Worth knowing:
+- Parallax renders as a plain `<div>` in edit mode, so editing is not fought by the effect. What you see while editing is not what the visitor sees.
+- Wrap every third-party embed in **Iframe (opt. Consent Gate)**. An iframe contacts its host the moment the page loads, before the visitor has agreed to anything.
+- The starred structure templates nest freely. Build a page by nesting `* Rows` and `* Columns` rather than reaching for a special-purpose layout.","","agentmauz","2026-09-06 01:23:26","agentmauz","2026-09-06 01:28:42","0","","","0","1","3.00","0","0"

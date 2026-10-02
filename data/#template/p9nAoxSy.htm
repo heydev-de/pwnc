@@ -1,0 +1,264 @@
+<CMS:edit option="href value switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="href">
+    <tr>
+      <td>%%l_base%%:</td>
+      <td><CMS:href id="..article_overview_base"/><?=CMS_L_IFC_CONTENT_011?></CMS:href></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_teasers_per_page%%:</td>
+      <td><CMS:value id="..article_overview_entries_per_page" default="10"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_show_newest_first%%:</td>
+      <td><CMS:switch id="..article_overview_sort_by_time"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_show_date%%:</td>
+      <td><CMS:switch id="..article_overview_show_date"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_show_link%%:</td>
+      <td><CMS:switch id="..article_overview_show_link"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<section id="article-overview">
+
+<?php
+
+if (! defined("CMS_CONTENT_DIRECTORY_INDEX")) return;
+
+//base
+$base = (nstre($base = l($cms_template_document->get("article_overview_base", "href"))) &&
+        ($base = template_parse_reference($base, TRUE)) &&
+        streq($base["scheme"], "directory")) ?
+        $base["host"] :
+        CMS_CONTENT_DIRECTORY_INDEX;
+
+//entries per page
+$epp = (int)l($cms_template_document->get("article_overview_entries_per_page", "value"));
+if ($epp < 1) $epp = 10;
+
+//build overview
+$data = new data("#system/directory");
+
+//collect children
+$list  = array();
+$depth = 1;
+
+$data->move("to", $base);
+
+while (
+        ($depth > 0)
+        &&
+        (($key = $data->move("next")) !== NULL)
+      )
+{
+    switch ($data->get($key, "#type"))
+    {
+    case "container":
+        $list[$key] = $data->get($key, "url");
+        $depth++;
+        break;
+
+    case "/container":
+        $depth--;
+    };
+};
+
+$_list = array();
+
+foreach($list as $index => $url)
+{
+    $content_index = 0;
+
+    while (nstre($url))
+    {
+        //directory dereferencing
+        $__list = array($index => TRUE);
+        $url    = analyze_url($url);
+        if ($url === FALSE) break;
+
+        while (streq($url["scheme"], "directory"))
+        {
+            $index = $url["host"];
+
+            //check for loop
+            if (isset($__list[$index])) break 2;
+            $__list[$index] = TRUE;
+
+            $url = $data->get($index, "url");
+            $url = analyze_url($url);
+            if ($url === FALSE) break 2;
+        };
+
+        //internal reference
+        if (streq($url["scheme"], "content"))
+            $content_index = (int)$url["host"];
+        break;
+    };
+
+    if ($content_index > 0)
+        $_list[$content_index] = $index;
+};
+
+$list  = implode(", ", array_map("intval", array_keys($_list)));
+$order = array();
+
+//sort by time
+if ($cms_template_document->get("article_overview_sort_by_time", "value"))
+{
+    $query = "SELECT " . CMS_DB_CONTENT_INDEX . ", " .
+                         CMS_DB_CONTENT_PUBLISHER_TIME . ", " .
+                         CMS_DB_CONTENT_TEXT . " " .
+             "FROM " .   CMS_DB_CONTENT . " " .
+             "WHERE " .  CMS_DB_CONTENT_STATUS . "='" . CMS_CONTENT_STATUS_PUBLICATION . "' " .
+             "AND " .    CMS_DB_CONTENT_INDEX . " IN ($list)";
+
+    $result = mysql_query($query);
+    if ($result === FALSE) return;
+
+    $document = new document();
+    $order    = array();
+
+    while ($resultrow = mysql_fetch_assoc($result))
+    {
+        $document->import($resultrow[CMS_DB_CONTENT_TEXT]);
+        $time = l($document->get("article_date", "value"));
+
+        if (stre($time) || (($time = strtotime($time)) === FALSE))
+                $time = $resultrow[CMS_DB_CONTENT_PUBLISHER_TIME];
+
+        $order[$resultrow[CMS_DB_CONTENT_INDEX]] = $time;
+    };
+
+    arsort($order, SORT_NUMERIC);
+}
+
+//original order
+else
+{
+    $query = "SELECT " .         CMS_DB_CONTENT_INDEX . " " .
+             "FROM " .           CMS_DB_CONTENT . " " .
+             "WHERE " .          CMS_DB_CONTENT_STATUS . "='" . CMS_CONTENT_STATUS_PUBLICATION . "' " .
+             "AND " .            CMS_DB_CONTENT_INDEX . " IN ($list) " .
+             "ORDER BY FIELD(" . CMS_DB_CONTENT_INDEX . ", $list)";
+
+    $result = mysql_query($query);
+    if ($result === FALSE) return;
+
+    while ($resultrow = mysql_fetch_assoc($result))
+        $order[$resultrow[CMS_DB_CONTENT_INDEX]] = TRUE;
+};
+
+//-----------------------------------------------------------------------------------------------------
+
+//display overview
+$count = count($order);
+
+//pagination values
+$_count = ceil($count / $epp);
+$page   = isset($_GET["article_overview_page"]) ? (int)$_GET["article_overview_page"] : 1;
+$page   = max(1, min($page, $_count));
+
+//retrieve articles
+$order = array_slice($order, ($page - 1) * $epp, $epp, TRUE);
+$list  = implode(", ", array_map("intval", array_keys($order)));
+$query = "SELECT " .         CMS_DB_CONTENT_INDEX . ", " .
+                             CMS_DB_CONTENT_TITLE . ", " .
+                             CMS_DB_CONTENT_DESCRIPTION . ", " .
+                             CMS_DB_CONTENT_IMAGE . ", " .
+                             CMS_DB_CONTENT_TEXT . " " .
+         "FROM " .           CMS_DB_CONTENT . " " .
+         "WHERE " .          CMS_DB_CONTENT_INDEX . " IN ($list) " .
+         "ORDER BY FIELD(" . CMS_DB_CONTENT_INDEX . ", $list)";
+
+$result = mysql_query($query);
+if ($result === FALSE) return;
+
+//image object used to retrieve titles
+if (! cms_load("image")) return;
+$image = new image();
+
+//flags
+$show_date = (bool)$cms_template_document->get("article_overview_show_date", "value");
+$show_link = (bool)$cms_template_document->get("article_overview_show_link", "value");
+
+//display article teasers
+while ($resultrow = mysql_fetch_assoc($result))
+{
+    $index    = $resultrow[CMS_DB_CONTENT_INDEX];
+    $document = new document($resultrow[CMS_DB_CONTENT_TEXT]);
+    $url      = x(translate_url("directory://" . $_list[$index]));
+    $_image   = nstre($temp = l($document->get("article_image"))) ? $temp : l($resultrow[CMS_DB_CONTENT_IMAGE]);
+    $title    = nstre($temp = l($document->get("article_title"))) ? $temp : l($resultrow[CMS_DB_CONTENT_TITLE]);
+    $time     = $order[$index];
+    $text     = nstre($temp = l($document->get("article_text")))  ? $temp : l($resultrow[CMS_DB_CONTENT_DESCRIPTION]);
+
+    echo("<article>");
+    if (nstre($_image))
+    {
+        $alt = nstre($alt = l($image->data->get($_image, "name"))) ? $alt : $title;
+        echo("<div class=\"article-overview-image\">" .
+             "<a href=\"$url\">" .
+             image(translate_url($_image), 200, NULL, $alt) .
+             "</a>" .
+             "</div>");
+    };
+    echo("<div class=\"article-overview-content\">" .
+         "<h2>" .
+         "<a href=\"$url\">" .
+         parse_text($title) .
+         "</a>" .
+         "</h2>");
+    if ($show_date)
+        echo("<time datetime=\"" . x(date("c", $time)) . "\">" .
+             x(friendly_date($time, TRUE)) .
+             "</time>");
+    if (nstre($text))
+        echo("<div>" . parse_text($text) . "</div>");
+    if ($show_link)
+        echo("<a href=\"$url\">" .
+             "<strong>" .
+             parse_token("\%%l_read_on\%%") .
+             "</strong>" .
+             "</a>");
+    echo("</div>" .
+         "</article>");
+};
+
+//pagination
+pagination(
+    CMS_ACTIVE_URL .
+    cms_param(["article_overview_page" => "\x1B%page%"]) .
+    "#article-overview",
+    $page,
+    $_count,
+    parse_token("\%%l_more\%%"),
+    "article-overview-pagination",
+    1);
+
+?>
+
+</section>

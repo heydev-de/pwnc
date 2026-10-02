@@ -1,0 +1,136 @@
+<CMS:edit>
+<CMS:edit option="image switch value text">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="image">
+    <tr>
+      <td>%%l_poster_image%%:</td>
+      <td><CMS:image id="i1" width="150"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_autoplay%%:</td>
+      <td><CMS:switch id="video_autoplay"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_loop%%:</td>
+      <td><CMS:switch id="video_loop"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_start_time%% (%%l_seconds%%):</td>
+      <td><CMS:value id="video_start" default="0"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_info%%:</td>
+      <td><CMS:text id="t_info"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<div class="video-edit">
+
+  <CMS:media id="m1"/>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+<CMS:cblock idref="m1">
+<?php
+
+//load javascript inline
+if (! defined("VIDEO_FLAG"))
+{
+    echo(jscript(file_get_contents(CMS_DATA_PATH . "template/video.js")));
+    define("VIDEO_FLAG", 1);
+};
+
+$id       = "media-" . $cms_template_temp_id;
+$src1     = l($cms_template_document->get($cms_template_base_id . "i1", "image"));
+
+$image    = new image();
+$alt      = l($image->data->get($src1, "name"));
+$src2     = l($cms_template_document->get($cms_template_base_id . "m1", "media"));
+$media    = new media();
+$title    = l($media->data->get($src2, "name"));
+
+$src1     = translate_url($src1);
+$src1     = image_process($src1, 3840);
+
+$autoplay = $cms_template_document->get($cms_template_base_id . "video_autoplay", "value");
+$flag     = $autoplay && (! CMS_TEMPLATE_OPTION);
+$autoplay = $flag ? "autoplay" : "";
+$muted    = $flag ? "muted"    : "";
+
+$loop     = $cms_template_document->get($cms_template_base_id . "video_loop", "value");
+$loop     = ($loop && (! CMS_TEMPLATE_OPTION)) ? "loop" : "";
+
+$start    = (int)l($cms_template_document->get($cms_template_base_id . "video_start", "value"));
+
+?>
+
+<div class="video">
+
+  <video id="<?=x($id)?>"
+         src="<?=x(translate_url($src2))?>"
+         <?=x($autoplay)?>
+         <?=x($loop)?>
+         <?=x($muted)?>
+         preload="metadata"
+         playsinline
+         poster="<?=x($src1)?>"
+         class="video-loading"
+         data-start="<?=x($start)?>"
+         onloadstart="video_loading(this);"
+         onpause="video_paused(this);"
+         onwaiting="video_buffering(this);"
+         oncanplay="this.paused?video_paused(this):video_playing(this);"
+         onplaying="video_playing(this);"
+         onloadeddata="this.currentTime=parseFloat(this.getAttribute('data-start'));">
+    <a href="<?=x(translate_url($src2))?>"><?=x($title)?></a>
+  </video>
+
+  <div class="video-overlay">
+
+    <CMS:cblock idref="i1">
+    <img src="<?=x($src1)?>" alt="<?=x($title)?>">
+    </CMS:cblock>
+
+    <div class="video-loading"></div>
+
+  </div>
+
+  <button class="video-play" onclick="video_play(this.parentElement.firstElementChild);">%%l_play%%</button>
+  <button class="video-preview" onclick="video_play(this.parentElement.firstElementChild,1);">%%l_preview%%</button>
+  <button class="video-pause" onclick="video_pause(this.parentElement.firstElementChild);">%%l_pause%%</button>
+  <button class="video-fullscreen" onclick="video_fullscreen(this.parentElement.firstElementChild);">%%l_fullscreen%%</button>
+
+  <CMS:cblock idref="t_info">
+  <input id="video-info-<?=x($cms_template_temp_id)?>" type="checkbox" value="1" class="video-info-trigger">
+  <div class="video-info">
+
+    <CMS:cblock idref="t_info"><CMS:text id="t_info" edit="off"/></CMS:cblock>
+    <CMS:calt idref="t_info"><?=x($title)?></CMS:calt>
+
+  </div>
+  <label for="video-info-<?=x($cms_template_temp_id)?>" class="video-info">%%l_info%%</label>
+  </CMS:cblock>
+
+</div>
+</CMS:cblock>
+</CMS:noedit>

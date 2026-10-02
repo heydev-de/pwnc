@@ -1,0 +1,30 @@
+DIV.link3 A.link3-anchor
+{
+    COLOR: var(--cms-color-alt);
+    DISPLAY: grid;
+    TEXT-DECORATION: none;
+    TEXT-SHADOW: 0 0 calc(5 * var(--cms-factor)) var(--cms-background-alt);
+}
+
+DIV.link3 IMG.link3-image
+{
+    GRID-COLUMN: 1 / 1;
+    GRID-ROW: 1 / 1;
+    OBJECT-FIT: cover;
+    PLACE-SELF: stretch;
+}
+
+DIV.link3 SPAN.link3-text
+{
+    GRID-COLUMN: 1 / 1;
+    GRID-ROW: 1 / 1;
+    PADDING: calc(var(--cms-vspacing) / 2) calc(var(--cms-hspacing) / 2);
+    PLACE-SELF: end stretch;
+    TEXT-ALIGN: center;
+}
+
+DIV.link3 A.link3-anchor:focus,
+DIV.link3 A.link3-anchor:hover
+{
+    BOX-SHADOW: var(--cms-box-shadow);
+}

@@ -1,0 +1,67 @@
+<CMS:edit option="value">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_number_of_columns%%:</td>
+      <td><CMS:value id="layout_autocol_count" default="-1"/></td>
+    </tr>
+
+    <CMS:edit option="repeat">
+    <tr>
+      <td>%%l_number_of_blocks%%:</td>
+      <td><CMS:repeat id="layout_autocol_blocks" default="1"></CMS:repeat></td>
+    </tr>
+    </CMS:edit>
+
+    <tr>
+      <td>%%l_minimum_block_width_in_px%%:</td>
+      <td><CMS:value id="layout_autocol_minwidth" default="%%default_column_min_width%%"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_horizontal_gap_in_px%%:</td>
+      <td><CMS:value id="layout_autocol_hspacing" default="-1"/></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+//column count
+$index = $cms_template_base_id . "layout_autocol_count";
+$count = intval(l($cms_template_document->get($index, "value")));
+$count = ($count < 1) ? "auto" : $count;
+
+//column width
+$index = $cms_template_base_id . "layout_autocol_minwidth";
+$width = intval(l($cms_template_document->get($index, "value")));
+$width = ($width < 0) ? "auto" : $width . "px";
+
+//column gap
+$index = $cms_template_base_id . "layout_autocol_hspacing";
+$space = intval(l($cms_template_document->get($index, "value")));
+$space = ($space < 0) ? "" : ";COLUMN-GAP:calc($space*var(--cms-factor))";
+
+?>
+
+<div class="layout-autocol" style="COLUMNS:<?="$width $count$space"?>">
+
+  <CMS:repeat id="layout_autocol_blocks" edit="off">
+  <CMS:group edit="off">
+  <CMS:cblock idref="tp1">
+  <div>
+
+    <CMS:template id="tp1"/>
+
+  </div>
+  </CMS:cblock>
+  </CMS:group>
+  </CMS:repeat>
+
+</div>
+</CMS:cblock>

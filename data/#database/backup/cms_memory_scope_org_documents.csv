@@ -1,0 +1,6 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: documents of the organisation — where they live, what they cover, and which version is current.","This region keeps track of documents and their state.
+
+Belongs here: what a document covers, where it is stored, who maintains it, which version is authoritative, and what changed in it. A document itself may be attached to an entry when it has no better home.
+
+Does not belong here: the decision a document records (scope.org_decisions), or content pages of the website, which live in the CMS rather than in memory.","","agentmauz","2026-09-06 01:03:14","agentmauz","","0","","","0","1","3.00","0","0"

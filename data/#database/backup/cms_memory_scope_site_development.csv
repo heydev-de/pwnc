@@ -1,0 +1,33 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: changes made to this installation — what was changed, why, and what to watch out for afterwards.","This region is the working record of development on this site.
+
+Belongs here: what was changed in code, templates or configuration, the reason for it, how it was tested, and anything left unfinished or deliberately deferred.
+
+Does not belong here: what the version control history already tells you. Record the reasoning and the traps, not the diff.
+
+Recurring errors from the log belong here when they are defects in this site's own code or templates: record the cause, whether it is harmless, and what was done about it. Findings that bear on safety go to scope.site_security, and errors caused by the server or its configuration go to scope.site_environment. Use the error's own wording as a mnemonic, so it can be found again from any region.","","agentmauz","2026-09-06 01:04:26","agentmauz","2026-09-06 01:08:04","0","","","0","1","3.00","0","0"
+"2","2026-09-06
+black
+broken markup
+cms_token
+hidden
+hover_text
+placeholder fix
+sql console","2026-09-06: fixed three shipped placeholders that produced broken markup (black, hover_text, hidden) and one misspelled title, directly in cms_token.","Three placeholders shipped with defective replacement text and produced broken output on every page that used them. Found while documenting the set in scope.info_placeholders, fixed on 2026-09-06.
+
+| Id | Was | Now |
+|---|---|---|
+| `black` | `<span style=""COLOR:#black"">` | `<span style=""COLOR:black"">` |
+| `hover_text` | `<span[ title=""%hover_text%""]/>%text%</span>` | `…""]>%text%</span>` |
+| `hidden` | `<div style=""DISPLAY:none"">%text%<</div>` | `…%text%</div>` |
+| `l_optout_confirmation` | title ""Opt-opt confirmation"" | ""Opt-out confirmation"" |
+
+`#black` is not a valid CSS colour and was silently ignored; the stray `/` in `hover_text` closed the span before the text, so the tooltip covered nothing; the extra `<` in `hidden` left a malformed tag in the page. The fourth is cosmetic — a Backend label only.
+
+**How.** Four targeted `UPDATE cms_token SET text = REPLACE(...)` statements through the Backend's SQL console (Datenbank → SQL-Konsole), one per id, each reporting one row changed. `REPLACE` rather than a full assignment, so nothing else in the text could be disturbed.
+
+**Verified.** Re-read the rows, then rendered both structural fixes through the placeholder preview (`ifc_message=display&ifc_page=token&object=…`): `black` now emits `COLOR:black`, `hover_text` emits `<span title=""hover_text"">text</span>`. `black` and `white` are now identical in shape.
+
+**Note.** The placeholder cache clear (token module → *clear placeholder cache*) timed out when invoked over MCP; the previews were correct regardless. If a stale value ever appears on the live site, run that command from the Backend directly — it walks the cache directory and takes a while.
+
+**Still open.** These are database rows, not files, so the fix does not travel with a release. A fresh installation ships the defective values again until they are corrected at the source of the seed data.","","agentmauz","2026-09-06 02:03:58","agentmauz","","0","","","0","1","3.00","0","0"

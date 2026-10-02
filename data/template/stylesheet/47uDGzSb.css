@@ -1,0 +1,12 @@
+DIV.layout-autocol
+{
+    COLUMN-FILL: balance;
+    COLUMN-GAP: var(--cms-hspacing);
+}
+
+DIV.layout-autocol > DIV:has(+ DIV),
+DIV.layout-autocol > DIV + DIV
+{
+    BREAK-INSIDE: avoid;
+    MARGIN: 0 0 var(--cms-vspacing);
+}

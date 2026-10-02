@@ -1,0 +1,8 @@
+DIV.logo-collection
+{
+    ALIGN-ITEMS: center;
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    GAP: var(--cms-vspacing) var(--cms-hspacing);
+    JUSTIFY-CONTENT: center;
+}

@@ -1,0 +1,6 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: complaints and grievances raised by people, with their current status.","This region records what members or visitors have complained about.
+
+Belongs here: what was raised, by whom, when, and how it was answered or resolved.
+
+Does not belong here: technical faults with no human complaint behind them — those go to scope.site_development or scope.site_security. A complaint that leads to a decision should link to the entry in scope.org_decisions rather than repeat it.","","agentmauz","2026-09-06 01:02:53","agentmauz","","0","","","0","1","3.00","0","0"

@@ -1,0 +1,6 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: proposals and ideas that have been put forward but not yet decided on.","This region is where ideas wait.
+
+Belongs here: what is proposed, who proposed it, what it would improve, and what it would cost.
+
+Does not belong here: anything already agreed (scope.org_decisions) or already being worked on (scope.org_tasks). When a suggestion is accepted or rejected, record the outcome in scope.org_decisions and rate the suggestion down so it fades rather than deleting it — the trail of what was considered is worth keeping.","","agentmauz","2026-09-06 01:03:33","agentmauz","","0","","","0","1","3.00","0","0"

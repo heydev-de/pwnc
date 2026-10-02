@@ -1,0 +1,1 @@
+Core app folder. Will be completely replaced when updating the system.

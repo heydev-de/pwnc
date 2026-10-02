@@ -1,0 +1,6 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: knowledge about the PWNC Frontend (pwnc/module/content.php) learned from working with it.","This region collects what has been learned about the Frontend — the public website and the live compositing workspace used to edit it.
+
+Belongs here: how editing behaves in practice, how pages and directory entries relate, how the control pad and view modes work, and traps found along the way.
+
+Does not belong here: the templates and placeholders themselves (scope.info_templates, scope.info_placeholders), or the content of the site, which lives in the CMS rather than in memory.","","agentmauz","2026-09-06 01:04:11","agentmauz","","0","","","0","1","3.00","0","0"

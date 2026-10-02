@@ -1,0 +1,111 @@
+<CMS:edit>
+<CMS:repeat id="r1" default="3">
+<CMS:group>
+
+  <CMS:image id="i1" width="150"/>
+  <CMS:text id="t1" title="%%l_image_title%%"/>
+
+</CMS:group>
+</CMS:repeat>
+</CMS:edit>
+
+<CMS:noedit>
+<script>
+fx_event_listen(
+    window,
+    "hashchange",
+    function()
+    {
+        if (! location.hash.startsWith("#gallery1-<?=$cms_template_temp_id?>-slide-")) return;
+        with (document.getElementById("gallery1-<?=$cms_template_temp_id?>-iris"))
+        {
+            style.display = "none";
+            void offsetWidth;
+            style.display = "block";
+        };
+    });
+</script>
+
+<div class="gallery1">
+
+  <div class="gallery1-slides">
+<?php
+
+cms_load("image");
+$image  = new image();
+$buffer = "";
+$c      = max($cms_template_document->get($cms_template_base_id . "r1", "repeat"), 1) * 3;
+
+for ($i = 1, $j = 1; $j < $c; $i++, $j += 3)
+{
+    $_image = l($cms_template_document->get($cms_template_base_id . "r1.$j.i1", "image"));
+    if (stre($_image)) continue;
+    $alt    = $image->data->get($_image, "name");
+    if ($alt === NULL) continue;
+    $alt    = l($alt);
+    $url    = translate_url($_image);
+    $size   = implode("x", getimagesize($url));
+    $text   = l($cms_template_document->get($cms_template_base_id . "r1.$j.t1", "text"));
+
+    //image
+    echo("<div id=\"gallery1-$cms_template_temp_id-slide-$i\" " .
+              "class=\"gallery1-slide\">" .
+         "<a href=\"" . x($url) . "\" " .
+            "data-size=\"" . x($size) . "\" " .
+            "class=\"thumbnail\">" .
+         image($url, NULL, NULL, $alt, NULL, TRUE) .
+         "</a>" .
+         "<div class=\"gallery1-text\">" .
+         (stre($text) ? x($alt) : parse_text($text)) .
+         "</div>");
+
+    //previous
+    if ($i > 1)
+        echo("<a href=\"" . x(translate_url("#gallery1-$cms_template_temp_id-slide-" . ($i - 1))) . "\" " .
+                "title=\"" . ($_buffer = parse_token("\%%l_previous\%%")) . "\" " .
+                "data-scrolltotarget=\"off\" " .
+                "class=\"gallery1-prev\">" .
+             $_buffer .
+             "</a>");
+
+    //next
+    if (($j + 3) < $c)
+        echo("<a href=\"" . x(translate_url("#gallery1-$cms_template_temp_id-slide-" . ($i + 1))) . "\" " .
+                "title=\"" . ($_buffer = parse_token("\%%l_next\%%")) . "\" " .
+                "data-scrolltotarget=\"off\" " .
+                "class=\"gallery1-next\">" .
+             $_buffer .
+             "</a>");
+
+    echo("</div>");
+
+    //text
+    $buffer .= "<a href=\"" . x(translate_url("#gallery1-$cms_template_temp_id-slide-$i")) . "\" " .
+                  "data-scrolltotarget=\"off\">" .
+               image($url, NULL, 100, $alt, NULL, TRUE) .
+               "</a>";
+};
+
+?>
+  </div>
+
+  <div id="gallery1-<?=$cms_template_temp_id?>-iris" class="gallery1-iris">
+
+    <div class="gallery1-blade"></div>
+    <div class="gallery1-blade"></div>
+    <div class="gallery1-blade"></div>
+    <div class="gallery1-blade"></div>
+    <div class="gallery1-blade"></div>
+
+  </div>
+
+</div>
+<?php
+
+if ($c > 3)
+    echo("<div class=\"gallery1-menu\">" .
+         $buffer .
+         "</div>");
+
+?>
+</CMS:noedit>

@@ -1,0 +1,10 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: security-relevant findings for this installation and what became of them.","This region records what has been found, fixed or accepted regarding the safety of this site.
+
+Belongs here: exposures found and closed, hardening in place and the reason for it, checks performed and their result, and risks knowingly accepted along with who accepted them.
+
+Findings from the error log belong here when they bear on safety — failed or forged authentication, denied and blocked access, suspicious requests, anything that exposed data or could have. Ordinary defects in this site's own code go to scope.site_development; errors caused by the server or its configuration go to scope.site_environment. Whichever region a finding lands in, use the error's own wording as a mnemonic: cross-region search matches on mnemonics, so that is what lets the next reader find it from anywhere.
+
+Does not belong here: credentials, API keys or tokens of any kind. Memory is shared with everyone holding reader rights on the region, and a secret written here cannot be taken back. Never record, reconstruct or quote a key.
+
+Record the verdict, not only the finding. ""Checked, not exploitable, because X"" is as valuable as a fix and stops the same ground being covered repeatedly.","","agentmauz","2026-09-06 01:04:46","agentmauz","2026-09-06 01:07:58","0","","","0","1","3.00","0","0"

@@ -1,0 +1,8 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: work items — what needs doing, who is on it, and where it stands.","This region tracks work.
+
+Belongs here: what is to be done, why, who owns it, its current state, and what blocks it. Use a follow-up date on an entry that must be returned to; it will surface in every recall until the entry is read.
+
+Does not belong here: an idea nobody has committed to (scope.org_suggestions), or the record of how something was carried out afterwards (scope.site_development).
+
+Several agents may work here at once. Say plainly in an entry when you have taken it on, so two do not do the same work twice.","","agentmauz","2026-09-06 01:03:43","agentmauz","","0","","","0","1","3.00","0","0"

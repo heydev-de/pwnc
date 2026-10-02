@@ -1,0 +1,191 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: reference knowledge about the content placeholders available in this installation.","This region collects what is known about the placeholders used in content and templates on this site.
+
+Belongs here: placeholder names, what each expands to, where it may be used, arguments it accepts, and pitfalls found in practice.
+
+Does not belong here: the templates that consume them (scope.info_templates), or platform-level internals of the template engine (scope.pwnc_platform_backend).
+
+## Syntax
+
+| Form | Meaning |
+|---|---|
+| `%%index%%` | insert the placeholder, no arguments |
+| `%%index arg1, arg2%%` | with arguments, positional, comma-separated |
+| `\%%` | escape — the backslash is removed and the `%%` is not parsed |
+| `\,` | a literal comma inside an argument |
+
+Arguments map positionally onto the parameter names stored with the placeholder. Inside its stored text a parameter appears as `%name%`, and a segment wrapped in `[ … ]` is conditional: it is dropped when the parameter inside it is empty. So `<a href=""%url%""[ title=""%title%""]>%text%</a>` produces no `title` attribute when the second argument is left out.
+
+An index that does not exist is left in the page verbatim — a typo shows up as `%%typo%%` on the live site rather than as an error.
+
+Placeholder texts are multilingual, using the same `0x1F` separator as everything else, so one placeholder can carry a German and an English wording.
+
+Resolved values are cached. The Backend's placeholder module has a *clear placeholder cache* command; use it when an edit does not show up.
+
+## Index
+
+298 placeholders in 8 categories.
+
+| Entry | Category | Count | Use it for |
+|---|---|---|---|
+| `/2` | Text | 13 | inline formatting inside running text |
+| `/3` | Link | 5 | links, jump labels, pop-ups |
+| `/4` | Info | 8 | the site's own contact and identity data |
+| `/5` | Symbol, Widget, Default, `[ ... ]` | 9 | icons, embeds, defaults, spacing |
+| `/6` | Local | 263 | `l_*` interface labels used by templates |","","agentmauz","2026-09-06 01:02:39","agentmauz","2026-09-06 01:58:13","0","","","0","1","3.00","0","0"
+"2","color
+hard space
+heading
+hover text
+inline formatting
+lorem ipsum
+placeholders
+soft hyphen
+subscript
+superscript
+text category","Placeholder category ""Text"" (13): inline formatting for running text — headings, colour, super- and subscript, strikethrough, hover text, hard space, soft hyphen and a lorem ipsum filler.","Category `Text` — 13 placeholders. These work inside running text, where HTML cannot be typed directly.
+
+| Placeholder | Arguments | Expands to |
+|---|---|---|
+| `%%h1 text%%` | text | `<h1 style=""DISPLAY:inline-block"">` |
+| `%%h2 text%%` | text | `<h2 …>` |
+| `%%h3 text%%` | text | `<h3 …>` |
+| `%%color text, color%%` | text, color | `<span style=""COLOR:…"">`; the colour is optional |
+| `%%white text%%` | text | white text |
+| `%%black text%%` | text | black text |
+| `%%sup text%%` | text | `<sup>` |
+| `%%sub text%%` | text | `<sub>` |
+| `%%- text%%` | text | `<s>`, struck through |
+| `%%hover_text hover, text%%` | hover_text, text | text with a `title` tooltip |
+| `%%_%%` | — | `&nbsp;`, a non-breaking space |
+| `%%\|%%` | — | `&shy;`, a soft hyphen marking where a long word may break |
+| `%%lorem_ipsum%%` | — | filler text |
+
+Worth knowing:
+- The heading placeholders render `display:inline-block`, so they sit inside a paragraph. They are still real `<h1>`–`<h3>` elements and count towards the document outline — do not use them purely for size.
+- `%%_%%` and `%%|%%` are the reason this category exists: a non-breaking space and a soft hyphen are invisible in an editing field, and typing the entities directly would be escaped.
+- `black` and `white` set the colour literally, so they ignore the site's theme. For anything that should follow the design, use `%%color …%%` with a value from the stylesheet.
+- `lorem_ipsum` is cat-themed on purpose (""Lorem katzum dolor sit ameow""). It is filler, not corrupted data.","","agentmauz","2026-09-06 01:58:27","agentmauz","2026-09-06 02:03:22","0","","","0","1","3.00","0","0"
+"3","anchor
+data privacy link
+jump label
+link category
+link with title
+new window
+placeholders
+popup","Placeholder category ""Link"" (5): links with an optional title, pop-up variants that force a new window, a jump label anchor, and the site's privacy-policy link.","Category `Link` — 5 placeholders. For links inside running text, where an editor cannot write HTML.
+
+| Placeholder | Arguments | Expands to |
+|---|---|---|
+| `%%link_title text, url, title%%` | text, url, title | `<a href=""…"" title=""…"">`; the title is optional |
+| `%%link_title_popup text, url, title%%` | text, url, title | the same, plus `window.open()` on click |
+| `%%popup url, text, title%%` | url, text, title | identical output to `link_title_popup`, but the first two arguments are swapped |
+| `%%jumplabel id, text%%` | id, text | `<span id=""…"">` — an anchor to link to from elsewhere |
+| `%%data_privacy_statement%%` | — | a ready-made link to this site's privacy policy, per language |
+
+Worth knowing:
+- `popup` and `link_title_popup` produce exactly the same markup and differ only in argument order. Check which one you are using before filling in the arguments; swapping them silently produces a link whose text is the URL.
+- Both pop-up variants override the visitor's own choice of where to open a link, and some browsers block it. Prefer `link_title` unless leaving the page would lose work in progress.
+- `data_privacy_statement` is bound to this installation: it points at `/de/datenschutz.php` and `/en/data-privacy.php`. If those pages are renamed, this placeholder has to be edited too — nothing detects the break.
+- A jump label only creates the anchor. The link to it is written normally, with `#id` as the target.","","agentmauz","2026-09-06 01:58:42","agentmauz","","0","","","0","1","3.00","0","0"
+"4","address
+company
+copyright
+email
+info category
+phone
+placeholders
+sitename
+tracking code","Placeholder category ""Info"" (8): the site's own identity and contact data — name, company, address, phone, e-mail, copyright and the tracking code — held in one place instead of repeated across pages.","Category `Info` — 8 placeholders. The site's own data, kept in one place so it is edited once rather than hunted across pages.
+
+| Placeholder | Ships as | Purpose |
+|---|---|---|
+| `%%sitename%%` | ""Website title"" | the site's name |
+| `%%company%%` | ""Your company"" | company name |
+| `%%address%%` | ""Your address"" | postal address |
+| `%%phone%%` | `+## ### ########` | phone number, for display |
+| `%%link_phone%%` | `+#############` | the same number without spaces, for a `tel:` link |
+| `%%email%%` | `info@example.com` | e-mail address |
+| `%%copyright%%` | ""Your name"" | copyright holder |
+| `%%tracking_code%%` | an explanatory comment | the analytics snippet |
+
+Worth knowing:
+- Every value here is still a **placeholder for the operator to fill in**. A fresh installation shows ""Your company"" and `info@example.com` on the live site. Filling these in is part of setting up a site.
+- `phone` and `link_phone` are the same number in two shapes, because a `tel:` URL must not contain spaces. Change one and the other has to follow.
+- `tracking_code` ships holding a comment, not a script. As long as it does, the Page category's `_ Tracking` consent modal has nothing to inject — deleting the comment switches the consent prompt off entirely, which is the documented way to run without analytics.
+- These are multilingual: the shipped values carry a German and an English wording.","","agentmauz","2026-09-06 01:58:54","agentmauz","","0","","","0","1","3.00","0","0"
+"5","bullet
+column min width
+default
+hidden
+icon
+iframe sandbox
+placeholders
+share buttons
+shariff
+spacing
+symbol
+widget
+youtube","The four small placeholder categories (9 total): Symbol (bullet, icon), Widget (YouTube, share buttons), Default (values templates fall back to), and the unnamed category holding spacing and hidden content.","Four small categories, 9 placeholders.
+
+**Symbol** — 2
+
+| Placeholder | Arguments | Expands to |
+|---|---|---|
+| `%%.%%` | — | `&bull;&nbsp;`, a bullet with a following space |
+| `%%icon name%%` | name | `<span class=""icon-…"">`, an icon from the stylesheet's icon set |
+
+**Widget** — 2, both embedding a third party
+
+| Placeholder | Arguments | Expands to |
+|---|---|---|
+| `%%youtube v_parameter%%` | video id | a 16:9 iframe on `youtube-nocookie.com` |
+| `%%shariff title, url%%` | title, url | Shariff share buttons for X and Facebook, loaded from `3rdparty/shariff-3.2.1/` |
+
+**Default** — 2, read by templates as fallback values rather than placed in content
+
+| Placeholder | Value | Used for |
+|---|---|---|
+| `%%default_column_min_width%%` | `400` | the width below which a column layout collapses |
+| `%%default_iframe_sandbox_attribute%%` | `allow-forms allow-modals allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-scripts` | the default `sandbox` attribute for embedded iframes |
+
+**`[ ... ]`** — 3, layout utilities
+
+| Placeholder | Arguments | Expands to |
+|---|---|---|
+| `%%horizontal_space pixel%%` | pixel | an invisible SVG of that width — a measured horizontal gap |
+| `%%vertical_space pixel%%` | pixel | the same vertically |
+| `%%hidden text%%` | text | a `display:none` container |
+
+Worth knowing:
+- Both Widget placeholders contact a third party as soon as the page loads. `youtube-nocookie` reduces tracking but does not remove it. Where consent is required, wrap the embed in the Layout template **Iframe (opt. Consent Gate)** instead of placing the placeholder directly.
+- The default sandbox attribute is deliberately permissive — it includes `allow-scripts` together with `allow-same-origin`, which in combination lets framed content reach out of the sandbox. Narrow it for anything not fully trusted.
+- `hidden` removes content visually but leaves it in the page source, where search engines and assistive technology still reach it. It is not a way to keep something private.
+- The spacing placeholders exist because an editor cannot write CSS. They are a last resort: spacing that belongs to the design belongs in the stylesheet, where it can adapt to the viewport.","","agentmauz","2026-09-06 01:59:09","agentmauz","2026-09-06 02:03:34","0","","","0","1","3.00","0","0"
+"6","interface labels
+l_ prefix
+local category
+localisation
+placeholders
+template labels
+translation","Placeholder category ""Local"" (263): the l_* interface labels that templates use for their captions and settings, each carrying a German and an English wording — the site's translation layer.","Category `Local` — 263 placeholders, all named `l_…`. They are the translation layer: every caption a template shows comes from one of these, so a template written once works in both languages.
+
+**Where they belong.** Inside templates, not in page content. A template that writes `%%l_more%%` shows ""Mehr"" or ""More"" depending on the active language; a template that writes ""More"" is monolingual for ever.
+
+**Naming.** `l_` followed by the English label in lowercase with underscores — `l_read_on`, `l_business_hours`, `l_number_of_columns`. When you need a label, search for the concept before creating a new one: most already exist, and the set is the reason 143 shipped templates need no translation work.
+
+**They are not only captions.** A few hold whole sentences or blocks:
+
+| Placeholder | Length | Content |
+|---|---|---|
+| `l_newsletter_data_privacy_statement` | 673 | consent wording for the newsletter form |
+| `l_optout_confirmation` | 570 | text shown after opting out of tracking |
+| `l_email_protection` | 338 | the notice shown in place of an address when JavaScript is off |
+| `l_tracking_notice_banner` | 154 | the consent banner wording |
+| `l_redirect` | 123 | the redirect notice |
+| `l_responsible_for_content` | 111 | imprint wording |
+
+These carry legal meaning. Editing them changes what the site tells visitors about data protection — treat them as legal text, not as UI strings.
+
+Worth knowing:
+- Two pairs overlap: `l_legal_info` and `l_legal_notice` are both ""Impressum"" with different English wordings, and `l_company` duplicates the Info placeholder `company`. Pick the one a neighbouring template already uses rather than adding a third.","","agentmauz","2026-09-06 01:59:32","agentmauz","2026-09-06 02:03:44","0","","","0","1","3.00","0","0"

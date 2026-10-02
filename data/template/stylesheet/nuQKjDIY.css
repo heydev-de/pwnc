@@ -1,0 +1,24 @@
+DIV.layout-srow-block
+{
+    MARGIN: 0 0 calc(var(--cms-vspacing) * 2 + var(--cms-separator-width));
+}
+
+DIV.layout-srow-block:before
+{
+    BORDER-BOTTOM: var(--cms-separator-border);
+    BOTTOM: calc(var(--cms-vspacing) * -1);
+    CONTENT: "";
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+}
+
+DIV.layout-srow-block:last-child
+{
+    MARGIN: 0;
+}
+
+DIV.layout-srow-block:last-child:before
+{
+    DISPLAY: none;
+}

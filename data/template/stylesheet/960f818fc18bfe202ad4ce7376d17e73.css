@@ -1,0 +1,57 @@
+#forum INPUT[name=forum_search]
+{
+    WIDTH: 25ch;
+}
+
+.forum-item,
+.forum-topic,
+.forum-post
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) * 2);
+}
+
+.forum-overview .forum-topic,
+.forum-overview .forum-post
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 2);
+}
+
+.forum-overview .forum-post + .p
+{
+    MARGIN-TOP: var(--cms-vspacing);
+}
+
+.forum-title,
+.forum-info.p
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+.forum-info.p
+{
+    FONT-SIZE: smaller;
+}
+
+.forum-overview .forum-post .forum-title,
+.forum-overview .forum-post .forum-info
+{
+    MARGIN-BOTTOM: 0;
+}
+
+.forum-image
+{
+    MARGIN-BOTTOM: var(--cms-vspacing);
+}
+
+.forum-image IMG
+{
+    MAX-HEIGHT: calc(300 * var(--cms-factor));
+    OBJECT-FIT: cover;
+    WIDTH: 100%;
+}
+
+.forum-pagination
+{
+    MARGIN-TOP: calc(var(--cms-vspacing) * 2);
+    TEXT-ALIGN: center;
+}

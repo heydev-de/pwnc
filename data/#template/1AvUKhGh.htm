@@ -1,0 +1,46 @@
+<CMS:edit option="repeat switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="repeat">
+    <tr>
+      <td>%%l_number_of_images%%:</td>
+      <td><CMS:repeat id="r1" default="5"></CMS:repeat></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_fill_space%%:</td>
+      <td><CMS:switch id="gallery3_fill"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+<CMS:cblock idref="gallery3_fill"><div class="gallery3-fill"></CMS:cblock>
+<CMS:calt idref="gallery3_fill"><div class="gallery3"></CMS:calt>
+</CMS:noedit>
+<CMS:edit><div class="gallery3-edit"></CMS:edit>
+
+  <CMS:repeat id="r1" edit="off">
+  <CMS:cblock idref="+0.i1">
+  <CMS:namespace>
+  <CMS:noedit>
+  <div class="gallery3-item">
+
+    <CMS:thumbnail id="i1" twidth="960" width="3840" class="gallery3-image thumbnail"/>
+
+  </div>
+  </CMS:noedit>
+  <CMS:edit><CMS:image id="i1" height="100"/></CMS:edit>
+  </CMS:namespace>
+  </CMS:cblock>
+  </CMS:repeat>
+
+</div>

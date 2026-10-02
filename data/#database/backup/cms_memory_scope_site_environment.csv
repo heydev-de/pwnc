@@ -1,0 +1,10 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: the concrete environment this installation runs in — server, modules, paths, deployment and their quirks.","This region describes where this installation actually lives.
+
+Belongs here: web server and PHP version, which modules are loaded and which are not, rewrite and access rules in effect, where logs and data directories sit, how deployment and updates are carried out, and anything about this machine that has surprised someone before.
+
+Errors from the log belong here when their cause turns out to be the server or its configuration rather than this site's code. Defects in the site's own code go to scope.site_development, findings that bear on safety to scope.site_security. Use the error's own wording as a mnemonic, so it can be found again from any region.
+
+Does not belong here: how PWNC works in general (the scope.pwnc_platform_* regions), or changes to the site's own code (scope.site_development).
+
+This is the region that saves the most time when something behaves inexplicably. A missing server module can make correct configuration look broken, and that is not visible from the application alone.","","agentmauz","2026-09-06 01:04:37","agentmauz","2026-09-06 01:08:12","0","","","0","1","3.00","0","0"

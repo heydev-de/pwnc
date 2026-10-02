@@ -1,0 +1,37 @@
+DIV.text-wrapped-image > BR
+{
+    CLEAR: none;
+}
+
+IMG.text-wrapped-image
+{
+    BOX-SIZING: border-box;
+    FLOAT: left;
+    MARGIN: calc(7.5 * var(--cms-factor)) var(--cms-hspacing) var(--cms-vspacing) 0;
+    MIN-WIDTH: min(320px, 50%);
+    WIDTH: calc(100% / 5 * 2);
+}
+
+DIV.text-wrapped-image:after
+{
+    CONTENT: "";
+    CLEAR: both;
+    DISPLAY: block;
+}
+
+@media (max-width: 640px)
+{
+    IMG.text-wrapped-image
+    {
+        DISPLAY: block;
+        FLOAT: none;
+        MARGIN: 0 0 var(--cms-vspacing);
+        MIN-WIDTH: 0;
+        WIDTH: 100%;
+    }
+
+    DIV.text-wrapped-image:after
+    {
+        DISPLAY: none;
+    }
+}

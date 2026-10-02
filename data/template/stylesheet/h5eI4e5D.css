@@ -1,0 +1,77 @@
+@media (min-width: 641px)
+{
+    DIV.layout-tile
+    {
+        DISPLAY: grid;
+        GRID-TEMPLATE-COLUMNS: repeat(auto-fit, minmax(max(250px, 250 * var(--cms-factor), 25%), 1fr));
+    }
+
+    DIV.layout-tile-control
+    {
+        DISPLAY: none;
+    }
+}
+
+@media (max-width: 640px)
+{
+    DIV.layout-tile
+    {
+        DISPLAY: grid;
+        GRID-AUTO-COLUMNS: 50%;
+        GRID-AUTO-FLOW: column;
+        JUSTIFY-CONTENT: start;
+        OVERFLOW: hidden;
+        OVERFLOW-X: scroll;
+        SCROLL-SNAP-TYPE: x mandatory;
+        SCROLLBAR-WIDTH: none;
+        -MS-OVERFLOW-STYLE: none;
+    }
+
+    DIV.layout-tile::-webkit-scrollbar
+    {
+        DISPLAY: none;
+    }
+
+    DIV.layout-tile-item:nth-child(4n - 3)
+    {
+        SCROLL-SNAP-ALIGN: start;
+    }
+
+    DIV.layout-tile-item:nth-child(4n - 3),
+    DIV.layout-tile-item:nth-child(4n - 1)
+    {
+        GRID-ROW: 1;
+    }
+
+    DIV.layout-tile-item:nth-child(4n - 2),
+    DIV.layout-tile-item:nth-child(4n)
+    {
+        GRID-ROW: 2;
+    }
+
+    DIV.layout-tile-control
+    {
+        PADDING: calc(var(--cms-vspacing) / 2) calc(var(--cms-hspacing) / 2);
+        TEXT-ALIGN: center;
+    }
+
+    DIV.layout-tile-control A
+    {
+        BORDER: calc(1.5 * var(--cms-factor)) solid var(--cms-link-color) !important;
+        BORDER-RADIUS: 50%;
+        BOX-SIZING: border-box;
+        DISPLAY: inline-block;
+        FONT-SIZE: 0;
+        HEIGHT: calc(15 * var(--cms-factor));
+        MARGIN: calc(4.5 * var(--cms-factor));
+        OVERFLOW: hidden;
+        USER-SELECT: none;
+        WIDTH: calc(15 * var(--cms-factor));
+    }
+
+    DIV.layout-tile-control A:hover,
+    DIV.layout-tile-control A.layout-tile-active
+    {
+        BACKGROUND: var(--cms-link-color);
+    }
+}
