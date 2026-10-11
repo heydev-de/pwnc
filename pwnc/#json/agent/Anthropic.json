@@ -1,0 +1,127 @@
+{
+    "version": 1,
+
+    "url": "%endpoint%",
+
+    "header": {
+        "content-type": "application/json",
+        "x-api-key": "%api_key%",
+        "anthropic-version": "2023-06-01",
+        "[anthropic-beta]": "%beta%"
+    },
+
+    "request": {
+        "model": "%model%",
+        "max_tokens": "%max_tokens%",
+        "[system]": "%system%",
+        "messages": "%message%",
+        "[mcp_servers]": "%server%",
+        "[tools]": "%tool%"
+    },
+
+    "user": {
+        "role": "user",
+        "content": "%text%"
+    },
+
+    "assistant": {
+        "role": "assistant",
+        "content": "%reply%"
+    },
+
+    "tool": {
+        "name": "%name%",
+        "description": "%description%",
+        "input_schema": "%schema%"
+    },
+
+    "server": {
+        "value": {
+            "beta": "mcp-client-2025-11-20"
+        },
+        "entry": {
+            "type": "url",
+            "url": "%mcp_url%",
+            "name": "%mcp_name%",
+            "authorization_token": "%mcp_token%"
+        },
+        "toolset": {
+            "type": "mcp_toolset",
+            "mcp_server_name": "%mcp_name%"
+        },
+        "call": "mcp_tool_use",
+        "result": {
+            "type":    "mcp_tool_result",
+            "id":      "tool_use_id",
+            "content": "content/*/text",
+            "error":   "is_error"
+        }
+    },
+
+    "text": {
+        "user": "content",
+        "assistant": "content/*/text",
+        "result": "content/*/content",
+        "reasoning": "content/*/thinking"
+    },
+
+    "value": {
+        "reason": "stop_reason",
+        "reply": "content",
+        "call": "content",
+        "error": ["error/message", "error"]
+    },
+
+    "usage": {
+        "input": "usage/input_tokens",
+        "cache": ["usage/cache_read_input_tokens", "usage/cache_creation_input_tokens"],
+        "output": "usage/output_tokens"
+    },
+
+    "action": {
+        "end_turn": "stop",
+        "stop_sequence": "stop",
+        "refusal": "stop",
+        "max_tokens": "resume",
+        "pause_turn": "resume",
+        "tool_use": "tool",
+        "model_context_window_exceeded": "resume"
+    },
+
+    "call": {
+        "id": "id",
+        "name": "name",
+        "argument": "input",
+        "type": "tool_use",
+        "argument_encode": false
+    },
+
+    "synthetic": "%call%",
+
+    "result": {
+        "message": {
+            "role": "user",
+            "content": "%block%"
+        },
+        "block": {
+            "type": "tool_result",
+            "tool_use_id": "%id%",
+            "content": "%content%",
+            "[is_error]": "%error%"
+        }
+    },
+
+    "default": {
+        "endpoint": "https://api.anthropic.com/v1/messages",
+        "max_tokens": 16384
+    },
+
+    "required": [
+        "model",
+        "api_key"
+    ],
+
+    "prefill": true,
+    "reasoning_replay": true,
+    "overflow": "/^length$|(?<![a-z])(context|length|prompt|request|token|window)(?![a-z]).*(?<![a-z])(allowed|bound|exceed|exhaust|limit|max|overflow|too long)|(?<![a-z])max(imum)?(?![a-z]).*(?<![a-z])(context|length|token)/i"
+}

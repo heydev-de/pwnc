@@ -1,0 +1,9 @@
+DIV.layout-page
+{
+    MARGIN-BOTTOM: var(--cms-vspacing);
+}
+
+NAV.layout-page-pagination
+{
+    TEXT-ALIGN: center;
+}

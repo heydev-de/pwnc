@@ -1,0 +1,25 @@
+FORM.newsletter
+{
+    TEXT-ALIGN: center;
+}
+
+FORM.newsletter INPUT[type=email]
+{
+    TEXT-ALIGN: center;
+    WIDTH: 25ch;
+}
+
+FORM.newsletter INPUT:invalid ~ BUTTON
+{
+    OPACITY: 0.5;
+    CURSOR: not-allowed;
+    POINTER-EVENTS: none;
+}
+
+@media (max-width: 800px)
+{
+    FORM.newsletter INPUT:invalid ~ BUTTON
+    {
+        BOX-SHADOW: 0 0 0 0.5552px #676767, 0 0 0 1.6664px #ffffff;
+    }
+}

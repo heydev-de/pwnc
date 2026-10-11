@@ -1,0 +1,74 @@
+SECTION.expand-block
+{
+    MARGIN: 0 0 var(--cms-vspacing);
+}
+
+SECTION.expand-block > INPUT
+{
+    DISPLAY: none;
+}
+
+SECTION.expand-block > LABEL
+{
+    CURSOR: pointer;
+    DISPLAY: block;
+    FONT-WEIGHT: bold;
+    PADDING-RIGHT: calc(40 * var(--cms-factor));
+    USER-SELECT: none;
+}
+
+SECTION.expand-block > LABEL:after
+{
+    BORDER: calc(2.5 * var(--cms-factor)) solid var(--cms-link-color);
+    BORDER-LEFT: none;
+    BORDER-TOP: none;
+    CONTENT: "";
+    HEIGHT: calc(7.5 * var(--cms-factor));
+    POSITION: absolute;
+    RIGHT: calc(20 * var(--cms-factor));
+    TOP: 50%;
+    TRANSFORM: translate(50%, -70%) rotate(45deg);
+    WIDTH: calc(7.5 * var(--cms-factor));
+}
+
+SECTION.expand-block > INPUT:checked + LABEL:after
+{
+    TRANSFORM: translate(50%, -27.5%) rotate(225deg);
+}
+
+SECTION.expand-block > LABEL:hover:after
+{
+    BORDER-COLOR: var(--cms-link-color-alt);
+}
+
+SECTION.expand-block > INPUT[type=radio]:checked + LABEL
+{
+    BACKGROUND-IMAGE: none;
+}
+
+@keyframes expand-open
+{
+      0% { CLIP-PATH: inset(0 0 100% 0); }
+    100% { CLIP-PATH: inset(0 0   0  0); }
+}
+
+@keyframes expand-close
+{
+      0% { CLIP-PATH: inset(0 0   0  0); HEIGHT: auto; MARGIN: var(--cms-vpadding) 0 0; }
+    100% { CLIP-PATH: inset(0 0 100% 0); HEIGHT: auto; MARGIN: var(--cms-vpadding) 0 0; }
+}
+
+SECTION.expand-block > INPUT:checked + LABEL + DIV
+{
+    ANIMATION: expand-open 0.5s;
+    HEIGHT: auto;
+    MARGIN: var(--cms-vpadding) 0 0;
+    OVERFLOW: visible;
+}
+
+SECTION.expand-block > DIV
+{
+    ANIMATION: expand-close 0.5s;
+    HEIGHT: 0;
+    OVERFLOW: hidden;
+}

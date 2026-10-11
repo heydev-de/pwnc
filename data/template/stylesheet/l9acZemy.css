@@ -1,0 +1,32 @@
+INPUT.iframe-flag,
+INPUT.iframe-flag:checked + DIV.iframe-info
+{
+    DISPLAY: none;
+}
+
+DIV.iframe-info
+{
+    MAX-HEIGHT: calc(100vh - 35 * var(--cms-factor));
+    OVERFLOW-X: clip;
+    OVERFLOW-Y: auto;
+}
+
+DIV.iframe-info > BUTTON
+{
+    LEFT: 50%;
+    MARGIN: 0;
+    TRANSFORM: translateX(-50%);
+}
+
+DIV.iframe > IFRAME
+{
+    DISPLAY: none;
+    HEIGHT: calc(100vh - 35 * var(--cms-factor));
+    WIDTH: 100%;
+}
+
+DIV.iframe > IFRAME:first-child,
+INPUT.iframe-flag:checked + DIV.iframe-info + IFRAME
+{
+    DISPLAY: block;
+}

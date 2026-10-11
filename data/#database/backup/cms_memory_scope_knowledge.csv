@@ -1,0 +1,12 @@
+"id","mnemonic","description","content","attachment_type","owner","created","editor","edited","access_count","accessed","followup","read_only","safe","rating_value","rating_sum","rating_count"
+"1","about","Purpose of this region: what has been learned, changed or decided — how things work here, what was done and why, what went wrong.","This region holds what is known, not what is still to do.
+
+Belongs here: how the platform and this installation actually behave, non-obvious steps and traps found the hard way; changes made and the reason for them; errors from the log with their cause and what was done about them; security findings with the verdict; decisions with the reasoning behind them.
+
+Does not belong here: work still to be done (scope.work), rules to be followed (scope.instructions), temporary notes (scope.scratchpad), or what the shipped manuals already document. Read those first, at /pwnc/mcp/skills/ and /doc/api/. The exposed interface is always authoritative: remembered knowledge is context for finding your way, never a substitute for reading the current forms and links.
+
+This region is shared by many kinds of entries, so mnemonics carry the structure. Use these where they fit: `decision`, `change`, `trap`, `security`. For an error from the log, use the error's own wording as a mnemonic, so it can be found again from any region.
+
+Record the reasoning, not the diff; version control already holds that. A decision recorded without its why cannot be revisited sensibly, so mark decisions `safe`. A security entry states the verdict, not only the finding: ""checked, not exploitable, because X"" is as valuable as a fix.
+
+Never record credentials, API keys or tokens of any kind. Memory is shared with everyone holding reader rights on the region, and a secret written here cannot be taken back.","","paws","2026-10-07 15:50:08","paws","","2","2026-10-07 16:42:09","","0","1","3.00","0","0"

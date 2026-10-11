@@ -1,0 +1,88 @@
+NAV.menu-dropdown
+{
+    Z-INDEX: 500;
+}
+
+NAV.menu-dropdown UL
+{
+    LIST-STYLE: none;
+    MARGIN: 0;
+    PADDING: 0;
+}
+
+NAV.menu-dropdown LI
+{
+    DISPLAY: inline-block;
+    MARGIN: 0;
+}
+
+NAV.menu-dropdown A
+{
+    COLOR: var(--cms-color);
+    DISPLAY: block;
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+}
+
+NAV.menu-dropdown LI:hover A
+{
+    BACKGROUND-COLOR: var(--cms-background-alt);
+    COLOR: var(--cms-color-alt);
+}
+
+/* subsequent levels */
+NAV.menu-dropdown LI UL
+{
+    POSITION: absolute;
+    WHITE-SPACE: nowrap;
+}
+
+NAV.menu-dropdown LI LI
+{
+    DISPLAY: block;
+}
+
+NAV.menu-dropdown LI LI A
+{
+    BACKGROUND-COLOR: var(--cms-background-alt);
+    COLOR: var(--cms-color-alt);
+}
+
+/* 2nd+ levels */
+NAV.menu-dropdown LI LI UL
+{
+    MARGIN-LEFT: 100%;
+    TOP: 0;
+}
+
+/* hide / show */
+@keyframes menu-dropdown-fade-out
+{
+      0% { LEFT: 0; OPACITY: 1; }
+    100% { LEFT: 0; OPACITY: 0; }
+}
+
+@keyframes menu-dropdown-fade-in
+{
+      0% { LEFT: 0; OPACITY: 0; }
+    100% { LEFT: 0; OPACITY: 1; }
+}
+
+NAV.menu-dropdown LI UL,
+NAV.menu-dropdown LI:hover LI UL,
+NAV.menu-dropdown LI LI:hover LI UL,
+NAV.menu-dropdown LI LI LI:hover LI UL
+{
+    ANIMATION: menu-dropdown-fade-out 0.5s;
+    LEFT: -100vw;
+    OPACITY: 0;
+}
+
+NAV.menu-dropdown LI:hover UL,
+NAV.menu-dropdown LI LI:hover UL,
+NAV.menu-dropdown LI LI LI:hover UL,
+NAV.menu-dropdown LI LI LI LI:hover UL
+{
+    ANIMATION: menu-dropdown-fade-in 0.5s;
+    LEFT: auto;
+    OPACITY: 1;
+}

@@ -1,0 +1,216 @@
+<div class="imprint">
+
+  <h2>%%l_legal_info%%</h2>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left"><CMS:text id="company" title="%%l_person%% / %%l_company%%"/></div>
+    <div class="imprint-right"><CMS:text id="address" title="%%l_address%%"/></div>
+
+  </div>
+
+  <span class="imprint-separator"></span>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_phone%%</div>
+    <div class="imprint-right"><CMS:text id="phone" title="%%l_phone%%"/></div>
+
+  </div>
+
+  <CMS:cblock idref="fax">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_fax%%</div>
+    <div class="imprint-right"><CMS:text id="fax" title="%%l_fax%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_email%%</div>
+    <div class="imprint-right">
+
+      <CMS:edit><CMS:text id="email" title="%%l_email%%"/></CMS:edit>
+
+      <CMS:noedit>
+      <a href="mailto:<?=x(l($cms_template_document->get($cms_template_base_id . "email", "text")))?>">
+
+        <CMS:text id="email"/>
+
+      </a>
+      </CMS:noedit>
+
+    </div>
+
+  </div>
+
+  <CMS:cblock idref="contact">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_contact_form%%</div>
+    <div class="imprint-right"><CMS:href id="contact">%%l_click_here%%</CMS:href></div>
+
+  </div>
+  </CMS:cblock>
+
+  <span class="imprint-separator"></span>
+
+  <CMS:cblock idref="director">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_executive_management%%</div>
+    <div class="imprint-right"><CMS:text id="director" title="%%l_executive_management%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="registration_office">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_commercial_register_entry%%</div>
+    <div class="imprint-right">
+
+      <CMS:text id="registration_office" title="%%l_registration_authority%%"/>
+      <CMS:cblock idref="registration_code_a">, %%l_hra%% <CMS:text id="registration_code_a" title="%%l_hra_no%%"/></CMS:cblock>
+      <CMS:cblock idref="registration_code_b">, %%l_hrb%% <CMS:text id="registration_code_b" title="%%l_hrb_no%%"/></CMS:cblock>
+
+    </div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="holder">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_owner%%</div>
+    <div class="imprint-right"><CMS:text id="holder" title="%%l_owner%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="vat_id_number">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_vat_id_no%%</div>
+    <div class="imprint-right"><CMS:text id="vat_id_number" title="%%l_vat_id_no%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="responsible_person">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_responsible_for_content%%</div>
+    <div class="imprint-right"><CMS:text id="responsible_person" title="%%l_person_in_charge%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="custom_title1">
+  <span class="imprint-separator"></span>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left"><CMS:text id="custom_title1" title="%%l_field_1_designation%%"/></div>
+    <div class="imprint-right"><CMS:text id="custom_value1" title="%%l_field_1_content%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="custom_title2">
+  <span class="imprint-separator"></span>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left"><CMS:text id="custom_title2" title="%%l_field_2_designation%%"/></div>
+    <div class="imprint-right"><CMS:text id="custom_value2" title="%%l_field_2_content%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="custom_title3">
+  <span class="imprint-separator"></span>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left"><CMS:text id="custom_title3" title="%%l_field_3_designation%%"/></div>
+    <div class="imprint-right"><CMS:text id="custom_value3" title="%%l_field_3_content%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <span class="imprint-separator"></span>
+
+  <CMS:cblock idref="g1.designer">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_graphic_design%%</div>
+    <div class="imprint-right">
+
+      <CMS:group id="g1">
+      <CMS:href id="designer_url"><CMS:text id="designer" title="%%l_graphic_design%%"/></CMS:href>
+      </CMS:group>
+
+    </div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="g2.engineer">
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_technical_implementation%%</div>
+    <div class="imprint-right">
+
+      <CMS:group id="g2">
+      <CMS:href id="engineer_url"><CMS:text id="engineer" title="%%l_technical_implementation%%"/></CMS:href>
+      </CMS:group>
+
+    </div>
+
+  </div>
+  </CMS:cblock>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_platform%%</div>
+    <div class="imprint-right"><a href="<?=x(CMS_HOMEPAGE)?>"><?=x(CMS_SOFTWARE)?></a></div>
+
+  </div>
+
+  <CMS:cblock idref="disclaimer">
+  <span class="imprint-separator"></span>
+
+  <div id="disclaimer" class="imprint-line">
+
+    <div class="imprint-left">%%l_terms_of_use%%</div>
+    <div class="imprint-right"><CMS:text id="disclaimer" title="%%l_terms_of_use%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="data_protection">
+  <span class="imprint-separator"></span>
+
+  <div class="imprint-line">
+
+    <div id="privacy" class="imprint-left">%%l_data_privacy_statement%%</div>
+    <div class="imprint-right"><CMS:text id="data_protection" title="%%l_data_privacy_statement%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="miscellaneous">
+  <span class="imprint-separator"></span>
+
+  <div class="imprint-line">
+
+    <div class="imprint-left">%%l_miscellaneous%%</div>
+    <div class="imprint-right"><CMS:text id="miscellaneous" title="%%l_miscellaneous%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+</div>

@@ -1,0 +1,67 @@
+<CMS:edit option="value switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_comment_id%% (%%l_empty_equals_document_id%%):</td>
+      <td><CMS:value id="comment_instance"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_show_immediately%%:</td>
+      <td><CMS:switch id="comment_default_status"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_recipient_email_for_notifications%%:</td>
+      <td><CMS:value id="comment_notification_email"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_show_oldest_first%%:</td>
+      <td><CMS:switch id="comment_display_order"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_spam_filter_activation_threshold%% (1 - 100):</td>
+      <td><CMS:value id="comment_spam_threshold" default="95"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_use_captcha%%:</td>
+      <td><CMS:switch id="comment_use_captcha"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:nocache>
+<?php
+
+$GLOBALS["comment"] = array(
+    "instance"           => l($cms_template_document->get($cms_template_base_id . "comment_instance", "value")),
+    "default_status"     => $cms_template_document->get($cms_template_base_id . "comment_default_status", "value"),
+    "notification_email" => l($cms_template_document->get($cms_template_base_id . "comment_notification_email", "value")),
+    "display_order"      => $cms_template_document->get($cms_template_base_id . "comment_display_order", "value"),
+    "spam_threshold"     => l($cms_template_document->get($cms_template_base_id . "comment_spam_threshold", "value")),
+    "use_captcha"        => $cms_template_document->get($cms_template_base_id . "comment_use_captcha", "value"));
+
+cms_application("comment");
+
+?>
+</CMS:nocache>

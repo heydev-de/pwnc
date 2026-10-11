@@ -1,0 +1,81 @@
+<CMS:edit option="repeat value">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="repeat">
+    <tr>
+      <td>%%l_number_of_blocks%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_maximum_width_in_px%%:</td>
+      <td><CMS:value id="logo_collection_width" default="150"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_maximum_height_in_px%%:</td>
+      <td><CMS:value id="logo_collection_height" default="50"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+<?php
+
+$count      = (int)$cms_template_document->get($cms_template_base_id . "r1", "repeat");
+$max_width  = (int)l($cms_template_document->get($cms_template_base_id . "logo_collection_width", "value"));
+$max_height = (int)l($cms_template_document->get($cms_template_base_id . "logo_collection_height", "value"));
+
+?>
+</CMS:noedit>
+
+<div class="logo-collection">
+
+  <CMS:repeat id="r1" edit="off">
+  <CMS:cblock idref="+0.i1">
+
+  <div class="logo-collection-block">
+
+    <CMS:group>
+    <CMS:href id="h1">
+
+    <CMS:edit>
+    <CMS:image id="i1" width="150" height="50"/>
+    </CMS:edit>
+
+    <CMS:noedit>
+<?php
+
+$image = l($cms_template_document->get($cms_template_path_id . "i1", "image"));
+$image = translate_url($image);
+
+list($width, $height) = getimagesize($image);
+
+$scale   = min($max_width / $width, $max_height / $height);
+$width  *= $scale;
+$height *= $scale;
+$style   = "WIDTH:calc($width*var(--cms-factor));HEIGHT:calc($height*var(--cms-factor))";
+
+echo(image($image, NULL, NULL, NULL, $style, TRUE));
+
+?>
+    </CMS:noedit>
+
+    </CMS:href>
+    </CMS:group>
+
+  </div>
+  </CMS:cblock>
+  </CMS:repeat>
+
+</div>

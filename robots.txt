@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /pwnc/module/
+Allow: /pwnc/module/download.php
+Allow: /pwnc/module/rss.php
+Allow: /pwnc/module/sitemap.php
+
+# set to your preferred domain
+# Sitemap: https://example.com/sitemap.xml

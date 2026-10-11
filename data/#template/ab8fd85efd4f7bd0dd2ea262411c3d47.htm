@@ -1,0 +1,56 @@
+<CMS:cblock idref="g1.d1">
+<CMS:group id="g1">
+<CMS:download id="d1">
+
+<CMS:cblock idref="t1">
+<CMS:text id="t1" title="%%l_download%%"/>
+</CMS:cblock>
+
+<CMS:calt idref="t1">
+<?php
+
+$index     = $cms_template_base_id . "g1.d1";
+$download  = $cms_template_document->get($index, "download");
+$_download = new download();
+
+//name
+$name = l($_download->data->get($download, "name"));
+echo("<strong>" . x($name) . "</strong>");
+
+?>
+</CMS:calt>
+
+</CMS:download>
+
+<CMS:calt idref="t1">
+<?php
+
+//description
+$description = parse_text(l($_download->data->get($download, "description")));
+if (nstre($description)) echo("<br>$description");
+
+//filename
+$filename = $_download->data->get($download, "filename");
+
+//backwards compatibility fallback
+if (($filename === NULL) && (strncmp($download, "download://", 11) === 0))
+    $filename = substr($download, 11);
+
+//extension and size
+$extension = file_extension($filename);
+$path      = CMS_DATA_PATH . "#download/$filename";
+$size      = sprintf("%u", filesize($path));
+
+if (nstre($extension . $size))
+{
+    echo("<br><small>");
+    if (nstre($extension)) echo(x(strtoupper($extension)) . (nstre($size) ? " | " : ""));
+    if (nstre($size)) echo(x(format_bytesize($size)));
+    echo("</small>");
+};
+
+?>
+</CMS:calt>
+
+</CMS:group>
+</CMS:cblock>

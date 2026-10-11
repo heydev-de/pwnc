@@ -1,0 +1,66 @@
+<CMS:edit option="text">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_button_text%%:</td>
+      <td><CMS:text id="dialog_button_text" default="%%l_open%%"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+
+<div>
+
+  <CMS:template id="tp1" default="l9acZemy"/>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+<CMS:cblock idref="tp1">
+<button title="%%l_open%%"
+        class="dialog-button"
+        onclick="dialog_<?=x($cms_template_temp_id)?>_toggle();">
+
+  <CMS:text id="dialog_button_text" edit="off"/>
+
+</button>
+
+<dialog id="dialog-<?=x($cms_template_temp_id)?>"
+        class="dialog">
+
+  <div>
+
+    <div>
+
+      <CMS:template id="tp1" edit="off"/>
+
+    </div>
+
+    <button title="%%l_close%%"
+            class="dialog-close"
+            onclick="dialog_<?=x($cms_template_temp_id)?>_toggle();">
+
+      %%l_close%%
+
+    </button>
+
+  </div>
+
+</dialog>
+
+<script>
+function dialog_<?=x($cms_template_temp_id)?>_toggle()
+{
+    const id     = "dialog-<?=qx($cms_template_temp_id)?>";
+    const dialog = document.getElementById(id);
+    dialog.open ? dialog.close() : dialog.showModal();
+};
+</script>
+</CMS:cblock>
+</CMS:noedit>

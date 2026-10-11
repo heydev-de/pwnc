@@ -1,0 +1,14 @@
+DIV.media-ratio
+{
+    BACKGROUND: #000000;
+    HEIGHT: 0;
+}
+
+DIV.media-ratio > DIV
+{
+    BOTTOM: 0;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}

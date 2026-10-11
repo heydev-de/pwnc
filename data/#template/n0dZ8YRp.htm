@@ -1,0 +1,36 @@
+<CMS:edit option="switch">
+<div class="module-settings">
+
+  <table>
+  
+    <tr>
+      <td>%%l_no_background%%:</td>
+      <td><CMS:switch id="alternate_nobackground"/></td>
+    </tr>
+    
+    <tr>
+      <td>%%l_no_padding%%:</td>
+      <td><CMS:switch id="alternate_nopadding"/></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+$class  = $cms_template_document->get($cms_template_base_id . "alternate_nobackground", "value") ?
+          " alternate-nobackground" : "";
+$class .= $cms_template_document->get($cms_template_base_id . "alternate_nopadding", "value") ?
+          " alternate-nopadding" : "";
+
+?>
+
+<CMS:cblock idref="tp1">
+<div class="alternate<?=$class?>">
+
+  <CMS:template id="tp1"/>
+
+</div>
+</CMS:cblock>

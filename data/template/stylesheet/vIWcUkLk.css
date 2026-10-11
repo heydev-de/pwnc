@@ -1,0 +1,103 @@
+BUTTON.dialog-button
+{
+    MARGIN: 0;
+}
+
+DIALOG.dialog
+{
+    ALL: unset;
+    BACKGROUND: var(--cms-overlay-background);
+    DISPLAY: grid;
+    INSET: 0;
+    OPACITY: 0;
+    PLACE-ITEMS: center;
+    PADDING-TOP: calc(35 * var(--cms-factor));
+    POINTER-EVENTS: none;
+    POSITION: fixed;
+    TRANSITION: opacity 0.5s;
+    USER-SELECT: none;
+    WILL-CHANGE: opacity;
+}
+
+DIALOG.dialog[open]
+{
+    OPACITY: 1;
+    POINTER-EVENTS: auto;
+    USER-SELECT: auto;
+}
+
+DIALOG.dialog > DIV
+{
+    BACKGROUND: var(--cms-background);
+    BOX-SHADOW: var(--cms-box-shadow);
+}
+
+DIALOG.dialog > DIV > DIV
+{
+    BOX-SIZING: border-box;
+    MAX-HEIGHT: calc(100vh - 70 * var(--cms-factor));
+    MAX-WIDTH: min(100vw - 35 * var(--cms-factor), 800 * var(--cms-factor));
+    OVERFLOW: clip;
+    PADDING: calc(var(--cms-vspacing) / 2) calc(var(--cms-hspacing) / 2);
+}
+
+@keyframes dialog-scroll-enable
+{
+    to { OVERFLOW-Y: auto; }
+}
+
+DIALOG.dialog[open] > DIV > DIV
+{
+    ANIMATION: dialog-scroll-enable 0s 0.1s forwards;
+}
+
+BUTTON.dialog-close
+{
+    ALL: unset;
+    CURSOR: pointer;
+    FONT-SIZE: 0;
+    HEIGHT: calc(35 * var(--cms-factor));
+    POSITION: absolute;
+    RIGHT: calc(-5 * var(--cms-factor));;
+    TOP: calc(-35 * var(--cms-factor));
+    WIDTH: calc(35 * var(--cms-factor));
+}
+
+BUTTON.dialog-close:before,
+BUTTON.dialog-close:after
+{
+    ALL: unset;
+    BACKGROUND: var(--cms-overlay-color);
+    CONTENT: "";
+    HEIGHT: calc(1.5 * var(--cms-factor));
+    POSITION: absolute;
+    RIGHT: calc(5 * var(--cms-factor));
+    TOP: calc(50% - 0.75 * var(--cms-factor));
+    TRANSFORM: rotate(45deg);
+    WIDTH: calc(25 * var(--cms-factor));
+}
+
+BUTTON.dialog-close:after
+{
+    TRANSFORM: rotate(-45deg);
+}
+
+/* iframe adaptation */
+DIALOG.dialog > DIV > DIV > DIV.iframe > DIV.iframe-info
+{
+    MAX-HEIGHT: none;
+    OVERFLOW: visible;
+}
+
+DIALOG.dialog > DIV > DIV > DIV.iframe > IFRAME
+{
+    HEIGHT: calc(100vh - 70 * var(--cms-factor));
+    WIDTH: min(100vw - 35 * var(--cms-factor), 800 * var(--cms-factor));
+}
+
+DIALOG.dialog > DIV > DIV:has(> DIV.iframe > IFRAME:first-child),
+DIALOG.dialog > DIV > DIV:has(> DIV.iframe > INPUT.iframe-flag:checked)
+{
+    OVERFLOW-Y: clip;
+    PADDING: 0;
+}

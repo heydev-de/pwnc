@@ -1,0 +1,345 @@
+<?php
+
+cms_load("image");
+
+//get category
+$image    = new image();
+$range    = $cms_template_base_id . "slideshow_category";
+$object   = $cms_template_document->get($range);
+$_object  = l($object);
+$category = (string)$image->data->get($_object, "category");
+
+?>
+
+<CMS:edit option="value switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_image_category%%</td>
+      <td>
+
+        <CMS:value id="slideshow_category" edit="off"/>
+
+<?php
+
+//display category selection
+$buffer = "'+encodeURIComponent('" .
+      q(cms_url(["range" => $range,
+                 "type"  => "value",
+                 "value" => "\x1B%return%",
+                 "left"  => "\x1B%left%",
+                 "top"   => "\x1B%top%"])) .
+      "')+'";
+
+$buffer = str_replace(
+    "%replace%",
+    $buffer,
+    "content_edit_open('" .
+    q(cms_url(CMS_MODULES_URL . "interface.php",
+              ["ifc_page"          => "image",
+               "ifc_option"        => "external",
+               "object"            => $object,
+               "ifc_select"        => "object",
+               "ifc_select_action" => "\x1B%replace%"],
+              TRUE)) . "');");
+
+echo("<a href=\"#\" onclick=\"" . x($buffer) . ";return false;\">" .
+     "%%l_select%%" .
+     "</a>");
+
+?>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>%%l_relative_height_of_display_in_percent%%:</td>
+      <td><CMS:value id="slideshow_image_ratio" regex="/^\d*$/" default="56"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_maximum_image_width_in_px%%:</td>
+      <td><CMS:value id="slideshow_image_width" regex="/^\d*$/" default="1920"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_maximum_image_height_in_px%% (%%l_empty_equals_automatic%%):</td>
+      <td><CMS:value id="slideshow_image_height" regex="/^\d*$/"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_fade_transition_speed%% (1 - 100):</td>
+      <td><CMS:value id="slideshow_fade_speed" regex="/^\d*$/" default="3"/></td>
+    </tr>
+
+    <tr>
+      <td>%%l_display_time_in_ms%%:</td>
+      <td><CMS:value id="slideshow_display_time" regex="/^\d*$/" default="3500"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch">
+    <tr>
+      <td>%%l_hide_control_area%%:</td>
+      <td><CMS:switch id="slideshow_hide_control"/></td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+//settings
+$image_ratio  = max((int)strtonum($cms_template_document->get($cms_template_base_id . "slideshow_image_ratio")), 1);
+$image_width  = max((int)strtonum($cms_template_document->get($cms_template_base_id . "slideshow_image_width")), 1);
+$image_height = max((int)strtonum($cms_template_document->get($cms_template_base_id . "slideshow_image_height")), 0);
+$fade_speed   = min(max((int)strtonum($cms_template_document->get($cms_template_base_id . "slideshow_fade_speed")), 1), 100);
+$display_time = max((int)strtonum($cms_template_document->get($cms_template_base_id . "slideshow_display_time")), 1);
+
+//generate image list
+$array = image_get_array();
+
+if (! isset($array[$category])) return FALSE;
+
+$resource  = array();
+$processed = array();
+
+foreach ($array[$category] AS $key => $value)
+{
+    //process image
+    $location    = translate_url($value);
+    $resource[]  = $location;
+    $processed[] = q(image_process($location, $image_width, $image_height));
+};
+
+//output image list
+echo("<script>" .
+     "var slideshow_" . $cms_template_temp_id . "_resource  = new Array(\"" .
+     implode("\", \"", $resource) . "\");" .
+     "var slideshow_" . $cms_template_temp_id . "_processed = new Array(\"" .
+     implode("\", \"", $processed) . "\");" .
+     "</script>");
+
+?>
+
+<div id="slideshow-<?=$cms_template_temp_id?>-viewport"
+     class="slideshow-viewport"
+     style="PADDING-BOTTOM:<?=$image_ratio?>%">
+  <div id="slideshow-<?=$cms_template_temp_id?>-lower"
+       class="slideshow-lower"></div>
+  <div id="slideshow-<?=$cms_template_temp_id?>-upper"
+       class="slideshow-upper"></div>
+  <a id="slideshow-<?=$cms_template_temp_id?>-action"
+     href="#"
+     class="slideshow-action thumbnail"
+     onclick="slideshow_<?=$cms_template_temp_id?>.display();return false;"
+     onmouseenter="slideshow_<?=$cms_template_temp_id?>.pause();"
+     onmouseleave="slideshow_<?=$cms_template_temp_id?>.resume();"></a>
+</div>
+
+<CMS:calt idref="slideshow_hide_control">
+<?php
+
+//control
+echo("<div id=\"slideshow-$cms_template_temp_id-control\" " .
+          "class=\"slideshow-control\">");
+
+//process thumbnails
+$i = 0;
+foreach ($resource AS $value)
+{
+    $url = image_process($value, 100);
+    echo("<a id=\"slideshow-$cms_template_temp_id-selector-$i\" " .
+            "href=\"#\" " .
+            "onclick=\"slideshow_$cms_template_temp_id.select($i);return false;\">" .
+         "<img src=\"" . x($url) . "\" " .
+              "alt=\"" . $i++ . "\">" .
+         "</a>");
+};
+
+//play/pause button
+echo("<a id=\"slideshow-$cms_template_temp_id-trigger\" " .
+             "href=\"#\" " .
+             "class=\"slideshow-stop button\" " .
+             "onclick=\"slideshow_$cms_template_temp_id.switch(this);return false;\">" .
+     parse_token("\%%l_play_pause\%%") .
+     "</a>" .
+     "</div>");
+
+?>
+</CMS:calt>
+
+<script>
+
+var slideshow_<?=$cms_template_temp_id?> =
+{
+    viewport : document.getElementById("slideshow-<?=$cms_template_temp_id?>-viewport"),
+    lower    : document.getElementById("slideshow-<?=$cms_template_temp_id?>-lower"),
+    upper    : document.getElementById("slideshow-<?=$cms_template_temp_id?>-upper"),
+    action   : document.getElementById("slideshow-<?=$cms_template_temp_id?>-action"),
+    trigger  : document.getElementById("slideshow-<?=$cms_template_temp_id?>-trigger"),
+    preload  : new Image(),
+    opacity  : 100,
+    count    : slideshow_<?=$cms_template_temp_id?>_resource.length,
+    nth      : 0,
+    paused   : false,
+    off      : false,
+    flag     : true,
+
+    start : function()
+    {
+        //initial
+        if (this.preload.src == "")
+        {
+            //set link target
+            this.action.href = slideshow_<?=$cms_template_temp_id?>_resource[this.nth];
+
+            //preload image
+            this.preload.src = slideshow_<?=$cms_template_temp_id?>_processed[this.nth];
+        }
+
+        //check preload status
+        else if (this.preload.complete)
+        {
+            //display first image
+            this.upper.style.backgroundImage = "url(" + this.preload.src + ")";
+            this.highlight();
+
+            //start animation
+            var _this = this;
+            fx_animation_frame(function() { _this.run(); }, 50);
+            return;
+        };
+
+        var _this = this;
+        fx_animation_frame(function() { _this.start(); }, 250);
+        return this;
+    },
+
+    run : function ()
+    {
+        //do not execute if paused
+        if (this.paused || this.off)
+        {
+            var _this = this;
+            fx_animation_frame(function() { _this.run(); }, 250);
+            return;
+        };
+
+        //fade end
+        if (this.opacity > 100)
+        {
+            //shift visible image and preload next
+            this.lower.style.backgroundImage = this.upper.style.backgroundImage;
+            if (++this.nth == this.count) this.nth = 0;
+            this.preload.src = slideshow_<?=$cms_template_temp_id?>_processed[this.nth];
+
+            //make foreground transparent
+            this.upper.style.opacity = 0;
+            this.opacity             = 0;
+            this.flag                = true;
+
+            var _this = this;
+            fx_animation_frame(function() { _this.run(); }, <?=$display_time?>);
+            return;
+        };
+
+        //set transparency
+        this.upper.style.opacity = this.opacity / 100;
+
+        //fade start
+        if (this.opacity == 0)
+        {
+            this.upper.style.backgroundImage = "url(" + this.preload.src + ")";
+        }
+
+        //50% opacity
+        else if (this.flag && (this.opacity >= 50))
+        {
+            //highlight selector
+            this.highlight();
+
+            //set link target
+            this.action.href = slideshow_<?=$cms_template_temp_id?>_resource[this.nth];
+
+            this.flag = false;
+        };
+
+        //increase opacity
+        this.opacity += <?=$fade_speed?>;
+
+        var _this = this;
+        fx_animation_frame(function() { _this.run(); }, 50);
+    },
+
+    display : function()
+    {
+        load_page(this.action.href);
+    },
+
+    select : function(nth)
+    {
+        //set visible image
+        with (this.upper.style)
+        {
+            backgroundImage = "url(" + slideshow_<?=$cms_template_temp_id?>_processed[nth] + ")";
+            opacity         = 1.0;
+        };
+
+        //highlight selector
+        this.nth = nth;
+        this.highlight();
+
+        //set link target
+        this.action.href = slideshow_<?=$cms_template_temp_id?>_resource[nth];
+
+        this.opacity = 100;
+        this.flag    = false;
+    },
+
+    highlight : function()
+    {
+        if (! this.trigger) return; //control disabled
+        var object = null;
+
+        for (var i = 0; i < this.count; i++)
+        {
+            object           = document.getElementById("slideshow-<?=$cms_template_temp_id?>-selector-" + i);
+            object.className = (i == this.nth) ? "slideshow-active" : "";
+        };
+    },
+
+    pause : function()
+    {
+        if (this.off) return;
+        this.paused = true;
+
+        //display either background or foreground image with full opacity
+        var opacity = ((this.opacity >= 50) || (this.lower.style.backgroundImage == "")) ? 100 : 0;
+        this.upper.style.opacity = opacity / 100;
+    },
+
+    resume : function()
+    {
+        if (this.off) return;
+        this.paused = false;
+    },
+
+    switch : function()
+    {
+        if (! this.trigger) return; //control disabled
+        var object             = this.trigger.firstChild;
+        this.off               = ! this.off;
+        this.trigger.className = this.off ? "slideshow-start button" : "slideshow-stop button";
+    }
+};
+
+fx_event_listen("window_load", function() { slideshow_<?=$cms_template_temp_id?>.start(); });
+
+</script>

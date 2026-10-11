@@ -1,0 +1,16 @@
+ARTICLE.article > H1
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+ARTICLE.article > TIME
+{
+    DISPLAY: block;
+    FONT-SIZE: smaller;
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
+
+ARTICLE.article > DIV
+{
+    MARGIN-BOTTOM: calc(var(--cms-vspacing) / 4);
+}
