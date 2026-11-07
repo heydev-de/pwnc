@@ -1,0 +1,6 @@
+DIV.fullwidth
+{
+    MARGIN-LEFT: calc(-50vw + 50%);
+    MARGIN-RIGHT: calc(-50vw + 50%);
+    WIDTH: 100vw;
+}

@@ -1,0 +1,63 @@
+<CMS:edit option="repeat">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_number_of_blocks%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php
+
+$c = $cms_template_document->get($cms_template_base_id . "r1", "repeat");
+$c = max((int)$c, 1);
+$i = 0;
+
+?>
+
+<div class="fan">
+
+  <div class="fan-container">
+
+    <CMS:repeat id="r1" edit="off">
+
+    <input id="fan-slat[<?=++$i?>]" type="radio" value="1" class="fan-trigger">
+    <div class="fan-slat" style="WIDTH:<?=100 / $c?>%">
+
+      <CMS:group>
+      <CMS:edit>
+      <CMS:image id="i1" width="100"/><br>
+      <CMS:text id="t1"/><br>
+      <CMS:href id="h1"></CMS:href>
+      </CMS:edit>
+
+      <CMS:noedit>
+      <CMS:image id="i1" width="3840" edit="off" class="fan-image"/>
+
+      <CMS:cblock idref="t1">
+      <div class="fan-overlay"></div>
+      <div class="fan-text">
+
+        <CMS:text id="t1" edit="off"/>
+
+      </div>
+      </CMS:cblock>
+
+      <CMS:href id="h1" class="fan-link" edit="off"></CMS:href>
+      <label for="fan-slat[<?=$i?>]" class="fan-switch"></label>
+      </CMS:noedit>
+      </CMS:group>
+
+    </div>
+
+    </CMS:repeat>
+
+  </div>
+
+</div>

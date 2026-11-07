@@ -1,0 +1,19 @@
+<CMS:href id="h1">%%l_redirect%%</CMS:href>
+
+<CMS:noedit>
+<CMS:cblock idref="h1">
+<?php
+
+if (CMS_TEMPLATE_EDIT) return;
+if (headers_sent())    return;
+
+$value = l($cms_template_document->get($cms_template_base_id . "h1", "href"));
+$value = template_parse_reference($value);
+if ($value === FALSE) return;
+
+header("Location: " . $value["url"]);
+exit();
+
+?>
+</CMS:cblock>
+</CMS:noedit>

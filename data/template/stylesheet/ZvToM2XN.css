@@ -1,0 +1,93 @@
+DIV.rm-split
+{
+    DISPLAY: flex;
+    HEIGHT: 100%;
+    WIDTH: 100%;
+}
+
+@media (max-width: 640px)
+{
+    DIV.rm-split
+    {
+        FLEX-DIRECTION: column;
+    }
+}
+
+DIV.rm-split-background
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+DIV.rm-split-background IMG
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    MAX-HEIGHT: 100vh;
+    OBJECT-FIT: cover;
+    OBJECT-POSITION: center top;
+    POSITION: sticky;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+DIV.rm-split-left,
+DIV.rm-split-right
+{
+    ALIGN-ITEMS: center;
+    DISPLAY: flex;
+    FLEX: 1 1 50%;
+    MIN-HEIGHT: 100vh;
+}
+
+DIV.rm-split-left
+{
+    JUSTIFY-CONTENT: flex-end;
+}
+
+@media (max-width: 640px)
+{
+    DIV.rm-split-left,
+    DIV.rm-split-right
+    {
+        MIN-HEIGHT: 0;
+        JUSTIFY-CONTENT: center;
+    }
+
+    DIV.rm-split-left:has(DIV.rm-split-background),
+    DIV.rm-split-right:has(DIV.rm-split-background)
+    {
+        MIN-HEIGHT: 50vh;
+    }
+}
+
+DIV.rm-split-left-content,
+DIV.rm-split-right-content
+{
+    MAX-WIDTH: calc(1225 / 2 * var(--cms-factor) - var(--cms-hspacing));
+    PADDING: calc(var(--cms-vspacing) * 2) var(--cms-hspacing);
+}
+
+@media (max-width: 640px)
+{
+    DIV.rm-split-left-content,
+    DIV.rm-split-right-content
+    {
+        MAX-WIDTH: 100%;
+    }
+}
+
+DIV.rm-split-overlay
+{
+    BACKDROP-FILTER: blur(calc(2.5 * var(--cms-factor)));
+    BACKGROUND: rgba(22, 22, 24, 0.65);
+    BOTTOM: 0;
+    CONTENT: "";
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}

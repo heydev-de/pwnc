@@ -1,0 +1,24 @@
+<?php
+
+//generate icons from image
+
+$image = "image://QDjwl0uL";
+$image = translate_url($image);
+$array = array( 64 => "shortcut icon",
+                57 => "apple-touch-icon",
+                76 => "apple-touch-icon",
+               120 => "apple-touch-icon",
+               128 => "icon",
+               152 => "apple-touch-icon",
+               180 => "apple-touch-icon",
+               192 => "icon");
+
+foreach ($array AS $key => $value)
+{
+    $location = image_process($image, $key, $key, "png");
+    echo("<link rel=\"$value\" " .
+               "href=\"" . x($location) . "\" " .
+               "sizes=\"$key" . "x$key\">");
+};
+
+?>

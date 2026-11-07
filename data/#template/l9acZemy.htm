@@ -1,0 +1,136 @@
+<CMS:edit option="text href value switch">
+<div class="module-settings">
+
+  <table>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_button_text%%:</td>
+      <td><CMS:text id="iframe_button_text" default="%%l_accept%%"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="text">
+    <tr>
+      <td>%%l_info%%:</td>
+      <td><CMS:text id="iframe_info"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="href">
+    <tr>
+      <td>%%l_url%%:</td>
+      <td><CMS:href id="iframe_url"></CMS:href></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="value">
+    <tr>
+      <td>%%l_source_code%%:</td>
+      <td><CMS:value id="iframe_code"/></td>
+    </tr>
+    </CMS:edit>
+
+    <CMS:edit option="switch value">
+    <tr>
+      <td>%%l_sandbox_attribute%%:</td>
+      <td>
+        <CMS:switch id="iframe_sandbox_disabled" title="%%l_disabled%%"/><br>
+        <CMS:value id="iframe_sandbox_attribute" default="%%default_iframe_sandbox_attribute%%"/>
+      </td>
+    </tr>
+    </CMS:edit>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:noedit>
+<CMS:cblock idref="iframe_url">
+<?php
+
+$url     = l($cms_template_document->get($cms_template_base_id . "iframe_url", "href"));
+$url     = x(translate_url($url));
+$code    = l($cms_template_document->get($cms_template_base_id . "iframe_code", "value"));
+$code    = x($code);
+$sandbox = "";
+if (! $cms_template_document->get($cms_template_base_id . "iframe_sandbox_disabled", "value"))
+{
+    $sandbox = l($cms_template_document->get($cms_template_base_id . "iframe_sandbox_attribute", "value"));
+    $sandbox = " sandbox=\"" . x(stripspaces($sandbox)) . "\"";
+};
+
+?>
+
+<div class="iframe">
+
+  <CMS:cblock idref="iframe_info">
+  <input id="iframe-<?=x($cms_template_temp_id)?>-flag"
+         type="checkbox"
+         class="iframe-flag"
+         aria-hidden="true"
+         aria-label="none">
+
+  <div class="iframe-info">
+
+    <p>
+
+      <CMS:text id="iframe_info" edit="off"/>
+
+    </p>
+
+    <button onclick="iframe_<?=x($cms_template_temp_id)?>_accept();">
+
+      <CMS:text id="iframe_button_text" edit="off"/>
+
+    </button>
+
+  </div>
+  </CMS:cblock>
+
+  <iframe id="iframe-<?=x($cms_template_temp_id)?>"
+          src="about:blank"
+          data-src="<?=$url?>"
+          data-srcdoc="<?=$code?>"
+          referrerpolicy="same-origin"<?=$sandbox?>>
+  </iframe>
+
+</div>
+
+<script>
+function iframe_<?=x($cms_template_temp_id)?>_accept()
+{
+    const id   = "iframe-<?=qx($cms_template_temp_id)?>-flag";
+    const flag = document.getElementById(id);
+
+    flag.checked = true;
+
+    iframe_<?=x($cms_template_temp_id)?>_load();
+};
+
+function iframe_<?=x($cms_template_temp_id)?>_load()
+{
+    const id     = "iframe-<?=qx($cms_template_temp_id)?>";
+    const iframe = document.getElementById(id);
+    const code   = iframe.getAttribute("data-srcdoc");
+
+    if (code && (! iframe.srcdoc))
+    {
+        iframe.srcdoc = code;
+        return;
+    };
+
+    if (iframe.src === "about:blank")
+        iframe.src = iframe.getAttribute("data-src");
+};
+</script>
+
+<CMS:calt idref="iframe_info">
+<script>
+iframe_<?=x($cms_template_temp_id)?>_load();
+</script>
+</CMS:calt>
+
+</CMS:cblock>
+</CMS:noedit>

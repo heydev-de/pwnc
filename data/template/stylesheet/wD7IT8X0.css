@@ -1,0 +1,44 @@
+DIV.marquee
+{
+    OVERFLOW: hidden;
+}
+
+DIV.marquee:hover DIV.marquee-strip
+{
+    ANIMATION-PLAY-STATE: paused;
+}
+
+DIV.marquee-slide
+{
+    DISPLAY: flex;
+    MIN-WIDTH: 200%;
+}
+
+@keyframes marquee
+{
+      0% { TRANSFORM: translateX(   0 ); }
+    100% { TRANSFORM: translateX(-100%); }
+}
+
+DIV.marquee-strip
+{
+    ANIMATION: marquee var(--duration) linear infinite;
+    DISPLAY: flex;
+    FLEX: 1 0 0;
+    WILL-CHANGE: transform;
+}
+
+DIV.marquee-frame
+{
+    FLEX: 1 0 0;
+    MIN-WIDTH: calc(var(--width) * var(--cms-factor));
+}
+
+A.marquee-link
+{
+    BORDER: none !important;
+    FONT-SIZE: 0;
+    INSET: 0;
+    POSITION: absolute;
+    Z-INDEX: 550;
+}

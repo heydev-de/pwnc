@@ -1,0 +1,21 @@
+IMG.image4
+{
+    MAX-WIDTH: 100%;
+    OBJECT-FIT: contain;
+}
+
+@media (orientation: portrait)
+{
+    IMG.image4
+    {
+        MAX-HEIGHT: 50vh;
+    }
+}
+
+@media (orientation: landscape)
+{
+    IMG.image4
+    {
+        MAX-HEIGHT: 100vh;
+    }
+}

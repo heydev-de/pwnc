@@ -1,0 +1,1 @@
+This folder contains your essential data (besides the database).

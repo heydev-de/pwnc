@@ -1,0 +1,47 @@
+DIV.banner
+{
+    DISPLAY: grid;
+    HEIGHT: 100%;
+}
+
+DIV.banner-image
+{
+    BACKGROUND: #000000;
+    GRID-COLUMN: 1;
+    GRID-ROW: 1;
+    MIN-HEIGHT: max(50vh, 500 * var(--cms-factor));
+    OVERFLOW: clip;
+}
+
+DIV.banner-image > IMG
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    OBJECT-FIT: cover;
+    OPACITY: 0.65;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+DIV.banner-image:has(+ DIV.banner-content) > IMG
+{
+    FILTER: blur(var(--cms-factor)) contrast(1.25);
+    MIX-BLEND-MODE: screen;
+}
+
+DIV.banner-content
+{
+    BOX-SIZING: border-box;
+    GRID-COLUMN: 1;
+    GRID-ROW: 1;
+    PADDING: var(--cms-vspacing) var(--cms-hspacing);
+    PLACE-SELF: center;
+    TEXT-SHADOW: 0 0 calc(100 * var(--cms-factor)) #000000;
+}
+
+DIV.banner-content,
+DIV.banner-content *
+{
+    COLOR: #ffffff;
+}

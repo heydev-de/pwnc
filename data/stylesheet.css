@@ -1,0 +1,8 @@
+/*
+
+This stylesheet is used for modules that are not embedded in a page template,
+e.g. for identification. Set it to the respective stylesheet of your design.
+
+*/
+
+@import url("../design/simple/stylesheet.css");

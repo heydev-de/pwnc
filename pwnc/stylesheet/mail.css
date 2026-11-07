@@ -1,0 +1,72 @@
+/*
+
+   PWNC Web Platform
+   Copyright © 2026–present Patrick Heyer
+   https://pwnc.it
+
+   This software is subject to the included license.
+   Please see /LICENSE.md for full details.
+
+*/
+
+BODY, BODY *
+{
+    BACKGROUND-COLOR: #ffffff;
+    COLOR: #000000;
+    FONT-FAMILY: "Verdana", sans-serif;
+    FONT-SIZE: 14px;
+    LINE-HEIGHT: 150%;
+    MARGIN: 0;
+    PADDING: 0;
+    TEXT-ALIGN: left;
+}
+
+BODY
+{
+    MARGIN: 10px 17.5px;
+}
+
+H1, H2, H3
+{
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 125%;
+    MARGIN-BOTTOM: 7.5px;
+}
+
+BIG
+{
+    FONT-SIZE: 16px;
+}
+
+SMALL
+{
+    FONT-SIZE: 12px;
+}
+
+TABLE
+{
+    BORDER-COLLAPSE: collapse;
+    BORDER-SPACING: 0;
+    WIDTH: 100%;
+}
+
+TH
+{
+    BORDER-BOTTOM: 1.5px solid #000000;
+    PADDING: 7.5px 10px;
+    VERTICAL-ALIGN: top;
+}
+
+TD
+{
+    BORDER-BOTTOM: 1.5px dotted #000000;
+    PADDING: 7.5px 10px;
+    VERTICAL-ALIGN: top;
+}
+
+A
+{
+    TEXT-DECORATION: underline;
+    TEXT-DECORATION-STYLE: dotted;
+}

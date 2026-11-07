@@ -1,0 +1,103 @@
+DIV.map
+{
+    BACKGROUND: #ffffff;
+    HEIGHT: 100%;
+    OVERFLOW: hidden;
+    USER-SELECT: none;
+    WIDTH: 100%;
+}
+
+DIV.map-inner
+{
+    CURSOR: grab;
+}
+
+DIV.map-inner:active
+{
+    CURSOR: grabbing;
+}
+
+IMG.map-image
+{
+    POINTER-EVENTS: none;
+    WIDTH: 100%;
+}
+
+DIV.map-point
+{
+    POSITION: absolute;
+}
+
+DIV.map-point:not(:has(IMG.map-point-image)):before,
+DIV.map-point:not(:has(IMG.map-point-image)):before
+{
+    BACKGROUND: #ffffff;
+    BORDER-RADIUS: 50%;
+    BOX-SHADOW: 0 0 calc(2 * var(--cms-factor)) #000000;
+    CONTENT: "";
+    HEIGHT: calc(10 * var(--cms-factor));
+    LEFT: calc(-5 * var(--cms-factor));
+    POSITION: absolute;
+    TOP: calc(-5 * var(--cms-factor));
+    WIDTH: calc(10 * var(--cms-factor));
+}
+
+DIV.map-point:has(IMG.map-point-image)
+{
+    TRANSFORM: translate(calc(-32.5 * var(--cms-factor)),
+                         calc(-32.5 * var(--cms-factor)));
+}
+
+A.map-point-link
+{
+    TEXT-DECORATION: none;
+}
+
+IMG.map-point-image
+{
+    HEIGHT: calc(75 * var(--cms-factor));
+    MAX-HEIGHT: none;
+    MAX-WIDTH: none;
+    OBJECT-FIT: cover;
+    BORDER-RADIUS: 50%;
+    WIDTH: calc(75 * var(--cms-factor));
+}
+
+SPAN.map-point-text,
+SPAN.map-point-text-left
+{
+    COLOR: #ffffff;
+    FONT-SIZE: calc(17.5 * var(--cms-factor));
+    LEFT: calc(5 * var(--cms-factor) + var(--cms-hpadding));
+    LINE-HEIGHT: 110%;
+    POSITION: absolute;
+    TEXT-SHADOW: 0 0 calc(2 * var(--cms-factor)) #000000;
+    TOP: 50%;
+    TRANSFORM: translateY(-50%);
+    WHITE-SPACE: nowrap;
+}
+
+SPAN.map-point-text-left
+{
+    LEFT: auto;
+    RIGHT: calc(5 * var(--cms-factor) + var(--cms-hpadding));
+    TEXT-ALIGN: right;
+}
+
+SPAN.map-point-text:first-line,
+SPAN.map-point-text-left:first-line
+{
+    FONT-SIZE: calc(22.5 * var(--cms-factor));
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 110%;
+}
+
+IMG.map-point-image + SPAN.map-point-text
+{
+    LEFT: calc(100% + var(--cms-hpadding));
+}
+
+IMG.map-point-image + SPAN.map-point-text-left
+{
+    RIGHT: calc(100% + var(--cms-hpadding));
+}

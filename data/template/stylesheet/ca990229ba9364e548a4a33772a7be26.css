@@ -1,0 +1,15 @@
+#search INPUT[name=search_term]
+{
+    WIDTH: 25ch;
+}
+
+.search-cloud A
+{
+    VERTICAL-ALIGN: middle;
+}
+
+.search-pagination
+{
+    MARGIN-TOP: calc(var(--cms-vspacing) * 2);
+    TEXT-ALIGN: center;
+}

@@ -1,0 +1,63 @@
+/* alternative color section */
+:root
+{
+    --temp-color: var(--cms-color);
+    --temp-color-alt: var(--cms-color-alt);
+    --temp-background: var(--cms-background);
+    --temp-background-alt: var(--cms-background-alt);
+}
+
+DIV.alternate,
+DIV.alternate *
+{
+    /* general */
+    --cms-color: var(--temp-color-alt);
+    --cms-color-alt: var(--temp-color);
+    --cms-background: var(--temp-background-alt);
+    --cms-background-alt: var(--temp-background);
+
+    /* link */
+    --cms-link-color: var(--cms-color);
+
+    /* input */
+    --cms-input-color: var(--cms-color);
+    --cms-input-color-alt: var(--cms-color);
+    --cms-input-background: transparent;
+    --cms-input-background-alt: var(--cms-background);
+    --cms-input-border: var(--cms-input-border-width) var(--cms-input-border-style) var(--cms-color);
+    --cms-input-border-alt: var(--cms-input-border-width-alt) var(--cms-input-border-style-alt) var(--cms-link-color-alt);
+
+    /* checkbox */
+    --cms-checkbox-color: var(--cms-color);
+    --cms-checkbox-color-alt: var(--cms-color);
+    --cms-checkbox-background: transparent;
+    --cms-checkbox-background-alt: transparent;
+    --cms-checkbox-border: var(--cms-checkbox-border-width) var(--cms-checkbox-border-style) var(--cms-color);
+    --cms-checkbox-border-alt: var(--cms-checkbox-border-width-alt) var(--cms-checkbox-border-style-alt) var(--cms-color);
+
+    /* button */
+    --cms-button-color: var(--cms-color-alt);
+    --cms-button-color-alt: var(--cms-link-color);
+    --cms-button-background: var(--cms-background-alt);
+    --cms-button-background-alt: var(--cms-link-color-alt);
+    --cms-button-border: var(--cms-button-border-width) var(--cms-button-border-style) var(--cms-color);
+    --cms-button-border-alt: var(--cms-button-border-width-alt) var(--cms-button-border-style-alt) var(--cms-link-color-alt);
+
+    /* separator */
+    --cms-separator-color: var(--cms-color);
+}
+
+DIV.alternate
+{
+    COLOR: var(--cms-color);
+}
+
+DIV.alternate:not(.alternate-nobackground)
+{
+    BACKGROUND: var(--cms-background);
+}
+
+DIV.alternate:not(.alternate-nopadding)
+{
+    PADDING: var(--cms-vspacing) var(--cms-hspacing);
+}

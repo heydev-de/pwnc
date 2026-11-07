@@ -1,0 +1,87 @@
+<div class="contact">
+
+  <h2>%%l_contact%%</h2>
+
+  <div class="contact-line">
+
+    <div class="contact-left"><CMS:text id="company" title="%%l_company%%"/></div>
+    <div class="contact-right"><CMS:text id="address" title="%%l_address%%"/></div>
+
+  </div>
+
+  <span class="contact-separator"></span>
+
+  <div class="contact-line">
+
+    <div class="contact-left">%%l_phone%%</div>
+    <div class="contact-right"><CMS:text id="phone" title="%%l_phone%%"/></div>
+
+  </div>
+
+  <CMS:cblock idref="fax">
+  <div class="contact-line">
+
+    <div class="contact-left">%%l_fax%%</div>
+    <div class="contact-right"><CMS:text id="fax" title="%%l_fax%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+  <div class="contact-line">
+
+    <div class="contact-left">%%l_email%%</div>
+    <div class="contact-right">
+
+      <CMS:edit><CMS:text id="email" title="%%l_email%%"/></CMS:edit>
+
+      <CMS:noedit>
+      <a href="mailto:<?=x(l($cms_template_document->get($cms_template_base_id . "email", "text")))?>">
+
+        <CMS:text id="email"/>
+
+      </a>
+      </CMS:noedit>
+
+    </div>
+
+  </div>
+
+  <CMS:cblock idref="online_inquiry_form">
+  <span class="contact-separator"></span>
+
+  <div class="contact-line">
+
+    <div class="contact-left">%%l_inquiry_form%%</div>
+    <div class="contact-right"><CMS:href id="online_inquiry_form">%%l_click_here%%</CMS:href></div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="contact_person">
+  <span class="contact-separator"></span>
+
+  <div class="contact-line">
+
+    <div class="contact-left">%%l_contact_person%%</div>
+    <div class="contact-right">
+
+      <CMS:cblock idref="photo"><CMS:image id="photo" width="250"/><br></CMS:cblock>
+      <CMS:text id="contact_person" title="%%l_contact_person%%"/>
+
+    </div>
+
+  </div>
+  </CMS:cblock>
+
+  <CMS:cblock idref="business_hours">
+  <span class="contact-separator"></span>
+
+  <div class="contact-line">
+
+    <div class="contact-left">%%l_business_hours%%</div>
+    <div class="contact-right"><CMS:text id="business_hours" title="%%l_business_hours%%"/></div>
+
+  </div>
+  </CMS:cblock>
+
+</div>

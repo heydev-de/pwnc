@@ -1,0 +1,74 @@
+DIV.teaser1
+{
+    BOX-SIZING: border-box;
+    DISPLAY: flex;
+    FLEX-DIRECTION: column;
+    GAP: var(--cms-hpadding);
+    HEIGHT: 100%;
+    PADDING: calc(1.5 * var(--cms-hpadding));
+}
+
+DIV.teaser1:not(.edit)
+{
+    BORDER-RADIUS: var(--cms-hpadding);
+    BOX-SHADOW: var(--cms-box-shadow);
+    OVERFLOW: clip;
+}
+
+DIV.teaser1-image
+{
+    MARGIN: calc(-1.5 * var(--cms-hpadding)) calc(-1.5 * var(--cms-hpadding)) 0;
+}
+
+DIV.teaser1-image:last-child
+{
+    FLEX: 1;
+    MARGIN-BOTTOM: calc(-1.5 * var(--cms-hpadding));
+}
+
+DIV.teaser1-image > IMG
+{
+    HEIGHT: calc(250 * var(--cms-factor));
+    OBJECT-FIT: cover;
+}
+
+DIV.teaser1-image:last-child > IMG
+{
+    HEIGHT: 100%;
+}
+
+DIV.teaser1-title
+{
+    MARGIN: 0;
+}
+
+DIV.teaser1-text
+{
+    TEXT-ALIGN: justify;
+    TEXT-ALIGN-LAST: left;
+    TEXT-WRAP: balance;
+}
+
+DIV.teaser1-title + DIV.teaser1-text
+{
+    MARGIN-TOP: calc(-0.5 * var(--cms-hpadding));
+}
+
+DIV.teaser1-link
+{
+    ALIGN-CONTENT: flex-end;
+    FLEX: 1;
+    TEXT-ALIGN: center;
+}
+
+DIV.teaser1-link > A
+{
+    MARGIN: 0;
+}
+
+DIV.teaser1-link > A:before
+{
+    CONTENT: "";
+    INSET: -100vmax;
+    POSITION: absolute;
+}

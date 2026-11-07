@@ -1,0 +1,109 @@
+<?php
+
+if (stre(parse_text("\%%tracking_code\%%"))) return FALSE;
+
+?>
+
+<CMS:nocache>
+<?php
+
+$link_privacy = "8vREWFMs";
+if (defined("CMS_CONTENT_DIRECTORY_INDEX") && streq(CMS_CONTENT_DIRECTORY_INDEX, $link_privacy)) return FALSE;
+
+if (CMS_TEMPLATE_EDIT) return FALSE;
+$flag = isset($_COOKIE["tracking-on"]) && (! isset($_COOKIE["tracking-off"]));
+$cms_template_document->set("v_tracking_on", "value", $flag);
+$flag = isset($_COOKIE["tracking-off"]);
+$cms_template_document->set("v_tracking_off", "value", $flag);
+
+?>
+
+<CMS:calt idref="..v_tracking_on">
+<CMS:calt idref="..v_tracking_off">
+<div id="tracking">
+
+<script>
+function tracking_background()
+{
+    var background = document.getElementById("tracking-background");
+    if (background === null) return;
+    background.style.filter = (arguments.length > 0) ? "blur(7px)" : "none";
+};
+
+function tracking_refuse()
+{
+    setcookie("tracking-off", 1);
+    alert("<?=qx(parse_text("\%%l_optout_confirmation\%%"))?>");
+    document.getElementById("tracking").remove();
+    tracking_background();
+};
+
+function tracking_accept()
+{
+    setcookie("tracking-on", 1);
+    var tracking  = document.getElementById("tracking");
+    tracking.insertAdjacentHTML("afterend",
+        "<div id=\"tracking-code\">" +
+        "<?=q(parse_text("\%%tracking_code\%%"))?>" +
+        "<\/div>");
+    var code      = document.getElementById("tracking-code");
+    var list      = code.getElementsByTagName("script");
+    var item      = null;
+    var script    = null;
+    var attribute = null;
+    for (var i = 0; i < list.length; i++)
+    {
+        item   = list[i];
+        script = document.createElement("script");
+        for (var j = 0; j < item.attributes.length; j++)
+        {
+            attribute = item.attributes[j];
+            script.setAttribute(attribute.name, attribute.value);
+        };
+        script.appendChild(document.createTextNode(item.innerHTML));
+        code.replaceChild(script, item);
+    };
+    document.getElementById("tracking").remove();
+    tracking_background();
+};
+
+tracking_background(true);
+</script>
+
+  <div class="tracking-overlay">
+
+    <div class="tracking-content">
+
+      <div class="tracking-text">
+
+        <h2>%%l_privacy%%</h2>
+
+        <p>%%l_tracking_notice_banner%%</p>
+
+        <p><a href="<?=x(translate_url("directory://$link_privacy"))?>">%%l_data_privacy_button%%</a></p>
+
+      </div>
+
+      <div class="tracking-control">
+
+        <button class="tracking-refuse" onclick="tracking_refuse();">%%l_optout%%</button>
+        <button class="tracking-accept" onclick="tracking_accept();">%%l_accept%%</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</CMS:calt>
+</CMS:calt>
+
+<CMS:cblock idref="..v_tracking_on">
+<div id="tracking-code">
+
+  %%tracking_code%%
+
+</div>
+</CMS:cblock>
+</CMS:nocache>
