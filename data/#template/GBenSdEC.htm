@@ -1,0 +1,24 @@
+<script>
+function tracking_optout()
+{
+    var list = document.cookie.split("; ");
+    var code = document.getElementById("tracking-code");
+    var name = "";
+    var i    = 0;
+    var j    = 0;
+    for (i = 0 ; i < list.length; i++)
+    {
+        name = list[i];
+        j    = name.indexOf("=");
+        if (j == -1) continue;
+        name = name.substr(0, j);
+        delcookie(name);
+    };
+    setcookie("tracking-off", 1);
+    if (code !== null) code.remove();
+    alert("<?=qx(parse_text("\%%l_optout_confirmation\%%"))?>");
+    return false;
+};
+</script>
+
+<a href="#" onclick="return tracking_optout();">%%l_disable_tracking%%</a>

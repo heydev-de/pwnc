@@ -1,0 +1,24 @@
+DIV.stickybar,
+DIV.stickybar-stick
+{
+    BACKGROUND-COLOR: var(--cms-background);
+    BOX-SIZING: border-box;
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+    WIDTH: 100%;
+}
+
+DIV.stickybar,
+DIV.stickybar *,
+DIV.stickybar-stick,
+DIV.stickybar-stick *
+{
+    COLOR: #ffffff;
+}
+
+DIV.stickybar-stick
+{
+    POSITION: fixed;
+    LEFT: 0;
+    TOP: 0;
+    Z-INDEX: 500;
+}

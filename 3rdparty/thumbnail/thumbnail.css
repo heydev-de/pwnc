@@ -1,0 +1,88 @@
+/*
+
+   PWNC Web Platform
+   Copyright © 2026–present Patrick Heyer
+   https://pwnc.it
+
+   This software is subject to the included license.
+   Please see /LICENSE.md for full details.
+
+*/
+
+A.thumbnail
+{
+    BACKGROUND: #ffffff;
+    DISPLAY: inline-block;
+}
+
+A.thumbnail IMG
+{
+    OPACITY: 1;
+    TRANSITION: opacity 0.5s;
+}
+
+A.thumbnail:active IMG,
+A.thumbnail:focus IMG,
+A.thumbnail:hover IMG
+{
+    OPACITY: 0.85;
+}
+
+@keyframes thumbnail
+{
+    0%   { OPACITY: 0; TRANSFORM: scale(0); }
+    100% { OPACITY: 1; TRANSFORM: scale(1); }
+}
+
+DIV.thumbnail
+{
+    ANIMATION: thumbnail 0.5s;
+    BACKGROUND: var(--cms-overlay-background);
+    BOTTOM: 0;
+    CURSOR: pointer;
+    LEFT: 0;
+    POSITION: fixed;
+    RIGHT: 0;
+    TOP: 0;
+    Z-INDEX: 99999;
+}
+
+DIV.thumbnail:before,
+DIV.thumbnail:after
+{
+    BACKGROUND: var(--cms-overlay-color);
+    CONTENT: "";
+    HEIGHT: max(1.5px, 1.5 * var(--cms-factor));
+    MARGIN: max(6.75px, 6.75 * var(--cms-factor)) 0;
+    POSITION: absolute;
+    RIGHT: max(5px, 5 * var(--cms-factor));
+    TOP: max(5px, 5 * var(--cms-factor));
+    TRANSFORM: rotate(45deg);
+    WIDTH: max(15px, 15 * var(--cms-factor));
+}
+
+DIV.thumbnail:after
+{
+    TRANSFORM: rotate(-45deg);
+}
+
+DIV.thumbnail > IMG
+{
+    BACKGROUND: #ffffff;
+    BOX-SHADOW: var(--cms-box-shadow);
+    LEFT: 50%;
+    POSITION: absolute;
+    TOP: 50%;
+}
+
+DIV.thumbnail-loading
+{
+    BACKGROUND: transparent url(loading.png) center no-repeat;
+    HEIGHT: 120px;
+    LEFT: 50%;
+    MARGIN: -60px 0 0 -60px;
+    POSITION: fixed;
+    TOP: 50%;
+    WIDTH: 120px;
+    Z-INDEX: 99999;
+}

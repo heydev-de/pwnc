@@ -1,0 +1,39 @@
+<CMS:cblock idref="tp1">
+
+<div id="stickybar-<?=$cms_template_temp_id?>" class="stickybar">
+
+  <CMS:template id="tp1"/>
+
+</div>
+
+<script>
+
+var stickybar_<?=$cms_template_temp_id?>_object = document.getElementById("stickybar-<?=$cms_template_temp_id?>");
+var stickybar_<?=$cms_template_temp_id?>_dummy  = document.createElement("DIV");
+var stickybar_<?=$cms_template_temp_id?>_offset = 0;
+
+fx_event_listen("window_scroll", function()
+{
+    var object = stickybar_<?=$cms_template_temp_id?>_object;
+    var dummy  = stickybar_<?=$cms_template_temp_id?>_dummy;
+
+    if (object.className.match(/(^|\s)stickybar($|\s)/))
+    {
+        stickybar_<?=$cms_template_temp_id?>_offset = fx_offset_top(object, true);
+        if (stickybar_<?=$cms_template_temp_id?>_offset < fx_window_top)
+        {
+            dummy.style.height = fx_height(object, true) + "px";
+            object.parentNode.insertBefore(dummy, object.nextSibling);
+            object.className   = object.className.replace(/(?:^|\s)stickybar(?:$|\s)/, "stickybar-stick");
+        };
+    }
+    else if (stickybar_<?=$cms_template_temp_id?>_offset >= fx_window_top)
+    {
+        dummy.parentNode.removeChild(dummy);
+        object.className = object.className.replace(/(?:^|\s)stickybar-stick(?:$|\s)/, "stickybar");
+    };
+});
+
+</script>
+
+</CMS:cblock>

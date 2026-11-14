@@ -1,0 +1,29 @@
+<CMS:cblock idref="g1.h1">
+<CMS:noedit><div class="link3"></CMS:noedit>
+
+  <CMS:group id="g1">
+  <CMS:href id="h1" class="link3-anchor">
+
+  <CMS:cblock idref="i1">
+  <CMS:edit><CMS:image id="i1" width="150"/><br></CMS:edit>
+  <CMS:noedit><CMS:image id="i1" width="3840" class="link3-image"/></CMS:noedit>
+  </CMS:cblock>
+
+  <span class="link3-text"><?php
+
+?><CMS:text id="t1" title="%%l_link_text%%"/><?php
+
+?><CMS:calt idref="t1"><?php
+
+$index = $cms_template_base_id . "g1.h1";
+$value = l($cms_template_document->get($index, "href"));
+if (($value = template_parse_reference($value)) !== FALSE) echo(x($value["name"]));
+
+?></CMS:calt><?php
+?></span>
+
+  </CMS:href>
+  </CMS:group>
+
+<CMS:noedit></div></CMS:noedit>
+</CMS:cblock>

@@ -1,0 +1,30 @@
+DIV.calendar
+{
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    GAP: var(--cms-vspacing) var(--cms-hspacing);
+}
+
+DIV.calendar > TABLE
+{
+    FLEX: 1 1 calc(100% / 3 - var(--cms-hspacing) * 2 / 3);
+    MIN-WIDTH: min(100%, 250 * var(--cms-factor));
+}
+
+DIV.calendar > TABLE > TBODY > TR > TD:first-child
+{
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: right;
+    WHITE-SPACE: nowrap;
+    WIDTH: 1px;
+}
+
+DIV.calendar > TABLE > TBODY > TR > TD:first-child:after
+{
+    CONTENT: ".";
+}
+
+DIV.calendar > TABLE:not(:has(TD))
+{
+    DISPLAY: none;
+}

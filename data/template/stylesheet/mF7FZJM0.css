@@ -1,0 +1,104 @@
+DIV.audio BUTTON
+{
+    BACKGROUND: var(--cms-link-color);
+    BORDER: none;
+    DISPLAY: none;
+    FONT-SIZE: 0;
+    HEIGHT: calc(67.5 * var(--cms-factor));
+    MIN-HEIGHT: calc(67.5 * var(--cms-factor));
+    MIN-WIDTH: calc(67.5 * var(--cms-factor));
+    PADDING: 0;
+    USER-SELECT: none;
+    WIDTH: calc(67.5 * var(--cms-factor));
+}
+
+DIV.audio BUTTON:focus,
+DIV.audio BUTTON:hover
+{
+    BACKGROUND: var(--cms-link-color-alt);
+}
+
+DIV.audio BUTTON.audio-play
+{
+    MASK: url(../audio-play.svg);
+    -WEBKIT-MASK: url(../audio-play.svg); /* safari */
+}
+
+DIV.audio BUTTON.audio-loading
+{
+    MASK: url(../audio-loading.svg);
+    -WEBKIT-MASK: url(../audio-loading.svg); /* safari */
+}
+
+DIV.audio BUTTON.audio-pause
+{
+    MASK: url(../audio-pause.svg);
+    -WEBKIT-MASK: url(../audio-pause.svg); /* safari */
+}
+
+DIV.audio AUDIO.audio-loading ~ BUTTON.audio-play,
+DIV.audio AUDIO.audio-paused ~ BUTTON.audio-play,
+DIV.audio AUDIO.audio-waiting ~ BUTTON.audio-loading,
+DIV.audio AUDIO.audio-playing ~ BUTTON.audio-pause
+{
+    DISPLAY: block !important;
+}
+
+INPUT.audio-trigger
+{
+    DISPLAY: none;
+}
+
+DIV.audio-bar
+{
+    BACKGROUND: var(--cms-overlay-background);
+    BOTTOM: 0;
+    DISPLAY: none;
+    LEFT: 0;
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+    POSITION: fixed;
+    RIGHT: 0;
+    Z-INDEX: 99999;
+}
+
+INPUT.audio-trigger:checked + DIV.audio-bar
+{
+    DISPLAY: block;
+}
+
+DIV.audio-bar INPUT
+{
+    APPEARANCE: none;
+    CURSOR: pointer;
+    HEIGHT: 100%;
+    LEFT: 0;
+    OVERFLOW: hidden;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+DIV.audio-bar INPUT::-webkit-slider-thumb
+{
+    APPEARANCE: none;
+    BORDER: none;
+    BOX-SHADOW: -100vw 0 0 100vw var(--cms-button-background);
+    HEIGHT: 100%;
+    WIDTH: 0;
+}
+
+DIV.audio-bar INPUT::-moz-range-thumb
+{
+    APPEARANCE: none;
+    BORDER: none;
+    BOX-SHADOW: -100vw 0 0 100vw var(--cms-button-background);
+    HEIGHT: 100%;
+    WIDTH: 0;
+}
+
+DIV.audio-bar DIV
+{
+    COLOR: var(--cms-button-color);
+    POINTER-EVENTS: none;
+    TEXT-ALIGN: center;
+}

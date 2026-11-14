@@ -1,0 +1,118 @@
+.comment-display LI
+{
+    MARGIN-BOTTOM: var(--cms-vspacing);
+}
+
+.comment-display-head > A:first-child
+{
+    FONT-WEIGHT: 700;
+}
+
+.comment-display-foot
+{
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    MARGIN: 0 0 var(--cms-vspacing) calc(var(--cms-vpadding) * -1);
+}
+
+.comment-display-rate
+{
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    ORDER: 2;
+}
+
+.comment-display-rate-bad,
+.comment-display-rate-good,
+.comment-display-rate-bad:focus,
+.comment-display-rate-good:focus,
+.comment-display-rate-bad:hover,
+.comment-display-rate-good:hover
+{
+    ALL: unset;
+    BORDER: calc(1.5 * var(--cms-factor)) solid rgb(191, 0, 0);
+    COLOR: rgb(191, 0, 0);
+    CURSOR: pointer;
+    DISPLAY: inline-block;
+    FLEX: 1 0 auto;
+    FONT-SIZE: 0.5em;
+    FONT-WEIGHT: 500;
+    LINE-HEIGHT: 175%;
+    MARGIN: var(--cms-vpadding) 0 0 var(--cms-vpadding);
+    PADDING: 0 var(--cms-hpadding);
+    TEXT-ALIGN: center;
+}
+
+.comment-display-rate-good,
+.comment-display-rate-good:focus,
+.comment-display-rate-good:hover
+{
+    BORDER-COLOR: rgb(0, 191, 0);
+    COLOR: rgb(0, 191, 0);
+}
+
+.comment-display-rate-bad:focus,
+.comment-display-rate-bad:hover
+{
+    BACKGROUND-COLOR: rgb(191, 0, 0);
+    COLOR: #ffffff;
+}
+
+.comment-display-rate-good:focus,
+.comment-display-rate-good:hover
+{
+    BACKGROUND-COLOR: rgb(0, 191, 0);
+    COLOR: #ffffff;
+}
+
+.comment-display-rating
+{
+    BORDER: calc(1.5 * var(--cms-factor)) solid rgb(191, 191, 191);
+    COLOR: #ffffff;
+    FONT-SIZE: calc(var(--cms-font-size) * 0.5);
+    LINE-HEIGHT: 175%;
+    MARGIN: var(--cms-vpadding) 0 0 var(--cms-vpadding);
+    MAX-WIDTH: calc(150 * var(--cms-factor));
+    WIDTH: 100%;
+}
+
+.comment-display-rating-negative-bar
+{
+    BACKGROUND: rgb(191, 0, 0);
+    HEIGHT: 100%;
+    POSITION: absolute;
+    RIGHT: 50%;
+    TOP: 0;
+}
+
+.comment-display-rating-positive-bar
+{
+    BACKGROUND: rgb(0, 191, 0);
+    HEIGHT: 100%;
+    LEFT: 50%;
+    POSITION: absolute;
+    TOP: 0;
+}
+
+.comment-display-rating-negative-value,
+.comment-display-rating-positive-value
+{
+    DISPLAY: inline-block;
+    MIX-BLEND-MODE: difference;
+    TEXT-ALIGN: center;
+    WIDTH: 50%
+}
+
+.comment-edit INPUT,
+.comment-edit TEXTAREA,
+.comment-add INPUT,
+.comment-add TEXTAREA
+{
+    WIDTH: 100%;
+}
+
+.comment-edit TEXTAREA,
+.comment-add TEXTAREA
+{
+    HEIGHT: 15em;
+}

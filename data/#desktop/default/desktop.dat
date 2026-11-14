@@ -1,0 +1,12 @@
+c5KN6Ubr:=name=Email;color=hsl(136,25%,25%);#type=mailbox;x=706;y=109
+9IY2hg1f:=name=Notes;color=hsl(8,25%,25%);#type=container;x=629;y=115
+eDPKeSNJ:=name=A peculiar note;color=hsl(300,25%,25%);#type=note;text=Oh no, you found me![chr10][chr10]Please, I don't want to be deleted![chr10][chr10]Please, don't drag me onto the trashbin on the left!;x=929;y=405
+bXgLaUoC:=#type=/container
+mVi8NDIX:=name=PWNC Docs;color=hsl(318,25%,25%);#type=link;url=https://pwnc.it/en/docs.php;x=937;y=112
+wgOguzNs:=name=Support PWNC;color=hsl(248,25%,25%);#type=link;url=https://pwnc.it/en/support.php;x=915;y=160
+SiK22TQC:=name=Contacts;#type=container;#subtype=address;quickaccess=1;x=483;y=108
+ECkNUwAJ:=#type=/container
+OUVKNOVI:=name=Appointments;#type=container;#subtype=appointment;quickaccess=1;x=415;y=115
+GiJElqfG:=#type=/container
+KSOSIEf1:=name=In-box;#type=container;#subtype=mailbox;quickaccess=1;x=308;y=116
+M38c5Y8a:=#type=/container

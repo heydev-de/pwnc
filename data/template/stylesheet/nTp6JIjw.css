@@ -1,0 +1,44 @@
+DIV.layout-flex
+{
+    DISPLAY: flex;
+    FLEX-FLOW: row wrap;
+    MARGIN: 0 0 0 calc(var(--cms-hspacing) * -1);
+}
+
+DIV.layout-flex-columns
+{
+    BOTTOM: 0;
+    DISPLAY: flex;
+    FLEX-FLOW: row wrap;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+DIV.layout-flex-columns > DIV
+{
+    BACKGROUND: rgba(127, 127, 127, 0.1);
+    FLEX: 1 1 auto;
+}
+
+DIV.layout-flex-block
+{
+    DISPLAY: grid;
+    FLEX: 1 1 auto;
+    GRID-TEMPLATE-COLUMNS: 100%;
+}
+
+DIV.layout-flex-weight
+{
+    BACKGROUND: rgba(127, 127, 127, 0.25);
+}
+
+@media (max-width: 640px)
+{
+    DIV.layout-flex-block
+    {
+        FLEX: 1 1 100% !important;
+        MIN-WIDTH: 0 !important;
+    }
+}

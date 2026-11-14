@@ -1,0 +1,5 @@
+DIV.frame
+{
+    BORDER: var(--cms-separator-border);
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+}

@@ -1,0 +1,57 @@
+<CMS:nocache>
+<?php
+
+if (! defined("CMS_CONTENT_INDEX")) //not integrated in page
+{
+    echo(sprintf(parse_token("%%l_views%%"), 0));
+    return;
+};
+
+$path   = CMS_DATA_PATH . "#counter/";        //counter file directory
+if (! mkpath($path)) return;                  //verify path
+$path  .= hash32(CMS_CONTENT_INDEX) . ".txt"; //current counter file
+$count  = 0;                                  //current count
+
+//counter file exists
+if (is_file($path))
+{
+    //read counter value
+    if (($hfile = fopen($path, "r+b")) !== FALSE)
+    {
+        if (flock($hfile, LOCK_EX))
+        {
+            $count = (int)fgets($hfile);
+
+            //increase and save counter value if not editing
+            if (! CMS_TEMPLATE_EDIT)
+            {
+                $count++;
+                rewind($hfile);
+                ftruncate($hfile, 0);
+                fwrite($hfile, $count);
+            };
+
+            flock($hfile, LOCK_UN);
+        };
+
+        fclose($hfile);
+    };
+}
+
+//create new counter file
+elseif ((! CMS_TEMPLATE_EDIT) && (($hfile = fopen($path, "wb")) !== FALSE))
+{
+    if (flock($hfile, LOCK_EX))
+    {
+        fwrite($hfile, ++$count);
+        flock($hfile, LOCK_UN);
+    };
+
+    fclose($hfile);
+};
+
+//display counter value
+echo(sprintf(parse_token("%%l_views%%"), $count));
+
+?>
+</CMS:nocache>

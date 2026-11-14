@@ -1,0 +1,116 @@
+LABEL.youtube-open
+{
+    BACKGROUND: #000000;
+    DISPLAY: block;
+    OVERFLOW: hidden;
+}
+
+LABEL.youtube-open:after
+{
+    BACKGROUND: rgba(0, 0, 0, 0.15) url(../video-play.svg) center no-repeat;
+    BACKGROUND-SIZE: calc(67.5 * var(--cms-factor));
+    BOTTOM: 0;
+    CONTENT: "";
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+    Z-INDEX: 1;
+}
+
+LABEL.youtube-open > IMG
+{
+    HEIGHT: 100%;
+    OBJECT-FIT: cover;
+    WIDTH: 100%;
+}
+
+LABEL.youtube-open > SPAN
+{
+    BACKGROUND: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+    BOTTOM: 0;
+    COLOR: var(--cms-overlay-color);
+    LEFT: 0;
+    PADDING: calc(10 * var(--cms-factor)) calc(20 * var(--cms-factor));
+    POSITION: absolute;
+    RIGHT: 0;
+    TEXT-ALIGN: center;
+    Z-INDEX: 2;
+}
+
+INPUT.youtube-trigger
+{
+    DISPLAY: none;
+}
+
+@keyframes youtube
+{
+    0%   { OPACITY: 0; TRANSFORM: scale(0); }
+    100% { OPACITY: 1; TRANSFORM: scale(1); }
+}
+
+INPUT.youtube-trigger:checked + DIV.youtube
+{
+    ANIMATION: youtube 0.5s;
+    DISPLAY: flex;
+}
+
+DIV.youtube
+{
+    ALIGN-ITEMS: center;
+    BOTTOM: 0;
+    DISPLAY: none;
+    JUSTIFY-CONTENT: center;
+    LEFT: 0;
+    POSITION: fixed;
+    RIGHT: 0;
+    TOP: 0;
+    Z-INDEX: 99999;
+}
+
+LABEL.youtube-out
+{
+    BACKGROUND: var(--cms-overlay-background);
+    BOTTOM: 0;
+    FONT-SIZE: 0;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+LABEL.youtube-out:before,
+LABEL.youtube-out:after
+{
+    BACKGROUND: var(--cms-overlay-color);
+    CONTENT: "";
+    HEIGHT: calc(1.5 * var(--cms-factor));
+    MARGIN: calc(6.75 * var(--cms-factor)) 0;
+    POSITION: absolute;
+    RIGHT: calc(5 * var(--cms-factor));
+    TOP: calc(5 * var(--cms-factor));
+    TRANSFORM: rotate(45deg);
+    WIDTH: calc(15 * var(--cms-factor));
+}
+
+LABEL.youtube-out:after
+{
+    TRANSFORM: rotate(-45deg);
+}
+
+DIV.youtube > DIV
+{
+    BACKGROUND: #000000;
+    BOX-SHADOW: var(--cms-box-shadow);
+    MAX-HEIGHT: 90vh;
+    WIDTH: 90vmin;
+}
+
+DIV.youtube > DIV > IFRAME
+{
+    HEIGHT: 100%;
+    LEFT: 0;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}

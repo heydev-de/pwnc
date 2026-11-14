@@ -1,0 +1,9 @@
+NAV.menu-breadcrumb A
+{
+    MARGIN: 0 calc(5 * var(--cms-factor));
+}
+
+NAV.menu-breadcrumb A.base
+{
+    FONT-STYLE: italic;
+}

@@ -1,0 +1,36 @@
+DIV.bgimage
+{
+    DISPLAY: grid;
+}
+
+DIV.bgimage IMG.bgimage-image
+{
+    GRID-COLUMN: 1 / 1;
+    GRID-ROW: 1 / 1;
+    OBJECT-FIT: cover;
+    PLACE-SELF: stretch;
+    WIDTH: 100%;
+    Z-INDEX: -1;
+}
+
+DIV.bgimage DIV.bgimage-content
+{
+    BACKDROP-FILTER: blur(1.5px);
+    GRID-COLUMN: 1 / 1;
+    GRID-ROW: 1 / 1;
+    PADDING: var(--cms-vspacing) var(--cms-hspacing);
+    PLACE-SELF: center;
+}
+
+DIV.bgimage DIV.bgimage-content:before
+{
+    BACKGROUND: var(--cms-background);
+    BOTTOM: 0;
+    CONTENT: "";
+    LEFT: 0;
+    OPACITY: 0.8;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+    Z-INDEX: -1;
+}

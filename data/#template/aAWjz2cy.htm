@@ -1,0 +1,17 @@
+<CMS:nocache>
+<CMS:value id="v_logged_on" edit="off"/>
+
+<?php
+
+$cms_template_document->set($cms_template_base_id . "v_logged_on", "value", nstreq(CMS_USER, "anonymous"));
+
+?>
+
+<CMS:cblock idref="v_logged_on">
+<CMS:template id="tp1" title="%%l_show_section_when_logged_in%%"/>
+</CMS:cblock>
+
+<CMS:calt idref="v_logged_on">
+<CMS:template id="tp2" title="%%l_show_section_when_not_logged_in%%"/>
+</CMS:calt>
+</CMS:nocache>
