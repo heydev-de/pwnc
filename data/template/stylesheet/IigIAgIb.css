@@ -1,0 +1,38 @@
+A.thumbnail2
+{
+    BOX-SHADOW: var(--cms-box-shadow);
+}
+
+DIV.thumbnail2,
+A.thumbnail2,
+A.thumbnail2 IMG
+{
+    DISPLAY: block;
+    WIDTH: 100%;
+}
+
+A.thumbnail2 IMG
+{
+    OBJECT-FIT: cover;
+}
+
+DIV.thumbnail2-text
+{
+    PADDING: var(--cms-vpadding) var(--cms-hpadding);
+}
+
+@media (orientation: portrait)
+{
+    A.thumbnail2 IMG
+    {
+        MAX-HEIGHT: 50vh;
+    }
+}
+
+@media (orientation: landscape)
+{
+    A.thumbnail2 IMG
+    {
+        MAX-HEIGHT: 100vh;
+    }
+}

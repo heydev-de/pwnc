@@ -1,0 +1,108 @@
+DIV.ct-table
+{
+    OVERFLOW-X: auto;
+    WIDTH: 100%;
+}
+
+INPUT.ct-trigger
+{
+    DISPLAY: none;
+}
+
+DIV.ct-table > TABLE
+{
+    WIDTH: 100%;
+}
+
+DIV.ct-table THEAD TD:first-child,
+DIV.ct-table TBODY:last-child TD:first-child
+{
+    BORDER: none;
+}
+
+DIV.ct-table TBODY[id] TR:not(:first-child)
+{
+    DISPLAY: none;
+}
+
+DIV.ct-table TH,
+DIV.ct-table TD
+{
+    MIN-WIDTH: calc(100 * var(--cms-factor));
+}
+
+TD.ct-column-title
+{
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+}
+
+TH.ct-block-title
+{
+    PADDING-RIGHT: calc(40 * var(--cms-factor) + var(--cms-hpadding));
+}
+
+LABEL.ct-switch
+{
+    BOTTOM: 0;
+    FONT-SIZE: 0;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+LABEL.ct-switch:after
+{
+    BORDER: calc(2.5 * var(--cms-factor)) solid var(--cms-link-color);
+    BORDER-LEFT: none;
+    BORDER-TOP: none;
+    CONTENT: "";
+    HEIGHT: calc(7.5 * var(--cms-factor));
+    POSITION: absolute;
+    RIGHT: calc(20 * var(--cms-factor));
+    TOP: 50%;
+    TRANSFORM: translate(50%, -70%) rotate(45deg);
+    TRANSFORM-ORIGIN: center;
+    WIDTH: calc(7.5 * var(--cms-factor));
+}
+
+A.ct-info
+{
+    BORDER: calc(1.5 * var(--cms-factor)) dotted var(--cms-color) !important;
+    BORDER-RADIUS: 50%;
+    COLOR: var(--cms-color);
+    DISPLAY: inline-block;
+    FONT-SIZE: 0;
+    HEIGHT: calc(15 * var(--cms-factor));
+    LINE-HEIGHT: calc(15 * var(--cms-factor));
+    VERTICAL-ALIGN: middle;
+    WIDTH: calc(15 * var(--cms-factor));
+}
+
+A.ct-info:after
+{
+    CONTENT: "?";
+    FONT-SIZE: calc(12.5 * var(--cms-factor));
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TEXT-ALIGN: center;
+    TOP: 0;
+}
+
+A.ct-info + SMALL
+{
+    DISPLAY: none;
+}
+
+A.ct-info:focus + SMALL
+{
+    DISPLAY: block;
+}
+
+TD.ct-link
+{
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+}

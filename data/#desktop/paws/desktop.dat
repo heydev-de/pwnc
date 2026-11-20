@@ -1,0 +1,10 @@
+HtrjRIMc:=name=Completed!;color=hsl(248,25%,25%);#type=container;x=402;y=165
+a0egpNtb:=#type=/container
+AY8LRcB1:=name=Working on it;color=hsl(3,25%,25%);#type=container;x=408;y=106;quickaccess=1
+CVbBRhyr:=#type=/container
+8ylXt6CO:=name=Contacts;#type=container;#subtype=address;quickaccess=1
+I0JFXHms:=#type=/container
+XyqJd2pY:=name=Appointments;#type=container;#subtype=appointment;quickaccess=1
+gLQXOvKR:=#type=/container
+DWBlArlf:=name=In-box;#type=container;#subtype=mailbox;quickaccess=1
+MVo88rsz:=#type=/container

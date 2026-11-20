@@ -1,0 +1,155 @@
+DIV.carousel IMG.carousel-background
+{
+    LEFT: 50%;
+    MIN-HEIGHT: 100%;
+    MIN-WIDTH: 100%;
+    OBJECT-FIT: cover;
+    POSITION: absolute;
+    TOP: 50%;
+    TRANSFORM: translate(-50%, -50%);
+    WIDTH: 100%;
+}
+
+DIV.carousel H2.carousel-title
+{
+    MARGIN: var(--cms-vspacing) var(--cms-hspacing);
+    TEXT-ALIGN: center;
+}
+
+DIV.carousel IMG.carousel-background + H2.carousel-title
+{
+    COLOR: var(--cms-overlay-color);
+}
+
+DIV.carousel DIV.carousel-slider
+{
+    DISPLAY: flex;
+    MARGIN: var(--cms-vspacing) var(--cms-hspacing) 0;
+}
+
+DIV.carousel INPUT.carousel-state,
+DIV.carousel-edit INPUT.carousel-state
+{
+    DISPLAY: none;
+}
+
+DIV.carousel DIV.carousel-slide,
+DIV.carousel INPUT.carousel-state:checked ~ INPUT.carousel-state ~ INPUT.carousel-state ~ INPUT.carousel-state + DIV.carousel-slide
+{
+    ALIGN-ITEMS: center;
+    DISPLAY: flex;
+    FILTER: blur(5px);
+    JUSTIFY-CONTENT: center;
+    MARGIN-RIGHT: -100%;
+    OPACITY: 0;
+    POINTER-EVENTS: none;
+    TRANSFORM: translate(-40%) scale(0.4);
+    TRANSITION: left 0.5s, opacity 0.5s, transform 0.5s;
+    WIDTH: 100%;
+    Z-INDEX: 0;
+}
+
+DIV.carousel INPUT.carousel-state:checked + DIV.carousel-slide
+{
+    FILTER: blur(2.5px);
+    OPACITY: 0.9;
+    TRANSFORM: translate(-20%) scale(0.75);
+    Z-INDEX: 1;
+}
+
+DIV.carousel INPUT.carousel-state:checked ~ INPUT.carousel-state + DIV.carousel-slide
+{
+    FILTER: blur(0);
+    OPACITY: 1;
+    TRANSFORM: translate(0) scale(1);
+    Z-INDEX: 3;
+}
+
+DIV.carousel INPUT.carousel-state:checked ~ INPUT.carousel-state ~ INPUT.carousel-state + DIV.carousel-slide
+{
+    FILTER: blur(2.5px);
+    OPACITY: 0.9;
+    TRANSFORM: translate(20%) scale(0.75);
+    Z-INDEX: 2;
+}
+
+DIV.carousel INPUT.carousel-state:checked ~ INPUT.carousel-state ~ INPUT.carousel-state ~ INPUT.carousel-state + DIV.carousel-slide
+{
+    FILTER: blur(5px);
+    TRANSFORM: translate(40%) scale(0.4);
+}
+
+DIV.carousel DIV.carousel-content
+{
+    BACKGROUND: var(--cms-background);
+    BOX-SHADOW: var(--cms-box-shadow);
+    BOX-SIZING: border-box;
+    OVERFLOW-X: auto;
+    PADDING: var(--cms-vspacing) var(--cms-hspacing);
+    POINTER-EVENTS: auto;
+    MARGIN: 0 auto;
+    MAX-HEIGHT: 75vh;
+    MAX-WIDTH: 90%;
+}
+
+DIV.carousel LABEL.carousel-overlay,
+DIV.carousel INPUT.carousel-state:checked ~ INPUT.carousel-state ~ INPUT.carousel-state + DIV.carousel-slide LABEL.carousel-overlay
+{
+    BOTTOM: 0;
+    DISPLAY: block;
+    FONT-SIZE: 0;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+DIV.carousel INPUT.carousel-state:checked ~ INPUT.carousel-state + DIV.carousel-slide LABEL.carousel-overlay,
+DIV.carousel-edit LABEL.carousel-overlay
+{
+    DISPLAY: none;
+}
+
+DIV.carousel DIV.carousel-selection
+{
+    PADDING: calc(var(--cms-vspacing) / 2) calc(var(--cms-hspacing) / 2);
+    TEXT-ALIGN: center;
+}
+
+DIV.carousel-edit DIV.carousel-selection
+{
+    DISPLAY: none;
+}
+
+DIV.carousel LABEL.carousel-switch,
+DIV.carousel LABEL.carousel-switch-active
+{
+    BORDER: calc(1.5 * var(--cms-factor)) solid var(--cms-link-color) !important;
+    BORDER-RADIUS: 50%;
+    BOX-SIZING: border-box;
+    DISPLAY: inline-block;
+    FONT-SIZE: 0;
+    HEIGHT: calc(15 * var(--cms-factor));
+    MARGIN: calc(4.5 * var(--cms-factor));
+    OVERFLOW: hidden;
+    USER-SELECT: none;
+    WIDTH: calc(15 * var(--cms-factor));
+}
+
+DIV.carousel LABEL.carousel-switch:hover,
+DIV.carousel LABEL.carousel-switch-active
+{
+    BACKGROUND: var(--cms-link-color);
+}
+
+DIV.carousel IMG.carousel-background ~ LABEL.carousel-switch,
+DIV.carousel IMG.carousel-background ~ LABEL.carousel-switch-active
+{
+    BORDER-COLOR: var(--cms-overlay-color) !important;
+}
+
+DIV.carousel IMG.carousel-background ~ DIV.carousel-selection LABEL.carousel-switch:hover,
+DIV.carousel IMG.carousel-background ~ DIV.carousel-selection LABEL.carousel-switch-active
+{
+    BACKGROUND: var(--cms-overlay-color);
+}

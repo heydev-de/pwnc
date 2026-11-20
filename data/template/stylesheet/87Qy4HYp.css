@@ -1,0 +1,16 @@
+NAV.menu-breadcrumb A
+{
+    MARGIN: 0 calc(5 * var(--cms-factor));
+}
+
+NAV.menu-breadcrumb A.base
+{
+    FONT-STYLE: italic;
+}
+
+NAV.menu-breadcrumb A + A:before
+{
+    DISPLAY: inline-block;
+    MARGIN-RIGHT: calc(10 * var(--cms-factor));
+    CONTENT: "›";
+}

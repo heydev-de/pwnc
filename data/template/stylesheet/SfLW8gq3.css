@@ -1,0 +1,7 @@
+@media (max-width: 640px)
+{
+    DIV.mobile-hide
+    {
+        DISPLAY: none;
+    }
+}

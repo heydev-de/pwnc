@@ -1,0 +1,28 @@
+<CMS:edit>
+<CMS:text id="email" title="%%l_email%%"/>
+</CMS:edit>
+
+<CMS:noedit>
+<script>
+<?php
+
+//protect from spambots
+$index  = $cms_template_base_id . "email";
+$email  = l($cms_template_document->get($index, "text"));
+$email  = x($email);
+$string = "<a href=\"mailto:$email\">$email</a>";
+
+for ($i = 0, $c = utf8_strlen($string); $i < $c; $i += 3)
+    echo("document.write(\"" . q(utf8_substr($string, $i, 3)) . "\");");
+
+?>
+</script>
+
+<noscript>
+<p>
+
+  %%l_email_protection%%
+
+</p>
+</noscript>
+</CMS:noedit>

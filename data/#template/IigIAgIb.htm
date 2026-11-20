@@ -1,0 +1,36 @@
+<CMS:cblock idref="i1">
+<div class="thumbnail2 varied">
+
+  <CMS:edit>
+  <CMS:image id="i1" width="150" class="thumbnail2 thumbnail"/>
+  </CMS:edit>
+
+  <CMS:noedit>
+  <CMS:thumbnail id="i1" twidth="960" width="3840" class="thumbnail2 thumbnail"/>
+  </CMS:noedit>
+
+  <div class="thumbnail2-text">
+
+    <CMS:cblock idref="tp1">
+    <CMS:template id="tp1"/>
+    </CMS:cblock>
+
+    <CMS:calt idref="tp1">
+
+<?php
+
+$index  = $cms_template_base_id . "i1";
+$image  = l($cms_template_document->get($index, "image"));
+$_image = new image();
+$text   = l($_image->data->get($image, "name"));
+
+echo(x($text));
+
+?>
+
+    </CMS:calt>
+
+  </div>
+
+</div>
+</CMS:cblock>

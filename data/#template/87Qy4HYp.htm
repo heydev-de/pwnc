@@ -1,0 +1,62 @@
+<?php
+
+//should never happen if software is installed correctly
+if (! cms_load("directory"))                  return FALSE;
+
+//do not display on empty selection
+if (! defined("CMS_CONTENT_DIRECTORY_INDEX")) return FALSE;
+if (! CMS_CONTENT_DIRECTORY_INDEX)            return FALSE;
+
+//get display object containing the directory tree structure
+$flexview = directory_get_flexview(FALSE);
+
+//set currently selected directory entry
+$flexview->set_index(CMS_CONTENT_DIRECTORY_INDEX);
+
+//set base entry of directory branch to be displayed
+//all elements outside that branch are ignored
+$flexview->set_base(0);
+
+//retrieve home page
+$home = NULL;
+
+foreach ($flexview->object[0] AS $key => $nothing)
+{
+    //skip indexes not representing an entry
+    if (preg_match("/^#(?:data|parent)$/", $key)) continue;
+
+    //skip empty entries
+    if (! isset($flexview->object[$key]["#data"]["url"])) continue;
+
+    $home = $key;
+    break;
+};
+
+//start path with home page
+[$list, $url] = ($home === NULL) ? [[], NULL] : [[$home], $flexview->get_action($home)];
+
+//get list of elements connecting base entry with selected entry
+foreach ($flexview->get_path() AS $key)
+    if (
+         isset($flexview->object[$key]["#data"]["url"]) //not empty
+         &&
+         ! streq($flexview->get_action($key), $url)     //not home page
+       )
+        $list[] = $key;
+
+//home page only
+if (count($list) < 2) return FALSE;
+
+//output path
+echo("<nav class=\"menu-breadcrumb\">");
+
+foreach ($list AS $i => $key)
+    echo("<a href=\"" . $flexview->get_action($key) . "\"" .
+             ($i ? "" : " class=\"base\"") .
+             (streq($key, CMS_CONTENT_DIRECTORY_INDEX) ? " aria-current=\"page\"" : "") . ">" .
+         x($flexview->get_name($key)) .
+         "</a>");
+
+echo("</nav>");
+
+?>

@@ -1,0 +1,30 @@
+<CMS:edit option="value">
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_maximum_width_in_px%%:</td>
+      <td><CMS:value id="limited_width_value"/></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<CMS:cblock idref="tp1">
+
+<?php
+
+$width = (int)l($cms_template_document->get($cms_template_base_id . "limited_width_value"));
+$style = ($width > 0) ? " style=\"WIDTH:min($width*var(--cms-factor),100%)\"" : "";
+
+?>
+
+<div<?=$style?>>
+
+  <CMS:template id="tp1"/>
+
+</div>
+</CMS:cblock>

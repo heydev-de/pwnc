@@ -1,0 +1,17 @@
+NAV.menu-language-codes
+{
+    MARGIN: 0 min(-5px, -5 * var(--cms-factor));
+    TEXT-ALIGN: center;
+    TEXT-TRANSFORM: uppercase;
+}
+
+NAV.menu-language-codes A
+{
+    DISPLAY: inline-block;
+    PADDING: 0 calc(5 * var(--cms-factor));
+}
+
+NAV.menu-language-codes A + A
+{
+    BORDER-LEFT: calc(1.5 * var(--cms-factor)) solid currentColor;
+}

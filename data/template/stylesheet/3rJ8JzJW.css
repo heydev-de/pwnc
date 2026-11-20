@@ -1,0 +1,21 @@
+DL
+{
+    COLUMN-GAP: var(--cms-hspacing);
+    COLUMN-WIDTH: calc(250 * var(--cms-factor));
+}
+
+DL > DIV
+{
+    BREAK-INSIDE: avoid;
+    MARGIN-BOTTOM: var(--cms-vspacing);
+}
+
+DT
+{
+    FONT-WEIGHT: bold;
+}
+
+DD
+{
+    TEXT-INDENT: var(--cms-hspacing);
+}

@@ -1,0 +1,18 @@
+<h1>
+
+  <CMS:cblock idref="t1"><CMS:text id="t1" title="%%l_page_title%%"/></CMS:cblock>
+
+  <CMS:calt idref="t1">
+<?php
+
+//retrieve title from database
+$mysql = new mysql();
+echo(x(l($mysql->get(CMS_CONTENT_INDEX,
+                     CMS_DB_CONTENT_TITLE,
+                     CMS_DB_CONTENT,
+                     CMS_DB_CONTENT_INDEX))));
+
+?>
+  </CMS:calt>
+
+</h1>

@@ -1,0 +1,9 @@
+DIV.layout-row-block
+{
+    MARGIN: 0 0 var(--cms-vspacing);
+}
+
+DIV.layout-row-block:last-child
+{
+    MARGIN: 0;
+}

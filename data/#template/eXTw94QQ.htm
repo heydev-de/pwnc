@@ -1,0 +1,77 @@
+<CMS:edit>
+<div class="module-settings">
+
+  <table>
+
+    <tr>
+      <td>%%l_number_of_entries%%:</td>
+      <td><CMS:repeat id="r1" default="3"></CMS:repeat></td>
+    </tr>
+
+  </table>
+
+</div>
+</CMS:edit>
+
+<?php $i = 1;?>
+<section class="faq">
+
+  <h2>
+
+    <CMS:text id="t1" title="%%l_faq_heading%%"/>
+
+  </h2>
+
+  <CMS:repeat id="r1" edit="off">
+  <CMS:cblock idref="+0.t1">
+  <CMS:cblock idref="+0.t2">
+  <CMS:group title="%%l_faq_entry%%">
+  <h3>
+
+    <?=$i++?>. <CMS:text id="t1" title="%%l_question%%"/>
+
+  </h3>
+
+  <p>
+
+    <CMS:text id="t2" title="%%l_answer%%"/>
+
+  </p>
+  </CMS:group>
+  </CMS:cblock>
+  </CMS:cblock>
+  </CMS:repeat>
+
+</section>
+
+<script type="application/ld+json">
+<?php
+
+$entry  = array();
+$repeat = l($cms_template_document->get($cms_template_base_id . "r1", "repeat"));
+$repeat = max((int)$repeat, 1);
+
+for ($i = 3, $c = $repeat * 3 + 3; $i < $c; $i += 3)
+{
+    $id = $cms_template_base_id . "r1.$i.";
+
+    $question = remove_format(l($cms_template_document->get($id . "t1", "text")));
+    if (stre($question)) continue;
+
+    $answer = remove_format(l($cms_template_document->get($id . "t2", "text")));
+    if (stre($answer)) continue;
+
+    $entry[] = array("@type"          => "Question",
+                     "name"           => $question,
+                     "acceptedAnswer" => array("@type" => "Answer",
+                                               "text"  => $answer));
+};
+
+$entry = array("@context"   => "https://schema.org",
+               "@type"      => "FAQPage",
+               "mainEntity" => $entry);
+
+echo(json_encode($entry));
+
+?>
+</script>

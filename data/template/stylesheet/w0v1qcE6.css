@@ -1,0 +1,14 @@
+.horizontal-container
+{
+    OVERFLOW-X: auto;
+    SCROLL-SNAP-TYPE: x mandatory;
+    TEXT-ALIGN: center;
+    WHITE-SPACE: nowrap;
+}
+
+.horizontal-container > DIV
+{
+    DISPLAY: inline-block;
+    SCROLL-SNAP-ALIGN: center;
+    TEXT-ALIGN: left;
+}

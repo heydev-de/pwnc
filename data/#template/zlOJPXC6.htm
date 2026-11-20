@@ -1,0 +1,51 @@
+<?php
+
+if (stre(CMS_LANGUAGE_ENABLED)) return FALSE;
+
+$data     = new data("#system/language");
+$image    = new map("#system/language.image");
+$language = explode(",", CMS_LANGUAGE_ENABLED);
+$language = array_filter($language, fn($value) => ! streq($value, CMS_LANGUAGE)); //exclude active language
+$flag     = defined("CMS_CONTENT_DIRECTORY_INDEX") && (CMS_CONTENT_DIRECTORY_INDEX !== 0);
+
+if (! $language) return FALSE; //no other language
+
+echo("<div class=\"menu-language\">");
+
+foreach ($language AS $value)
+{
+    while (TRUE)
+    {
+        //directory entry
+        while ($flag)
+        {
+            $map = new map("#system/$value.directory");
+            $url = $map->get_value(CMS_CONTENT_DIRECTORY_INDEX);
+            if ($url === NULL) break;
+            $url = cms_url(CMS_ROOT_URL . $url);
+            break 2;
+        };
+
+        //no directory entry
+        $url = cms_url(["cms_select_language" => $value]);
+        break;
+    };
+
+    $name = $data->get($value, "name");
+
+    echo("<a href=\"" . x($url) . "\">");
+
+    if (
+         (($file = $image->get_value($value)) !== NULL)
+         &&
+         is_file(CMS_DATA_PATH . "language/$file")
+       )
+         echo(image(CMS_DATA_URL . "language/$file", NULL, NULL, $name) . " ");
+
+    echo(x($name) .
+         "</a>");
+};
+
+echo("</div>");
+
+?>

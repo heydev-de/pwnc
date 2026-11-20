@@ -1,0 +1,5 @@
+password:=visible=1;editable=1;required=1
+prename:=visible=1;editable=1;required=1
+surname:=visible=1;editable=1;required=1
+email:=visible=1;required=1;editable=1
+user:=visible=1;required=1;editable=1

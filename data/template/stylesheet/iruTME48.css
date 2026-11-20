@@ -1,0 +1,176 @@
+DIV.video
+{
+    OVERFLOW: hidden;
+    WIDTH: 100%;
+}
+
+DIV.video-edit
+{
+    MAX-WIDTH: calc(250 * var(--cms-factor));
+}
+
+DIV.video VIDEO,
+DIV.video-edit VIDEO
+{
+    HEIGHT: auto;
+    WIDTH: 100%;
+}
+
+@keyframes video-loading
+{
+      0% { LEFT:   0%; RIGHT: 100%; }
+     50% { LEFT:   0%; RIGHT:   0%; }
+    100% { LEFT: 100%; RIGHT:   0%; }
+}
+
+DIV.video DIV.video-overlay
+{
+    DISPLAY: none;
+    BOTTOM: 0;
+    LEFT: 0;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+}
+
+DIV.video DIV.video-overlay IMG
+{
+    DISPLAY: none;
+    HEIGHT: 100%;
+    LEFT: 0;
+    OBJECT-FIT: cover;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+DIV.video DIV.video-overlay DIV.video-loading
+{
+    ANIMATION: video-loading 4s ease-in-out infinite;
+    BACKGROUND: rgba(255, 255, 255, 0.5);
+    HEIGHT: calc(5 * var(--cms-factor));
+    POSITION: absolute;
+    TOP: 0;
+}
+
+DIV.video VIDEO.video-loading ~ DIV.video-overlay,
+DIV.video VIDEO.video-preview-loading ~ DIV.video-overlay,
+DIV.video VIDEO.video-loading ~ DIV.video-overlay IMG,
+DIV.video VIDEO.video-preview-loading ~ DIV.video-overlay IMG,
+DIV.video VIDEO.video-waiting ~ DIV.video-overlay,
+DIV.video VIDEO.video-preview-waiting ~ DIV.video-overlay
+{
+    DISPLAY: block;
+}
+
+DIV.video BUTTON,
+DIV.video BUTTON:focus,
+DIV.video BUTTON:hover
+{
+    BACKGROUND: transparent;
+    BORDER: none;
+    FONT-SIZE: 0;
+    MARGIN: 0;
+    MIN-HEIGHT: 0;
+    MIN-WIDTH: 0;
+    PADDING: 0;
+}
+
+DIV.video BUTTON.video-play,
+DIV.video BUTTON.video-preview
+{
+    BACKGROUND: rgba(0, 0, 0, 0.15) url(../video-play.svg) center no-repeat;
+    BACKGROUND-SIZE: calc(67.5 * var(--cms-factor));
+    DISPLAY: none;
+}
+
+DIV.video VIDEO.video-preview ~ BUTTON.video-play,
+DIV.video VIDEO.video-preview-loading ~ BUTTON.video-play,
+DIV.video VIDEO.video-preview-waiting ~ BUTTON.video-play,
+DIV.video VIDEO.video-paused ~ BUTTON.video-play,
+DIV.video BUTTON.video-preview,
+DIV.video BUTTON.video-pause
+{
+    DISPLAY: block;
+    HEIGHT: 100%;
+    LEFT: 0;
+    POSITION: absolute;
+    TOP: 0;
+    WIDTH: 100%;
+}
+
+DIV.video BUTTON.video-fullscreen
+{
+    BACKGROUND: transparent url(../video-fullscreen.svg) center no-repeat;
+    BACKGROUND-SIZE: contain;
+    BOTTOM: calc(20 * var(--cms-factor));
+    HEIGHT: calc(20 * var(--cms-factor));
+    POSITION: absolute;
+    RIGHT: calc(20 * var(--cms-factor));
+    WIDTH: calc(20 * var(--cms-factor));
+}
+
+DIV.video BUTTON.video-preview,
+DIV.video VIDEO.video-preview ~ BUTTON.video-preview,
+DIV.video VIDEO.video-preview ~ BUTTON.video-pause,
+DIV.video VIDEO.video-preview ~ BUTTON.video-fullscreen,
+DIV.video VIDEO.video-paused ~ BUTTON.video-preview,
+DIV.video VIDEO.video-paused ~ BUTTON.video-pause,
+DIV.video VIDEO.video-paused ~ BUTTON.video-fullscreen
+{
+    DISPLAY: none;
+}
+
+DIV.video INPUT[type=checkbox]
+{
+    DISPLAY: none;
+}
+
+DIV.video DIV.video-info
+{
+    BACKGROUND: var(--cms-overlay-background);
+    BOTTOM: 0;
+    BOX-SIZING: border-box;
+    LEFT: 0;
+    MAX-HEIGHT: 100%;
+    MAX-WIDTH: 100%;
+    OPACITY: 0;
+    OVERFLOW: hidden;
+    OVERFLOW-Y: auto;
+    PADDING: calc(17.5 * var(--cms-factor));
+    PADDING-LEFT: calc(52.5 * var(--cms-factor));
+    POSITION: absolute;
+    TRANSFORM: translateX(-100%);
+    TRANSITION: opacity 0.5s, transform 0.5s;
+    WHITE-SPACE: normal;
+}
+
+DIV.video DIV.video-info,
+DIV.video DIV.video-info *
+{
+    COLOR: var(--cms-overlay-color);
+}
+
+DIV.video INPUT.video-info-trigger:checked ~ DIV.video-info
+{
+    OPACITY: 1;
+    TRANSFORM: translateX(0);
+}
+
+DIV.video LABEL.video-info
+{
+    BACKGROUND: transparent url(../video-info.svg) center no-repeat;
+    BACKGROUND-SIZE: contain;
+    BOTTOM: calc(20 * var(--cms-factor));
+    FONT-SIZE: 0;
+    HEIGHT: calc(20 * var(--cms-factor));
+    LEFT: calc(20 * var(--cms-factor));
+    POSITION: absolute;
+    WIDTH: calc(20 * var(--cms-factor));
+}
+
+DIV.video LABEL.video-info:focus,
+DIV.video LABEL.video-info:hover
+{
+    TEXT-SHADOW: none;
+}
