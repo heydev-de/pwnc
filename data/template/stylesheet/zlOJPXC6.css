@@ -1,0 +1,17 @@
+DIV.menu-language
+{
+    DISPLAY: flex;
+    FLEX-WRAP: wrap;
+    GAP: var(--cms-vpadding) var(--cms-hpadding);
+}
+
+DIV.menu-language IMG
+{
+    BACKGROUND: var(--cms-background);
+    BORDER: calc(1.5 * var(--cms-factor)) solid var(--cms-color);
+    BORDER-RADIUS: 50%;
+    BOX-SIZING: border-box;
+    HEIGHT: calc(25 * var(--cms-factor));
+    OBJECT-FIT: cover;
+    WIDTH: calc(25 * var(--cms-factor));
+}

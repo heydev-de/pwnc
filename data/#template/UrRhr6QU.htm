@@ -1,0 +1,66 @@
+<?php
+
+//should never happen if software is installed correctly
+if (! cms_load("directory"))                  return FALSE;
+
+//do not display on empty selection
+if (! defined("CMS_CONTENT_DIRECTORY_INDEX")) return FALSE;
+if (! CMS_CONTENT_DIRECTORY_INDEX)            return FALSE;
+
+//get display object containing the directory tree structure
+$flexview = directory_get_flexview(FALSE);
+
+//set currently selected directory entry
+$flexview->set_index(CMS_CONTENT_DIRECTORY_INDEX);
+
+//set base entry of directory branch to be displayed
+//all elements outside that branch are ignored
+$flexview->set_base(0);
+
+//structured data
+$list = ["@context"        => "https://schema.org",
+         "@type"           => "BreadcrumbList",
+         "itemListElement" => []];
+$pos  = 1;
+
+//retrieve home page
+$home = NULL;
+
+foreach ($flexview->object[0] AS $key => $nothing)
+{
+    //skip indexes not representing an entry
+    if (preg_match("/^#(?:data|parent)$/", $key)) continue;
+
+    //skip empty entries
+    if (! isset($flexview->object[$key]["#data"]["url"])) continue;
+
+    $home = $key;
+    break;
+};
+
+//start path with home page
+[$path, $url] = ($home === NULL) ? [[], NULL] : [[$home], $flexview->get_action($home)];
+
+//get list of elements connecting base entry with selected entry (inclusive)
+foreach ($flexview->get_path() AS $key)
+    if (
+         isset($flexview->object[$key]["#data"]["url"]) //not empty
+         &&
+         ! streq($flexview->get_action($key), $url)     //not home page
+       )
+        $path[] = $key;
+
+//add to structured data
+foreach ($path AS $key)
+    $list["itemListElement"][] =
+        ["@type"    => "ListItem",
+         "position" => $pos++,
+         "name"     => $flexview->get_name($key),
+         "item"     => xmlspecialchars($flexview->get_action($key), TRUE)];
+
+//output structured data
+echo("<script type=\"application/ld+json\">" .
+     json_encode($list) .
+     "</script>");
+
+?>

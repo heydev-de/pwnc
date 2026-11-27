@@ -1,0 +1,50 @@
+<?php
+
+if (! defined("CMS_CONTENT_INDEX")) return FALSE; //exit template
+$title = $descr = $image = $mime = $width = $height = $url = "";
+
+//info
+$mysql = new mysql();
+$title = x(l($mysql->get(CMS_CONTENT_INDEX, CMS_DB_CONTENT_TITLE, CMS_DB_CONTENT, CMS_DB_CONTENT_INDEX)));
+$descr = x(l($mysql->get(CMS_CONTENT_INDEX, CMS_DB_CONTENT_DESCRIPTION, CMS_DB_CONTENT, CMS_DB_CONTENT_INDEX)));
+
+//image
+$image  = l($mysql->get(CMS_CONTENT_INDEX, CMS_DB_CONTENT_IMAGE, CMS_DB_CONTENT, CMS_DB_CONTENT_INDEX));
+if (stre($image)) $image = "image://WlD9eo9t";
+$image  = translate_url($image);
+$image  = image_process($image, 1202, 676);
+$array  = getimagesize($image);
+$width  = x($array[0]);
+$height = x($array[1]);
+$mime   = get_mime_type($image);
+$image  = x($image);
+
+//canonical url
+if (defined("CMS_CONTENT_DIRECTORY_INDEX") && (CMS_CONTENT_DIRECTORY_INDEX !== 0))
+{
+    $language = nstre(CMS_LANGUAGE) ? CMS_LANGUAGE . "." : "";
+    $map      = new map("#system/" . $language . "directory.canonical");
+    $url      = x($map->get_value(CMS_CONTENT_DIRECTORY_INDEX));
+}
+elseif (cms_load("directory"))
+{
+    $language = (count(explode(",", CMS_LANGUAGE_ENABLED, 2)) > 1) ? CMS_LANGUAGE : NULL;
+    $url      = substr(CMS_MODULES_URL, strlen(CMS_ROOT_URL)) . "content.php";
+    $url      = absolute_path(directory_get_canonical(), $url);
+    $url      = x($url . querystring(array("content_index"       => CMS_CONTENT_INDEX,
+                                           "cms_select_language" => $language)));
+};
+
+?>
+
+<meta property="og:site_name" content="%%sitename%%">
+<meta property="og:title" content="<?=$title?>">
+<meta property="og:description" content="<?=$descr?>">
+<meta property="og:url" content="<?=$url?>">
+<meta property="og:type" content="website">
+
+<meta property="og:image" content="<?=$image?>">
+<meta property="og:image:secure_url" content="<?=$image?>">
+<meta property="og:image:type" content="<?=$mime?>">
+<meta property="og:image:width" content="<?=$width?>">
+<meta property="og:image:height" content="<?=$height?>">

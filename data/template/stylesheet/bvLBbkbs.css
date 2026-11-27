@@ -1,0 +1,37 @@
+DIV.bgimage-parallax
+{
+    DISPLAY: grid;
+}
+
+DIV.bgimage-parallax IMG.bgimage-parallax-image
+{
+    GRID-COLUMN: 1 / 1;
+    GRID-ROW: 1 / 1;
+    OBJECT-FIT: cover;
+    PLACE-SELF: stretch;
+    WIDTH: 100%;
+    Z-INDEX: -1;
+}
+
+DIV.bgimage-parallax DIV.bgimage-parallax-content
+{
+    BACKDROP-FILTER: blur(1.5px);
+    GRID-COLUMN: 1 / 1;
+    GRID-ROW: 1 / 1;
+    PADDING: var(--cms-vspacing) var(--cms-hspacing);
+    PLACE-SELF: center;
+}
+
+
+DIV.bgimage-parallax DIV.bgimage-parallax-content:before
+{
+    BACKGROUND: var(--cms-background);
+    BOTTOM: 0;
+    CONTENT: "";
+    LEFT: 0;
+    OPACITY: 0.8;
+    POSITION: absolute;
+    RIGHT: 0;
+    TOP: 0;
+    Z-INDEX: -1;
+}

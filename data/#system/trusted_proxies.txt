@@ -1,0 +1,11 @@
+# PWNC Web Platform - Trusted Proxies List
+# -----------------------------------------------------
+# Allowed: Single IPs or subnets (CIDR notation).
+# Empty lines and lines starting with # are ignored.
+
+# Active local hosts & private subnets (Default)
+127.0.0.1
+::1
+192.168.0.0/16
+172.16.0.0/12
+10.0.0.0/8

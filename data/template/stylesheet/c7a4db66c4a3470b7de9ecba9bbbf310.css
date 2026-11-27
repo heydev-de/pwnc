@@ -1,0 +1,36 @@
+.contact .contact-line
+{
+    DISPLAY: flex;
+    JUSTIFY-CONTENT: space-between;
+}
+
+.contact .contact-left
+{
+    FONT-WEIGHT: bold;
+    WIDTH: calc(35% - var(--cms-hspacing) / 2);
+}
+
+.contact .contact-right
+{
+    WIDTH: calc(65% - var(--cms-hspacing) / 2);
+}
+
+.contact .contact-separator
+{
+    DISPLAY: block;
+    PADDING-TOP: var(--cms-vspacing);
+}
+
+@media (max-width: 640px)
+{
+    .contact .contact-line
+    {
+        DISPLAY: block;
+    }
+
+    .contact .contact-left,
+    .contact .contact-right
+    {
+        WIDTH: 100%;
+    }
+}

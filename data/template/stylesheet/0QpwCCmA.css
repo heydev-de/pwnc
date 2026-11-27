@@ -1,0 +1,59 @@
+DIV.teaser2
+{
+    DISPLAY: flex;
+    FLEX-DIRECTION: column;
+    GAP: var(--cms-hpadding);
+    HEIGHT: 100%;
+}
+
+DIV.teaser2:not(.edit) DIV.teaser2-image
+{
+    BORDER-RADIUS: var(--cms-hpadding);
+    BOX-SHADOW: var(--cms-factor) var(--cms-factor) var(--cms-factor) rgba(24, 23, 22, 0.5);
+    OVERFLOW: clip;
+}
+
+DIV.teaser2-image:last-child
+{
+    FLEX: 1;
+}
+
+DIV.teaser2-image > IMG
+{
+    HEIGHT: calc(250 * var(--cms-factor));
+    OBJECT-FIT: cover;
+}
+
+DIV.teaser2-image:last-child > IMG
+{
+    HEIGHT: 100%;
+}
+
+DIV.teaser2-title
+{
+    MARGIN: 0;
+}
+
+DIV.teaser2-text
+{
+    TEXT-ALIGN: justify;
+    TEXT-ALIGN-LAST: left;
+    TEXT-WRAP: balance;
+}
+
+DIV.teaser2-title + DIV.teaser2-text
+{
+    MARGIN-TOP: calc(-0.5 * var(--cms-hpadding));
+}
+
+DIV.teaser2-link
+{
+    ALIGN-CONTENT: flex-end;
+    FLEX: 1;
+    TEXT-ALIGN: center;
+}
+
+DIV.teaser2-link > A
+{
+    MARGIN: 0;
+}

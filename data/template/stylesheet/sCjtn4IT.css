@@ -1,0 +1,23 @@
+NAV.link-list
+{
+    TEXT-ALIGN: center;
+}
+
+NAV.link-list UL
+{
+    LIST-STYLE: none;
+    MARGIN: 0 0 calc(var(--cms-hpadding) * -1) calc(var(--cms-hpadding) * -1);
+    PADDING: 0;
+}
+
+NAV.link-list LI
+{
+    DISPLAY: inline-block;
+    MARGIN: 0 0 var(--cms-hpadding) var(--cms-hpadding);
+    TEXT-ALIGN: left;
+}
+
+NAV.link-list A.button
+{
+    MARGIN: 0;
+}
